@@ -1,0 +1,55 @@
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+span {
+	background: #e74c3c;
+	height: 40px;
+	margin-right: 20px;
+	text-align: center;
+	color: white;
+	width: 0px;
+	display: inline-block;
+	transition: 0.2s linear;
+	opacity: 0;
+}
+
+hr .style-two {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    width: 80%;
+}
+
+.questions .container li {
+	background: white;
+	height: 40px;
+	line-height: 40px;
+	color: #666;
+	width: 100%;
+}
+
+.questions .container li:nth-child(2n) {
+	background: #f7f7f7;
+}
+
+.questions .container li:hover span {
+	width: 40px;
+	opacity: 1;
+}
+
+.questions .container {
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	width: 80%;
+	margin: 50px auto;
+	background: #f7f7f7;
+	border-left: 1px solid gray;
+}
+
+.reply {
+	background: transparent;
+	border: none;
+}
