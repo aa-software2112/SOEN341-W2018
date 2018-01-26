@@ -6,3 +6,4 @@ Pull Request Test for Sprint 1:
 - Thomas
 - Anthony
 - Ruochen Jia
+- Alexander 
