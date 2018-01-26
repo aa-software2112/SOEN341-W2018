@@ -5,3 +5,4 @@ Pull Request Test for Sprint 1:
 - Jason 
 - Thomas
 - Anthony
+- Ruochen Jia
