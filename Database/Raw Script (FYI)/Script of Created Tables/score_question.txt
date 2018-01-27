@@ -1,0 +1,7 @@
+CREATE TABLE `score_question` (
+  `score` enum('-1','1') NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `question_id` int(10) unsigned NOT NULL,
+  `date_scored_question` date NOT NULL,
+  PRIMARY KEY (`user_id`,`question_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

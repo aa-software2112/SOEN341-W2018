@@ -1,0 +1,10 @@
+CREATE TABLE `answer` (
+  `answer_body` varchar(1000) NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `question_id` int(10) unsigned NOT NULL,
+  `date_answered` date NOT NULL,
+  `answer_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`answer_id`),
+  KEY `question_id` (`question_id`),
+  CONSTRAINT `question_id` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
