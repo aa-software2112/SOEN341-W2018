@@ -1,3 +1,5 @@
+/* global css properties */
+
 * {
 	margin: 0;
 	padding: 0;
@@ -16,6 +18,11 @@ h2 {
 
 p {
 	font-size: 1.25em;
+	line-height: 1.5em;
+}
+
+.align-right {
+	text-align: right;
 }
 
 .center-div {
@@ -40,14 +47,42 @@ p {
 	padding-left: 40px;
 }
 
+.make-flex {
+	display: flex;
+}
+
+.flex-vert {
+	flex-direction: column;
+}
+
+.flex-horiz {
+	flex-direction: row;
+}
+
+.flex-right {
+	justify-content: flex-end;
+}
+
+/* question/answer forum css */
+
 #question-container {
 	background-color: pink;
 	padding-left: 25px;
-	padding-bottom: 50px;
-	width: 90%;
+	width: 100%;
+}
+
+#question {
 }
 
 #question-body {
 	margin: 50px 15px 0px 25px;
-	line-height: 1.5em; 
+}
+
+#user_asked_div {
+	background-color: orange;
+	min-width: 150px;
+}
+
+#user_asked_info {
+	font-size: 1.0em;
 }
