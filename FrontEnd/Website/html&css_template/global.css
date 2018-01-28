@@ -5,6 +5,8 @@
 	padding: 0;
 	box-sizing: border-box;
 	font: 16px Arial;/* global font defaults */
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 html, body {
@@ -46,6 +48,16 @@ form {
 	
 }
 
+.image { /* Generic image css */
+	border: 1px solid black;
+	transition: box-shadow 0.25s, border 0.25;
+}
+
+.image:hover { /* Generic image hovering css transition */
+	box-shadow: 0px 0px 3px 2px rgba(100,100,100,0.35) inset;
+	border: 2px solid blue;
+}
+
 .text-input { /* For consistent input-box format */
 	resize: none;
 	outline: none;
@@ -85,6 +97,7 @@ form {
 	background-color: green;
 	padding-bottom: 30px;
 	max-width:1024px;
+	min-height: 1000px;
 	height:100%;	
 }
 
@@ -208,3 +221,47 @@ form {
 	min-width: 125px;
 	font-size: 1.0em;
 }
+
+/* user profile page css */
+
+#user-area-div {
+	min-height: 100px;
+	min-width: 100%;
+	background-color: pink;
+	
+	
+}
+
+#user-profile-div {
+	background-color: purple;
+	width: 250px;
+	min-height: 500px;
+	max-height: 500px;
+}
+
+#user-stats-div {
+	flex: 1;
+	background-color: orange;
+	
+}
+
+#logo-div {
+	height: 200px;
+	width: 200px;
+	margin: 25px;
+	background-color:white;
+	background-image: url("logos/knight.png");
+}
+
+#user-profile-metrics {
+	width: 100%;
+	background-color: grey;	
+}
+
+#user-profile-metrics > p {
+	margin-bottom: 5px;
+	background-color: white;
+	font-size: 0.95em;
+	
+}
+
