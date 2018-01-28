@@ -12,6 +12,10 @@ html, body {
 	height: 100%;
 }
 
+h1 {
+	font-size: 1.80em;
+}
+
 h2 {
 	font-size: 1.75em;
 }
@@ -21,8 +25,51 @@ p {
 	line-height: 1.5em;
 }
 
+form {
+	display: block;
+}
+
+.button { /* For consistent button format */
+	outline: none;
+	border: 1px solid black;
+	background-color: blue;
+	color: white;
+	font-size: 1.2em;
+	border-radius: 1px;
+	padding: 5px;
+	box-shadow: none;
+	transition: box-shadow 0.05s;
+}
+
+.button:hover { /* Generic button hovering effect */
+	box-shadow: 0px 0px 3px 2px rgba(100,100,100,0.35);
+	
+}
+
+.text-input { /* For consistent input-box format */
+	resize: none;
+	outline: none;
+	border:none;
+	border: 1px solid rgb(100, 100, 100);
+	border-radius: 4px;
+	padding: 15px 20px;
+	font-family: Verdana;
+	line-height: 1.25em;
+	font-size: 1.20em;
+	overflow: hidden;
+}
+
+.text-input:hover {
+	border-color: blue;
+	box-shadow: 0px 0px 2px 1px rgba(100, 100, 100, 0.35) inset;
+}
+
 .align-right {
 	text-align: right;
+}
+
+.align-center {
+	text-align: center;
 }
 
 .center-div {
@@ -35,16 +82,16 @@ p {
 }
 
 .content-container {
-	
 	background-color: green;
+	padding-bottom: 30px;
 	max-width:1024px;
-	min-height:1000px;	
+	height:100%;	
 }
 
 .alignment-container {
-	
 	padding-top: 50px;
 	padding-left: 40px;
+	padding-right: 40px;
 }
 
 .make-flex {
@@ -63,6 +110,18 @@ p {
 	justify-content: flex-end;
 }
 
+.center-vert {
+	align-items: center;
+}
+
+.self-right {
+	align-self: flex-end;
+}
+
+.self-left {
+	align-self: flex-start;
+}
+
 /* question/answer forum css */
 
 #question-container {
@@ -78,11 +137,74 @@ p {
 	margin: 50px 15px 0px 25px;
 }
 
-#user_asked_div {
+#user-asked-div {
 	background-color: orange;
 	min-width: 150px;
 }
 
-#user_asked_info {
+#answers-container {
+	min-height:300px;
+	background-color:purple;
+	margin-left: 40px;
+	margin-top: 50px;
+}
+
+#user-asked-info {
+	padding-right: 15px;
+}
+
+#answer-logo {
+	margin-top:50px;
+}
+
+#submit-answer-div{
+	padding: 20px;
+	padding-right: 80px;
+	margin-top: 40px;
+	width: 100%;
+	height: 300px;
+	background-color: pink;
+}
+
+#answer-form {
+	height: 100%;
+	
+}
+
+#answer-textarea {
+	width: 100%;
+	height: 80%;
+}
+
+#submit-button {
+	margin-top: 10px;
+	width: 150px;
+}
+
+.answers{
+	margin-bottom: 10px;
+	min-height: 150px;
+	background-color: gray;
+}
+
+.user_answered_div {
+	background-color:orange;
+}
+
+
+.answer-div {
+	background-color: red;
+	flex: 1;
+}
+
+.answer-p {
+	padding: 10px;
+	
+}
+
+.user-metrics
+{
+	margin-top: 10px;
+	min-width: 125px;
 	font-size: 1.0em;
 }
