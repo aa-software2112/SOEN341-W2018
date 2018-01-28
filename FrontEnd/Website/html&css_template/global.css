@@ -35,14 +35,13 @@ p {
 }
 
 .content-container {
-	
 	background-color: green;
+	padding-bottom: 30px;
 	max-width:1024px;
-	min-height:1000px;	
+	height:100%;	
 }
 
 .alignment-container {
-	
 	padding-top: 50px;
 	padding-left: 40px;
 }
@@ -63,6 +62,10 @@ p {
 	justify-content: flex-end;
 }
 
+.center-vert {
+	align-items: center;
+}
+
 /* question/answer forum css */
 
 #question-container {
@@ -78,11 +81,46 @@ p {
 	margin: 50px 15px 0px 25px;
 }
 
-#user_asked_div {
+#user-asked-div {
 	background-color: orange;
 	min-width: 150px;
 }
 
-#user_asked_info {
+#answers-container {
+	min-height:300px;
+	background-color:purple;
+	margin-left: 40px;
+	margin-top: 50px;
+	margin-right: 40px;
+}
+
+#user-asked-info {
+	padding-right: 15px;
+}
+
+.answers{
+	margin-bottom: 10px;
+	min-height: 150px;
+	background-color: gray;
+}
+
+.user_answered_div {
+	background-color:orange;
+}
+
+
+.answer-div {
+	background-color: red;
+	flex: 1;
+}
+
+.answer-p {
+	padding: 10px;
+	
+}
+
+.user-metrics
+{
+	min-width: 125px;
 	font-size: 1.0em;
 }
