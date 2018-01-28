@@ -9,3 +9,4 @@ Pull Request Test for Sprint 1:
 - Abishand
 - Saleh
 - Alexander
+- Nizar
