@@ -6,7 +6,7 @@
 	box-sizing: border-box;
 	font: 16px Arial;/* global font defaults */
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: cover;
 }
 
 html, body {
@@ -30,6 +30,21 @@ p {
 form {
 	display: block;
 }
+
+a {
+	text-decoration: none;
+	color: blue;
+}
+
+a:link a:visited a:hover{
+	color: blue;
+}
+
+a:active {
+	color: purple;
+}
+
+
 
 .button { /* For consistent button format */
 	outline: none;
@@ -80,7 +95,7 @@ form {
 	text-align: right;
 }
 
-.align-center {
+.align-center, .text-center {
 	text-align: center;
 }
 
@@ -127,11 +142,11 @@ form {
 	align-items: center;
 }
 
-.self-right {
+.self-right, .self-top	{
 	align-self: flex-end;
 }
 
-.self-left {
+.self-left, .self-bottom {
 	align-self: flex-start;
 }
 
@@ -225,22 +240,25 @@ form {
 /* user profile page css */
 
 #user-area-div {
-	min-height: 100px;
+	min-height: 1000px;
 	min-width: 100%;
 	background-color: pink;
-	
 	
 }
 
 #user-profile-div {
-	background-color: purple;
-	width: 250px;
+	background-color: yellow;
+	min-width: 250px;
+	max-width: 350px;
 	min-height: 500px;
-	max-height: 500px;
+	align-self: flex-start;
+	padding: 40px 20px 30px 20px;
+	border-right: 1px solid rgba(100, 100, 100, 0.35);
 }
 
 #user-stats-div {
 	flex: 1;
+	padding: 20px 30px;
 	background-color: orange;
 	
 }
@@ -248,20 +266,43 @@ form {
 #logo-div {
 	height: 200px;
 	width: 200px;
-	margin: 25px;
-	background-color:white;
-	background-image: url("logos/knight.png");
+	background-image: url("logos/spring-patterns_02.jpg");
 }
 
 #user-profile-metrics {
 	width: 100%;
-	background-color: grey;	
 }
 
 #user-profile-metrics > p {
-	margin-bottom: 5px;
-	background-color: white;
-	font-size: 0.95em;
+	word-wrap: break-word;
+	min-width: 250px;
+	padding-top: 2px;
+	padding-bottom: 5px;
+	font-size: 1.0em;	
+	letter-spacing: 0.050em;
+}
+
+#user-profile-metrics > p:first-child {
+	margin-top: 5px;
+	font-size: 1.50em;
+}
+
+#view-title {
+	background-color: red;
 	
 }
 
+.view-result {
+	margin-top: 20px;
+	background-color: Chartreuse;
+}
+
+.view-result-p, .date-result-p{
+	font-size: 0.90em;
+	background-color: white;
+	line-height: 1.75em;
+}
+
+.date-result-p {
+	
+}
