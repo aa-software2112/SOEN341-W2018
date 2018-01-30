@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="global.css">
+		<style type="text/css">
+
+			.body-container2 {
+				background-color: #000000;
+				min-height:100%;
+			}
+
+			.content-container2 {
+				background-color: #07224f;
+				padding-bottom: 30px;
+				max-width:1024px;
+				min-height: 1000px;
+				height:100%;	
+			}
+
+			.textbox {
+				width: 100%;
+				border: 1px solid #ccc;
+				margin: 8px 0;
+				padding: 6px 20px;
+				background-color: #07224f;
+			}
+
+			.title {
+				color: #fff;
+				 font-size: 2.5em;
+				 text-align: center;
+			}
+
+			.left {
+				color: #fff;
+				width: 25%;
+			}
+
+			.right {
+				color: #fff;
+				width: 25%;
+
+			}
+
+			.text-container {
+				width: 100%;
+				display: flex;
+				justify-content: space-around;
+			}
+
+			.button {
+				display: block;
+				margin: auto;
+				text-align: center;
+				background-color: #e86177;
+				font-weight: bold;
+				color: white;
+				padding: 12px 18px;
+				width: 40%;
+				border: none;
+			}
+
+			button:hover {
+				opacity: 0.8;
+			}
+
+			
+		</style>
+	</head>
+
+	<body>
+
+		<div class="body-container2">
+			<div class="content-container2 center-div">
+				<div class="alignment-container">
+					 <h3 class="title">SIGN UP</h3><br><br>
+
+			<form action="">
+				<div class="text-container">
+					 <div class="left">
+					 <label><b>First name</b></label><br>
+     				 <input class="textbox" type="text" placeholder="Enter First Name" name="fname" required></div>
+
+     				 <div class="right">
+     				 <label><b>Last Name</b></label><br>
+     				 <input class="textbox" type="text" placeholder="Enter Last Name" name="lname" required><br><br></div>
+     			</div>
+
+     			<div class="text-container">
+					 <div class="left">
+					 <label><b>Username</b></label><br>
+     				 <input class="textbox" type="text" placeholder="Enter Username" name="uname" required></div>
+
+     				 <div class="right">
+     				 <label><b>Email</b></label><br>
+     				 <input class="textbox" type="text" placeholder="Enter Email" name="email" required><br><br></div>
+     			</div>
+
+     			<div class="text-container">
+     				 <div class="left">
+					 <label><b>Password</b></label><br>
+     				 <input class="textbox" type="password" placeholder="Enter Password" name="pw" required></div>
+
+     				 <div class="right">
+     				 <label><b>Country</b></label><br>
+     				 <input class="textbox" type="text" placeholder="Enter Country" name="country" required><br><br></div>
+     			</div>
+
+
+
+     			<div class="text-container">
+     				<div class="left">
+					 <label><b>Birth Date</b></label><br>
+     				 <select name="Month">
+     				 	 <option value="01">January</option>
+     				 	 <option value="02">February</option>
+     				 	 <option value="03">March</option>
+     				 	 <option value="04">April</option>
+     				 	 <option value="05">May</option>
+     				 	 <option value="06">June</option>
+     				 	 <option value="07">July</option>
+     				 	 <option value="08">August</option>
+     				 	 <option value="09">September</option>
+     				 	 <option value="10">Ocotber</option>
+     				 	 <option value="11">November</option>
+     				 	 <option value="12">December</option>
+     				 </select>
+
+
+     				 <select name="Day">
+     				 	<script type="text/javascript">
+     				 		for (var i = 1; i <= 31; i++) {
+     				 			if (i <= 9) {
+     				 				document.write("<option value=\"0" + i + "\">0" + i + "</option>");
+     				 			}
+     				 			else {
+     				 				document.write("<option value=\"" + i + "\">" + i + "</option>");
+     				 			}
+     				 		}
+     				 	</script>
+     				 </select>
+
+     				 <select name="year">
+     				 	<script type="text/javascript">
+     				 	for (var i = 1900; i <= 2018; i++) {
+     				 		document.write("<option value=\"" + i + "\">" + i + "</option>");
+     				 		}
+     				 	</script>
+     				 </select></div>
+
+
+     				<div class="right">
+     				 <label style="line-height: 1.5"><b>Gender</b></label><br>
+
+     				 <label class="container">Male
+  					<input type="radio" checked="checked" name="Gender">
+					  <span class="checkmark"></span>
+					</label>
+
+					<label class="container">Female
+					  <input type="radio" name="Gender">
+					  <span class="checkmark"></span>
+					</label>
+
+					<label class="container">Other
+					  <input type="radio" name="Gender">
+					  <span class="checkmark"></span>
+					</label></div>
+     			</div><br><br>
+        
+      				<button class="button" type="submit">SUBMIT</button>
+      		</form>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
