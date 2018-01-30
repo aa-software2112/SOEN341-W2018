@@ -3,7 +3,7 @@
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="global.css">
-        
+
 
     </head>
 
@@ -14,13 +14,13 @@
         <header class="jumbotron jumbotron-fluid">
             <div class="container ">
                 <div class="row">
-                    <div class="col xl-6">
+                    <div class="col xl-6 hero-text">
                         <h1> Welcome to Queue Underflow </h1>
-                        <h2> Learn, Share, Build </h2>
+                        <h4> Learn, Share, Build </h4>
                         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </p>
                     </div>
-                    <div class="col xl-6">
-                        <h1> Free Section </h1>
+                    <div class="col xl-6 ">
+                        <a href="# "class="btn btn-primary btn-lg" id="btn-ask-question"> Ask Question </a>
                     </div>
                 </div>
             </div>
@@ -41,125 +41,125 @@
         <!-- =================================== BODY CONTENT: QUESTION LIST =================================== -->
 
         <div class="body-container">
+            <div class="content-container center-div">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Newest</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Popular</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Featured</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Newest Questions</h5>
+                        <div class="row summary">
+                            <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
+                            <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
+                            <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
 
-            <div class="content-container center-div card text-center">
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Newest</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Popular</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Featured</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Newest Questions</h5>
-                    <div class="row summary">
-                        <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
-                        <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
-                        <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
-
-                        <div class="col-xl-9 summary=question">
-                            <h6>
-                                <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
-                            </h6>
-                            <div class="summary-question-tags">
-                                <a class="btn btn-primary" href="#" role="button">Tag</a>
-                                <a class="btn btn-primary" href="#" role="button">Tag</a>
-                                <a class="btn btn-primary" href="#" role="button">Tag</a>
-                            </div>
-                            <div class="summary-question-user">
-                                <a href="#"> Username </a>
+                            <div class="col-xl-9 summary=question">
+                                <h6>
+                                    <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
+                                </h6>
+                                <div class="summary-question-tags">
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                </div>
+                                <div class="summary-question-user">
+                                    <a href="#"> Username </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row summary">
-                        <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
-                        <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
-                        <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
+                        <div class="row summary">
+                            <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
+                            <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
+                            <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
 
-                        <div class="col-xl-9 summary=question">
-                            <h6>
-                                <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
-                            </h6>
-                            <div class="summary-question-tags">
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                            </div>
-                            <div class="summary-question-user">
-                                <a href="#"> Username </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row summary">
-                        <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
-                        <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
-                        <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
-
-                        <div class="col-xl-9 summary=question">
-                            <h6>
-                                <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
-                            </h6>
-                            <div class="summary-question-tags">
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                            </div>
-                            <div class="summary-question-user">
-                                <a href="#"> Username </a>
+                            <div class="col-xl-9 summary=question">
+                                <h6>
+                                    <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
+                                </h6>
+                                <div class="summary-question-tags">
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                </div>
+                                <div class="summary-question-user">
+                                    <a href="#"> Username </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row summary">
-                        <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
-                        <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
-                        <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
+                        <div class="row summary">
+                            <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
+                            <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
+                            <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
 
-                        <div class="col-xl-9 summary=question">
-                            <h6>
-                                <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
-                            </h6>
-                            <div class="summary-question-tags">
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                            </div>
-                            <div class="summary-question-user">
-                                <a href="#"> Username </a>
+                            <div class="col-xl-9 summary=question">
+                                <h6>
+                                    <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
+                                </h6>
+                                <div class="summary-question-tags">
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                </div>
+                                <div class="summary-question-user">
+                                    <a href="#"> Username </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row summary">
-                        <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
-                        <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
-                        <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
+                        <div class="row summary">
+                            <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
+                            <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
+                            <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
 
-                        <div class="col-xl-9 summary=question">
-                            <h6>
-                                <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
-                            </h6>
-                            <div class="summary-question-tags">
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
-                                <a class="btn btn-primary" href="#" role="button">Link</a>
+                            <div class="col-xl-9 summary=question">
+                                <h6>
+                                    <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
+                                </h6>
+                                <div class="summary-question-tags">
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                </div>
+                                <div class="summary-question-user">
+                                    <a href="#"> Username </a>
+                                </div>
                             </div>
-                            <div class="summary-question-user">
-                                <a href="#"> Username </a>
+                        </div>
+
+                        <div class="row summary">
+                            <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill">0</span>votes</div>
+                            <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill">0</span> answer</div>
+                            <div class="col-xl summary-view"><span class="badge badge-primary badge-pill">10</span> view </div>
+
+                            <div class="col-xl-9 summary=question">
+                                <h6>
+                                    <a href="#" class="summary-question-hyperlink">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer. </a>
+                                </h6>
+                                <div class="summary-question-tags">
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                    <a class="btn btn-primary" href="#" role="button">Tag</a>
+                                </div>
+                                <div class="summary-question-user">
+                                    <a href="#"> Username </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
 
         </div>
     </body>
