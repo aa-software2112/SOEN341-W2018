@@ -306,3 +306,68 @@ a:active {
 .date-result-p {
 	
 }
+
+/* =====================================================================================================
+    HOME PAGE 
+====================================================================================================== */
+
+/* ------------ Hero Header ------------*/
+
+#hero-header {
+    width: 100%;
+    background-color: #fbf7f7;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+}
+
+.hero-text {
+    text-align: center;
+}
+
+#btn-ask-question {
+    display: block;
+    width: 30%;
+    margin: 60px auto;    
+}
+
+.section-motto {
+    margin: 60px 30px 45px;
+    padding: 60px 0 0;
+}
+
+.questions-tab {
+    overflow: hidden;
+}
+
+.questions-all > div:not(:first-child) {
+    display: none;
+}
+
+.summary {
+    float: left;
+    margin-right: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+
+.summary-question-tags {
+    float: left;
+}
+
+.summary-question-user {
+    float: right;
+    padding-top: 5px;
+    padding-right: 30px;
+}
+
+
+
+
+
