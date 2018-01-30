@@ -422,3 +422,86 @@ li a:hover, .dropdown:hover .dropbtn {
     padding-right: 30px;
 }
 
+/*------------------------------------
+----------Login temporary css ---------
+--------------------------------------*/
+
+.login_html { background-color:  #BA55D3; }
+	
+	.login_form{
+		background-color: #FFF0F5; 
+		border: 3px solid #f1f1f1;
+	}
+	
+	.login_body-container {
+		padding: 16px;
+		margin: 15%
+	}
+	.login_container {
+		padding: 16px;
+		margin: 5%
+
+	}
+
+	.login_title_img_container {
+		text-align: center;
+		margin: 24px 0 12px 0;
+	}
+	
+	input[type=email], input[type=password] {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		box-sizing: border-box;
+	}
+
+
+	button:hover {
+		opacity: 0.8;
+	}
+
+	.loginbtn {
+		background-color: blue;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		cursor: pointer;
+		width: 100%;
+	}
+	
+	.cancelbtn {
+		background-color: blue;
+		color: white;
+		margin: 8px 0;
+		border: none;
+		cursor: pointer;
+		
+		padding: 10px 18px;
+		background-color: #f44336;
+		width: 33%;
+		relative: left;
+		   
+	}
+
+	.sign_upbtn {
+
+		background-color: blue;
+		color: white;
+		margin: 8px 0;
+		border: none;
+		cursor: pointer;
+		
+		padding: 10px 18px;
+		background-color: green;
+		width: 33%;
+		float: right;
+	}
+
+	img.avatar {
+		width: 33%;
+		border-radius: 25%;
+	}
+
