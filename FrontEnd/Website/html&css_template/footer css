@@ -1,0 +1,23 @@
+/*-----footer-----*/
+.footer{
+    background: #000;
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+.footer .footer_link ul{
+     text-align: center;
+ }
+.footer .footer_link ul li{
+    display: inline-block;
+    list-style:none;
+}
+.footer .footer_link ul li a{
+    color:white;
+    font-size:14px;
+}
+.footer .footer_follow p{
+    color: #fbffff;
+    text-align:center;
+}
