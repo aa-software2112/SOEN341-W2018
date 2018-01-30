@@ -5,8 +5,6 @@
 	padding: 0;
 	box-sizing: border-box;
 	font: 16px Arial;/* global font defaults */
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 html, body {
@@ -31,21 +29,6 @@ form {
 	display: block;
 }
 
-a {
-	text-decoration: none;
-	color: blue;
-}
-
-a:link a:visited a:hover{
-	color: blue;
-}
-
-a:active {
-	color: purple;
-}
-
-
-
 .button { /* For consistent button format */
 	outline: none;
 	border: 1px solid black;
@@ -60,17 +43,7 @@ a:active {
 
 .button:hover { /* Generic button hovering effect */
 	box-shadow: 0px 0px 3px 2px rgba(100,100,100,0.35);
-	
-}
 
-.image { /* Generic image css */
-	border: 1px solid black;
-	transition: box-shadow 0.25s, border 0.25;
-}
-
-.image:hover { /* Generic image hovering css transition */
-	box-shadow: 0px 0px 3px 2px rgba(100,100,100,0.35) inset;
-	border: 2px solid blue;
 }
 
 .text-input { /* For consistent input-box format */
@@ -95,7 +68,7 @@ a:active {
 	text-align: right;
 }
 
-.align-center, .text-center {
+.align-center {
 	text-align: center;
 }
 
@@ -112,8 +85,7 @@ a:active {
 	background-color: green;
 	padding-bottom: 30px;
 	max-width:1024px;
-	min-height: 1000px;
-	height:100%;	
+	height:100%;
 }
 
 .alignment-container {
@@ -142,11 +114,11 @@ a:active {
 	align-items: center;
 }
 
-.self-right, .self-top	{
+.self-right {
 	align-self: flex-end;
 }
 
-.self-left, .self-bottom {
+.self-left {
 	align-self: flex-start;
 }
 
@@ -196,7 +168,7 @@ a:active {
 
 #answer-form {
 	height: 100%;
-	
+
 }
 
 #answer-textarea {
@@ -227,7 +199,7 @@ a:active {
 
 .answer-p {
 	padding: 10px;
-	
+
 }
 
 .user-metrics
@@ -237,70 +209,153 @@ a:active {
 	font-size: 1.0em;
 }
 
-/* user profile page css */
 
-#user-area-div {
-	min-height: 1000px;
-	min-width: 100%;
-	background-color: pink;
-	
+/* Nav bar css -------------------------------------------------------------------*/
+.header{
+	display:flex;
+	align-items: center;
+	background-color: beige;
 }
 
-#user-profile-div {
-	background-color: yellow;
-	min-width: 250px;
-	max-width: 350px;
-	min-height: 500px;
-	align-self: flex-start;
-	padding: 40px 20px 30px 20px;
-	border-right: 1px solid rgba(100, 100, 100, 0.35);
+.topnav{
+	flex:1;
+}
+.ul-topnavbar{
+		display :flex;
+		align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+		text-align: center;
+    background: linear-gradient(to bottom, #c0c0c0 0%, #e8e8e8 100%);
 }
 
-#user-stats-div {
-	flex: 1;
-	padding: 20px 30px;
-	background-color: orange;
-	
+
+li a, .dropbtn {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+		font-weight: bold;
 }
 
-#logo-div {
-	height: 200px;
-	width: 200px;
-	background-image: url("logos/spring-patterns_02.jpg");
+}
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: #3399FF;
 }
 
-#user-profile-metrics {
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #3399FF;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.search-box-div{
+	display: flex;
+	min-width: 20%;
+	margin-left: auto;
+	margin-right: auto
+}
+
+.search-box input[type=text] {
+			padding: 10px;
+	    font-size: 17px;
+	    border: 1px solid grey;
+	    width: 80%;
+	    background: #f1f1f1;
+	}
+
+.search-box button {
+	    width: 20%;
+	    padding: 10px;
+	    background: #000000;
+	    color: white;
+	    font-size: 17px;
+			float : right;
+	    border: 1px solid grey;
+	    border-left: none;
+	    cursor: pointer;
+	}
+
+	.search-box button:hover {
+	    background: #3399FF;
+	}
+
+	.search-box::after {
+	    content: "";
+	    clear: both;
+	    display: table;
+	}
+}
+
+.login-btn-li{
+	color: black;
+}
+
+.login-btn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 28px;
+	margin: 8px 0;
+	border: 2px solid black;
+	border-color: black;
+	cursor: pointer;
 	width: 100%;
 }
 
-#user-profile-metrics > p {
-	word-wrap: break-word;
-	min-width: 250px;
-	padding-top: 2px;
-	padding-bottom: 5px;
-	font-size: 1.0em;	
-	letter-spacing: 0.050em;
+.login-btn:hover {
+    background-color: #4CAF50;
+    color: white;
 }
 
-#user-profile-metrics > p:first-child {
-	margin-top: 5px;
-	font-size: 1.50em;
+.signup-btn-li{
+
+	background-color: #C00000;
+	color: black;
 }
 
-#view-title {
-	background-color: red;
-	
+.signup-btn {
+    border: 2px solid black;
+    color: black;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+		border-color: black;
+    color: black;
 }
 
-.view-result {
-	margin-top: 20px;
-	background-color: Chartreuse;
+.signup-btn:hover {
+    background-color: #C00000;
+    color: white;
 }
-
-.view-result-p, .date-result-p{
-	font-size: 0.90em;
-	background-color: white;
-	line-height: 1.75em;
+.login-signup-div{
+	display: flex;
+	align-items: center;
+	margin-right : 20px;
+}
+.login-div{
+	margin-right: 10px;
 }
 
 .date-result-p {
@@ -366,8 +421,4 @@ a:active {
     padding-top: 5px;
     padding-right: 30px;
 }
-
-
-
-
 
