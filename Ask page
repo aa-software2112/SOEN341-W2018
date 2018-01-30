@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="global.css">
+</head>
+
+<body>
+
+<div class="body-container">
+    <div class="content-container center-div">
+        <div class="alignment-container">
+            <h1>Please Share Your Question</h1>
+        </div>
+        <form>
+            Tile: <input type="text" name="title">
+        </form>
+        <br>
+        <textarea rows="4" cols="50" name="comment">
+            Enter The questions...</textarea>
+        <br>
+        <input type="submit">
+    </div>
+</div>
+
+</body>
+
+</html>
