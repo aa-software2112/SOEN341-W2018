@@ -341,6 +341,14 @@ a:active {
     padding: 60px 0 0;
 }
 
+.questions-tab {
+    overflow: hidden;
+}
+
+.questions-all > div:not(:first-child) {
+    display: none;
+}
+
 .summary {
     float: left;
     margin-right: 10px;
