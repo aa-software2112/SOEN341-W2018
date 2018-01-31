@@ -29,6 +29,7 @@ form {
 	display: block;
 }
 
+
 .button { /* For consistent button format */
 	outline: none;
 	border: 1px solid black;
@@ -77,12 +78,14 @@ form {
 }
 
 .body-container {
-	background-color: blue;
+	
+	background-color: white;
 	min-height:100%;
 }
 
 .content-container {
-	background-color: green;
+	
+	background-color: white;
 	padding-bottom: 30px;
 	max-width:1024px;
 	height:100%;
@@ -209,12 +212,83 @@ form {
 	font-size: 1.0em;
 }
 
+/* User Profile Page */
+
+#user-area-div {
+	min-height: 1000px;
+	min-width: 100%;
+	background-color: pink;
+	
+}
+
+#user-profile-div {
+	background-color: yellow;
+	min-width: 250px;
+	max-width: 350px;
+	min-height: 500px;
+	align-self: flex-start;
+	padding: 40px 20px 30px 20px;
+	border-right: 1px solid rgba(100, 100, 100, 0.35);
+}
+
+#user-stats-div {
+	flex: 1;
+	padding: 20px 30px;
+	background-color: orange;
+	
+}
+
+#logo-div {
+	height: 200px;
+	width: 200px;
+	background-image: url("logos/spring-patterns_02.jpg");
+	background-size: cover;
+}
+
+#user-profile-metrics {
+	width: 100%;
+}
+
+#user-profile-metrics > p {
+	word-wrap: break-word;
+	min-width: 250px;
+	padding-top: 2px;
+	padding-bottom: 5px;
+	font-size: 1.0em;	
+	letter-spacing: 0.050em;
+}
+
+#user-profile-metrics > p:first-child {
+	margin-top: 5px;
+	font-size: 1.50em;
+}
+
+#view-title {
+	background-color: red;
+	
+}
+
+.view-result {
+	margin-top: 20px;
+	background-color: Chartreuse;
+}
+
+.view-result-p, .date-result-p{
+	font-size: 0.90em;
+	background-color: white;
+	line-height: 1.75em;
+}
+
+.date-result-p {
+	
+}
+
 
 /* Nav bar css -------------------------------------------------------------------*/
 .header{
 	display:flex;
 	align-items: center;
-	background-color: beige;
+	background-color: #f2f2f2;
 }
 
 .topnav{
@@ -228,8 +302,17 @@ form {
     padding: 0;
     overflow: hidden;
 		text-align: center;
-    background: linear-gradient(to bottom, #c0c0c0 0%, #e8e8e8 100%);
+    /*background: linear-gradient(to bottom, #c0c0c0 0%, #e8e8e8 100%);*/
 }
+
+.ul-topnavbar > li > a{
+	color: #666666;
+}
+
+.logo {
+	visibility: hidden;
+}
+
 
 
 li a, .dropbtn {
@@ -279,7 +362,7 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 .search-box input[type=text] {
-			padding: 10px;
+		padding: 10px;
 	    font-size: 17px;
 	    border: 1px solid grey;
 	    width: 80%;
@@ -314,41 +397,36 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 .login-btn {
-	background-color: #4CAF50;
-	color: white;
+	color: black;
 	padding: 14px 28px;
 	margin: 8px 0;
-	border: 2px solid black;
-	border-color: black;
 	cursor: pointer;
 	width: 100%;
 }
 
 .login-btn:hover {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #CAEBF2;
+	color: #666666;
 }
 
 .signup-btn-li{
 
-	background-color: #C00000;
-	color: black;
+
 }
 
 .signup-btn {
-    border: 2px solid black;
-    color: black;
+	color: black;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
-		border-color: black;
-    color: black;
+	border-color: black;
 }
 
 .signup-btn:hover {
-    background-color: #C00000;
+	background-color: #CAEBF2;
     color: white;
 }
+
 .login-signup-div{
 	display: flex;
 	align-items: center;
@@ -367,6 +445,11 @@ li a:hover, .dropdown:hover .dropbtn {
 ====================================================================================================== */
 
 /* ------------ Hero Header ------------*/
+
+.summary-question-hyperlink{
+	color: #666666;
+}
+
 
 #hero-header {
     width: 100%;
@@ -420,6 +503,10 @@ li a:hover, .dropdown:hover .dropbtn {
     float: right;
     padding-top: 5px;
     padding-right: 30px;
+}
+
+.override-bootstrap{
+	vertical-align: baseline;
 }
 
 /*------------------------------------
@@ -505,3 +592,19 @@ li a:hover, .dropdown:hover .dropbtn {
 		border-radius: 25%;
 	}
 
+/* Contact page */
+
+#contact-form > input{
+
+	margin: 10px 0px;
+}
+
+#contact-form > select{
+
+	margin: 10px 0px;
+}
+
+#contact-form > textarea{
+
+	margin: 10px 0px;
+}

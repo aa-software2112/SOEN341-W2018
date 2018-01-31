@@ -1,0 +1,13 @@
+/*-----footer-----*/
+.footer{
+	background-color: black;
+	color: white;
+	padding: 10px 0px 15px 0px;
+    width: 100%;
+}
+
+
+.footer-text{
+	color: rgba(255,255,255,0.5);
+
+}
