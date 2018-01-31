@@ -1,32 +1,89 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="contact-stylesheet.css">
-<div class="container">
-  <div style="text-align:center">
-    <h2>Contact Us</h2>
-    <p>Swing by for a cup of coffee, or leave us a message:</p>
-  </div>
-  <div class="row">
-    <div class="column">
-      <div id="map" style="width:100%;height:500px"></div>
-    </div>
-    <div class="column">
-      <form action="/action_page.php">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-        <label for="country">Country</label>
-        <select id="country" name="country">
-          <option value="australia">Australia</option>
-          <option value="canada">Canada</option>
-          <option value="usa">USA</option>
-        </select>
-        <label for="subject">Subject</label>
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-  </div>
-</div>
+<head>
+	<link rel="stylesheet" type="text/css" href="contact-stylesheet.css">
+	<link rel="stylesheet" type="text/css" href="global.css">
+</head>
+<body>
+<div class="header">
+		
+		
+			<div class="topnav">
+				<ul class="ul-topnavbar">
+					<a class="logo" href="home_page.html"><img src="LOGO CODING SQUAD.jpg" alt="Logo" height= 50px width= 150px></a>
+					<li><a href="home_page.html">Home</a></li>
+					<li><a href="forum_page.html">Questions</a></li>
+					<li><a href="contact.html">About</a></li>
+					<li><a href="user_profile.html">User Profile</a></li>
+					<!-- Load icon library -->
+					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+					<div class="search-box-div">
+						<!-- The form -->
+						<form class="search-box" action="action_page.php">
+								<input type="text"  placeholder="Search.." name="search">
+								<button type="submit"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+
+					<!-- Dropdown menu -->
+					<li class="dropdown">
+						<a href="javascript:void(0)" class="dropbtn">Help ?</a>
+						<div class="dropdown-content">
+							<a href="#">Link 1</a>
+							<a href="#">Link 2</a>
+							<a href="#">Link 3</a>
+						</div>
+					</li>
+
+					<div class="login-signup-div">
+					<div class="login-div">
+						<li class= "login-btn-li">
+						<a class="login-btn" id="login-button" href="Login_page.html">Log in</a>
+						</li>
+					</div>
+
+					<div class"signup-div">
+						<li class= "signup-btn-li">
+							<a class="signup-btn" id="signup-button" href="sign_up.html">Sign up</a>
+						</li>
+					</div>
+
+				</div>
+
+				</ul>
+			</div>
+		</div>
+
+<div class="body-container">
+	<div class="content-container center-div">
+		<div class="container">
+		  <div style="text-align:center">
+			<h2>Contact Us</h2>
+			<p>Swing by for a cup of coffee, or leave us a message:</p>
+		  </div>
+		  <div class="row">
+			
+			<div class="column center-div">
+			  <form id="contact-form" method="get" action="/action_page.php">
+				<label for="fname">First Name</label>
+				<input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+				<label for="lname">Last Name</label>
+				<input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+				<label for="country">Country</label>
+				<select id="country" name="country">
+				  <option value="australia">Australia</option>
+				  <option value="canada">Canada</option>
+				  <option value="usa">USA</option>
+				</select>
+				<label for="subject">Subject</label>
+				<textarea id="subject" name="subject" placeholder="Write something.." style="height:170px" required></textarea>
+				<input type="submit" value="Submit">
+			  </form>
+			</div>
+		  </div>
+		</div>
+	</div>
+	</div>
+</body>
 </html>
