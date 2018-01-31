@@ -128,35 +128,42 @@ form {
 /* question/answer forum css */
 
 #question-container {
-	background-color: pink;
-	padding-left: 25px;
 	width: 100%;
 }
 
+#question-title {
+	font-size: 1.50em;
+}
+
 #question {
+	border-radius: 3px;
+	padding: 15px 15px 25px 25px;
+	background-color: rgb(234, 247, 250); /* light blue */
 }
 
 #question-body {
-	margin: 50px 15px 0px 25px;
+	margin: 30px 15px 0px 25px;
+	font-size: 0.90em;
 }
 
 #user-asked-div {
-	background-color: orange;
 	min-width: 150px;
 }
 
 #answers-container {
 	min-height:300px;
-	background-color:purple;
 	margin-left: 40px;
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 #user-asked-info {
-	padding-right: 15px;
+	width: 100%;
+	padding-bottom: 10px;
+	border-bottom: 1px solid rgba(100, 100, 100, 0.30);
 }
 
 #answer-logo {
+	font-size: 1.30em;
 	margin-top:50px;
 }
 
@@ -166,12 +173,10 @@ form {
 	margin-top: 40px;
 	width: 100%;
 	height: 300px;
-	background-color: pink;
 }
 
 #answer-form {
 	height: 100%;
-
 }
 
 #answer-textarea {
@@ -184,32 +189,36 @@ form {
 	width: 150px;
 }
 
+.qa-shadow {
+	box-shadow: 0px 0px 2px 1px rgba(100, 100, 100, 0.30);
+
+}
+
 .answers{
 	margin-bottom: 10px;
-	min-height: 150px;
-	background-color: gray;
 }
 
 .user_answered_div {
-	background-color:orange;
 }
 
 
 .answer-div {
-	background-color: red;
+	padding: 30px;
+	background-color: rgb(234, 250, 234);
 	flex: 1;
 }
 
 .answer-p {
-	padding: 10px;
-
+	font-size: 0.95em;
 }
 
 .user-metrics
 {
+	padding-bottom: 10px;
+	border-bottom: 1px solid rgba(100, 100, 100, 0.30);
 	margin-top: 10px;
 	min-width: 125px;
-	font-size: 1.0em;
+	font-size: 0.90em;
 }
 
 /* User Profile Page */
@@ -217,25 +226,21 @@ form {
 #user-area-div {
 	min-height: 1000px;
 	min-width: 100%;
-	background-color: pink;
 	
 }
 
 #user-profile-div {
-	background-color: yellow;
+	background-color: rgb(234, 247, 250);
 	min-width: 250px;
 	max-width: 350px;
 	min-height: 500px;
 	align-self: flex-start;
 	padding: 40px 20px 30px 20px;
-	border-right: 1px solid rgba(100, 100, 100, 0.35);
 }
 
 #user-stats-div {
 	flex: 1;
-	padding: 20px 30px;
-	background-color: orange;
-	
+	padding: 20px 30px;		
 }
 
 #logo-div {
@@ -254,7 +259,7 @@ form {
 	min-width: 250px;
 	padding-top: 2px;
 	padding-bottom: 5px;
-	font-size: 1.0em;	
+	font-size: 0.90em;	
 	letter-spacing: 0.050em;
 }
 
@@ -264,19 +269,33 @@ form {
 }
 
 #view-title {
-	background-color: red;
-	
+
 }
 
 .view-result {
 	margin-top: 20px;
-	background-color: Chartreuse;
+	padding-bottom: 20px;
+	border-bottom: 1px solid rgba(100,100,100,0.30);
 }
 
 .view-result-p, .date-result-p{
 	font-size: 0.90em;
-	background-color: white;
-	line-height: 1.75em;
+}
+
+.date-result-p {
+	font-style: italic;
+}
+
+.view-result-p > a {
+	font-size: 1.0em;
+	color: black;
+	text-decoration:none;
+
+}
+
+.view-result-p > a:hover {
+	color: purple;
+
 }
 
 .date-result-p {
@@ -295,13 +314,13 @@ form {
 	flex:1;
 }
 .ul-topnavbar{
-		display :flex;
-		align-items: center;
+	display :flex;
+	align-items: center;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-		text-align: center;
+	text-align: center;
     /*background: linear-gradient(to bottom, #c0c0c0 0%, #e8e8e8 100%);*/
 }
 
@@ -607,4 +626,20 @@ li a:hover, .dropdown:hover .dropbtn {
 #contact-form > textarea{
 
 	margin: 10px 0px;
+}
+
+/* Footer */
+.footer{
+	background-color: black;
+	color: white;
+	padding: 10px 0px 15px 0px;
+    width: 100%;
+}
+
+.footer_link  p {
+	margin-bottom: 1rem;
+}
+.footer-text{
+	color: rgba(255,255,255,0.5);
+
 }
