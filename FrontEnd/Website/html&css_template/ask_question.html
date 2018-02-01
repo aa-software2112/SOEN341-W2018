@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="global.css">
+	</head>
+
+	<body>
+
+
+        <div class="header">
+
+            <div class="topnav">
+                <ul class="ul-topnavbar">
+                    <a class="logo" href="home_page.html"><img class="override-bootstrap" src="LOGO CODING SQUAD.jpg" alt="Logo" height= 50px width= 150px></a>
+                    <li><a href="home_page.html">Home</a></li>
+                    <li><a href="forum_page.html">Questions</a></li>
+					<li><a href="ask_question.html">Ask</a></li>
+                    <li><a href="contact.html">About</a></li>
+                    <li><a href="user_profile.html">User Profile</a></li>
+                    <!-- Load icon library -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                    <div class="search-box-div">
+                        <!-- The form -->
+                        <form class="search-box" action="action_page.php">
+                            <input type="text" placeholder="Search.." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+
+                    <!-- Dropdown menu -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Help ?</a>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </li>
+
+                    <div class="login-signup-div">
+                        <div class="login-div">
+                            <li class= "login-btn-li">
+                                <a class="login-btn" id="login-button" href="Login_page.html">Log in</a>
+                            </li>
+                        </div>
+
+                        <div class"signup-div">
+                            <li class= "signup-btn-li">
+                                <a class="signup-btn" id="signup-button" href="sign_up.html">Sign up</a>
+                            </li>
+                        </div>
+
+                    </div>
+
+                </ul>
+            </div>
+        </div>
+
+
+
+		<div class="body-container">
+			<div class="content-container center-div">
+				<div class="alignment-container">
+					<div class="make-flex flex-vert">
+						<form class="make-flex flex-vert center-div" id="ask-form" method="post" action="/ask_form">
+							<p class="ask-form-p">Question Title</p>
+							<input  id="question-title-form" name="question-title" type="text" required>
+							<p class="ask-form-p">Question Body</p>
+							<textarea class="center-div text-input" id="question-body-form" name="question-body" required></textarea>
+							<input class="button self-right" id="submit-ask" type="submit" value="Ask!">
+
+						</form>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+       <div class="footer">
+            <div class="footer_link align-center">
+                <p>Coder Squad </p>
+                <p> 
+                    <a class="footer-text" href="contact.html">Contact</a> -
+                    <a class="footer-text" href="https://github.com/aa-software2112/SOEN341-W2018.git">GitHub</a> 
+                </p>
+
+            </div>
+        </div>
+	</body>
+
+</html>
