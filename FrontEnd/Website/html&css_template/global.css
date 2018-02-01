@@ -463,12 +463,107 @@ li a:hover, .dropdown:hover .dropbtn {
     HOME PAGE 
 ====================================================================================================== */
 
-/* ------------ Hero Header ------------*/
+/* ------------ Colors ------------*/
 
-.summary-question-hyperlink{
-	color: #666666;
+
+.summary-question-hyperlink a:link, 
+.summary-question-hyperlink a:visited,
+.summary-question-user a:link, 
+.summary-question-user a:visited {
+    color: #666;
 }
 
+.summary-question-hyperlink a:hover, 
+.summary-question-hyperlink a:active,
+.summary-question-user a:hover, 
+.summary-question-user a:active {
+    text-decoration: none;
+	color: #192960;
+}
+
+.summary-question-tags a:link,
+.summary-question-tags a:visited {
+    background-color: #20a7bc;
+    border-color: #20a7bc;
+}
+
+.summary-question-tags a:hover,
+.summary-question-tag a:active {
+    background-color: #149bb0;
+    border-color: #149bb0;
+}
+
+.summary span {
+    background-color: #20a7bc;
+}
+
+.summary-vote {
+     width: 100%;
+  
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.summary-vote, 
+.summary-answer, 
+.summary-view {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2px;
+    color: #666;
+    transform: scale(1.0);
+    transition: transform 1.5s, opacity 1.5s;
+}
+
+.summary-vote:hover, 
+.summary-answer:hover, 
+.summary-view:hover {
+    transform: scale(1.20);
+}
+
+/* ------------ Content Margins ------------*/
+
+.card {
+    margin: 40px auto;
+    box-shadow: 0px 10px 28px -4px rgba(234,247,250,1); 
+}
+.questions-all {
+    margin: 40px 50px;
+}
+
+.summary {
+    float: left;
+    padding: 10px 0 20px 0;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.summary-question-tags {
+    float: left;
+}
+
+.summary-question-user {
+    float: right;
+    padding-top: 5px;
+    padding-right: 30px;
+}
+
+.summary-question-hyperlink {
+    margin-bottom: 15px;
+    text-align: justify;
+    line-height: 150%;
+}
+
+
+
+.override-bootstrap{
+	vertical-align: baseline;
+}
+
+
+/* ------------ Hero Header ------------*/
 
 #hero-header {
     width: 100%;
@@ -478,6 +573,7 @@ li a:hover, .dropdown:hover .dropbtn {
     height: 100vh;
     background-attachment: fixed;
 }
+
 
 .jumbotron {
     margin-bottom: 0px;
@@ -498,6 +594,8 @@ li a:hover, .dropdown:hover .dropbtn {
     padding: 60px 0 0;
 }
 
+/* ------------ Questions tab ------------*/
+
 .questions-tab {
     overflow: hidden;
 }
@@ -506,27 +604,6 @@ li a:hover, .dropdown:hover .dropbtn {
     display: none;
 }
 
-.summary {
-    float: left;
-    margin-right: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid #f4f4f4;
-}
-
-
-.summary-question-tags {
-    float: left;
-}
-
-.summary-question-user {
-    float: right;
-    padding-top: 5px;
-    padding-right: 30px;
-}
-
-.override-bootstrap{
-	vertical-align: baseline;
-}
 
 /*------------------------------------
 ----------Login temporary css ---------
