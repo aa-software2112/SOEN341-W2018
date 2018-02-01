@@ -609,16 +609,16 @@ li a:hover, .dropdown:hover .dropbtn {
 ----------Login temporary css ---------
 --------------------------------------*/
 
-.login_html { background-color:  #BA55D3; }
+
 	
 	.login_form{
-		background-color: #FFF0F5; 
+		background-color: #eaf7fa;
 		border: 3px solid #f1f1f1;
 	}
 	
 	.login_body-container {
 		padding: 16px;
-		margin: 15%
+		margin: 2%
 	}
 	.login_container {
 		padding: 16px;
@@ -646,7 +646,7 @@ li a:hover, .dropdown:hover .dropbtn {
 	}
 
 	.loginbtn {
-		background-color: blue;
+		background-color: #3190e2;
 		color: white;
 		padding: 14px 20px;
 		margin: 8px 0;
@@ -656,14 +656,14 @@ li a:hover, .dropdown:hover .dropbtn {
 	}
 	
 	.cancelbtn {
-		background-color: blue;
+	
 		color: white;
 		margin: 8px 0;
 		border: none;
 		cursor: pointer;
 		
 		padding: 10px 18px;
-		background-color: #f44336;
+		background-color: #ff3b3f;
 		width: 33%;
 		relative: left;
 		   
@@ -671,22 +671,24 @@ li a:hover, .dropdown:hover .dropbtn {
 
 	.sign_upbtn {
 
-		background-color: blue;
 		color: white;
 		margin: 8px 0;
 		border: none;
 		cursor: pointer;
 		
 		padding: 10px 18px;
-		background-color: green;
+		background-color: #666;
 		width: 33%;
 		float: right;
 	}
 
 	img.avatar {
-		width: 33%;
-		border-radius: 25%;
+		width: 15%;
+		border-radius: 10%;
 	}
+
+	
+}
 
 /* Contact page */
 
