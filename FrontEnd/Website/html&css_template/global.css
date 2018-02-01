@@ -720,3 +720,33 @@ li a:hover, .dropdown:hover .dropbtn {
 	color: rgba(255,255,255,0.5);
 
 }
+
+
+/* Ask Page */
+
+#ask-form {
+	width: 80%;
+
+}
+
+#question-title-form{
+	padding: 10px;
+	display:block;
+	width: 100%;
+	height: 2em;
+}
+
+#question-body-form{
+	display:block;
+	width: 90%;
+	height: 300px;
+}
+
+#submit-ask {
+	margin-top: 15px;
+	width: 100px;
+}
+
+.ask-form-p {
+	margin: 10px 0 10px 0;
+}
