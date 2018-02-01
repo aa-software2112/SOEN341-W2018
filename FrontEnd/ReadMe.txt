@@ -1,5 +1,11 @@
 To run website:
 
+// Most Recent
+Enter the "Website" folder, and run the "home_page.html" to view the site's template
+
+
+
+// Deprecated
 -Ensure nodeJS is installed
 -Navigate to "Website" directory in command line
 -type: node app.js in command line
