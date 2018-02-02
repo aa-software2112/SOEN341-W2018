@@ -1,3 +1,6 @@
+Meeting Times:
+
+
 Feb. 2, 2018: 10:00 - 13:00
     Everyone present
     
