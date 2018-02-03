@@ -1,5 +1,7 @@
 Meeting Times:
 
+Feb. 2, 2018: 1:30 - 1:45
+    Everyone present except Abishand who was at an interview; Client was informed of this
 
 Feb. 2, 2018: 10:00 - 13:00
     Everyone present
