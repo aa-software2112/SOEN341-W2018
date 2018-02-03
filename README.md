@@ -5,7 +5,7 @@ Please follow the FrontEnd folder to get to the website
 
 Pull Request Test for Sprint 1: 
 - Jason 
-- Thomas
+- Thomas Serrano - 26710387
 - Anthony Andreoli - 26605621
 - Ruochen Jia
 - Abishand
