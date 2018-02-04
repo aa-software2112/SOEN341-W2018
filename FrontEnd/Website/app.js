@@ -82,7 +82,19 @@ app.post("/answer_to/:q_id", function(req, res) {
 	res.redirect("/question_forum/"+req.params.q_id);	
 });
 
+/* Listens to conctact us page request and loads it*/
+app.get("/contact" , function(req,res){
+     res.render('contact.ejs');
+});
 
+/* Listens for user input from conctact us page*/
+app.post("/contact", function(req,res){
+     var fname = req.body.firstname;
+     var lname = req.body.lastname;
+     var country = req.body.country;
+     console.log (" Thank you "+ fname + " "+ lname + " from "+ country + " for contacting us.");
+     res.redirect("/contact");
+});
 
 // Catches invalid URL requests
 app.get("*", function(req, res) {
