@@ -10,5 +10,5 @@ Pull Request Test for Sprint 1:
 - Ruochen Jia
 - Abishand
 - Saleh
-- Alexander - 27752016
+- Alexander Chung - 27752016
 - Nizar
