@@ -12,6 +12,8 @@ app.use(express.static(__dirname + "/public"));
 
 
 /* INSERTS PAGE GET/POST CONNECTIONS HERE */
+
+/* Listens for the question page request - done through the search */
 app.get("/question_forum/:q_id", function(req, res) {
 	
 	// Verify that the question id is a number
