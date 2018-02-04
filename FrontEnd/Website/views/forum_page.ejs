@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="/stylesheets/footer.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+</head>
+
+<body>
+
+	<!-- The main object loaded is referenced by "forum" -->
+
+    <% include partials/header %>
+	
+	<div class="body-container">
+		<div class="content-container center-div">
+			<div class="alignment-container">
+				<div class="make-flex flex-horiz" id="question-container">
+					<div class="qa-shadow" id="question">
+						<h2 id="question-title">
+							<%= forum.title %>
+						</h2>
+						
+						<p id="question-body">
+							<%= forum.body %>
+						</p>
+					</div>
+					
+					<div class="make-flex" id="user-asked-div">
+						<p class="align-center user-metrics-question center-div" id="user-asked-info">
+						<%= forum.user_asked %></br><%= forum.question_pts %></br><%= forum.date_asked %></br><%= forum.time_asked %>
+						</p>
+					</div>
+					
+				</div>
+				
+				<div id="answer-logo">
+					<p>Answers [<%= forum.answers.length %>] </p>
+				</div>
+				
+				<div class="make-flex flex-vert" id="answers-container">
+				
+					<% for (var ans_idx = 0; ans_idx<forum.answers.length; ans_idx++) { %>
+						
+						<% var answers = forum.answers %>
+						<div class="answers make-flex flex-horiz flex-right">
+							<div class="make-flex flex-vert qa-shadow answer-div">
+								<p class="answer-p">
+									<%= answers[ans_idx].answer %>
+								</p>
+								<p class="user-metrics-answer self-right">  
+									<%= answers[ans_idx].user_answered %> | <%= answers[ans_idx].answer_pts %> | <%= answers[ans_idx].date_answered %> | <%= answers[ans_idx].time_answered %>
+								</p>
+							</div>
+							<!--<div class="make-flex user_answered_div">
+								<p class="align-center user-metrics center-div" id="user-answered-info">
+								<%= answers[ans_idx].user_answered %></br><%= answers[ans_idx].answer_pts %></br><%= answers[ans_idx].date_answered %></br><%= answers[ans_idx].time_answered %>
+								</p>
+							</div>	-->
+						</div>
+						
+					<% } %>
+						
+				
+				</div>
+			
+				<div id="submit-answer-div">
+					<form class="make-flex flex-vert" action="/" method="post" id="answer-form">
+						<textarea class="text-input" id="answer-textarea" form="answer-form" required="required" placeholder="Enter your answer: " maxlength=1000></textarea>
+						<input id="submit-button" class="button self-right" type="submit" value="Answer!">
+					</form>
+				
+				
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	
+	<% include partials/footer %>
+
+</body>
+</html>
