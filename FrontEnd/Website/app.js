@@ -4,8 +4,8 @@ var app = express();
 var util = require('util');
 var bodyParser = require("body-parser");
 var date = require('date-and-time');
-app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+app.set("view engine", "ejs");
 
 // Links express to the stylesheets
 app.use(express.static(__dirname + "/public"));
@@ -23,6 +23,7 @@ app.get("/question_forum/:q_id", function(req, res) {
 	
 	// Get the entire page's data --> var outputObj = get_forum(question_id);
 	var outputObj = {
+		q_id: req.params.q_id,
 		title: "What is polymorphism in Java, and how can I test it?",
 		body: "I often hear my professor lecture about polymorphism, but I think I missed the class where he " +
 			"explained what it was (the snooze button :/ ). Can someone refresh me on the ins-and-outs of polymorphism, " +
@@ -69,6 +70,14 @@ app.get("/question_forum/:q_id", function(req, res) {
 	// else
 	// res.render('invalid_page.ejs', null);
 	
+});
+
+/* Listens for an answer from the forum page */
+app.post("/answer_to/:q_id", function(req, res) {
+	
+	console.log("Received Answer!");
+	console.log(util.inspect(req.body) + " q_id : " + req.params.q_id);
+	res.redirect("/question_forum/"+req.params.q_id);	
 });
 
 

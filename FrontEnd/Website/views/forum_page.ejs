@@ -65,12 +65,10 @@
 				</div>
 			
 				<div id="submit-answer-div">
-					<form class="make-flex flex-vert" action="/" method="post" id="answer-form">
-						<textarea class="text-input" id="answer-textarea" form="answer-form" required="required" placeholder="Enter your answer: " maxlength=1000></textarea>
+					<form class="make-flex flex-vert" action=<%= "/answer_to/" + forum.q_id %> method="post" id="answer-form">
+						<textarea name="answer_body" class="text-input" id="answer-textarea" form="answer-form" required="required" placeholder="Enter your answer: " maxlength=1000></textarea>
 						<input id="submit-button" class="button self-right" type="submit" value="Answer!">
 					</form>
-				
-				
 				</div>
 			
 			</div>
