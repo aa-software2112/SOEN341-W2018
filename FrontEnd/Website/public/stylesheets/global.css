@@ -203,7 +203,10 @@ form {
 
 
 .answer-div {
-	padding: 30px;
+	border-radius: 3px;
+	margin-right: 100px;
+	padding: 30px 30px 10px 30px;
+	max-width: 750px;
 	background-color: rgb(234, 250, 234);
 	flex: 1;
 }
@@ -212,13 +215,18 @@ form {
 	font-size: 0.95em;
 }
 
-.user-metrics
+.user-metrics-question
 {
 	padding-bottom: 10px;
 	border-bottom: 1px solid rgba(100, 100, 100, 0.30);
 	margin-top: 10px;
 	min-width: 125px;
 	font-size: 0.90em;
+}
+
+.user-metrics-answer
+{
+	font-size: 0.85em;
 }
 
 /* User Profile Page */
