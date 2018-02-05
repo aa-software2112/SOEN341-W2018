@@ -6,6 +6,8 @@ var bodyParser = require("body-parser");
 var date = require('date-and-time');
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+//Static files in Express must go inside the directory specified. This is used for about us page, so far.
+app.use( express.static( "public/about_team_img" ) ); 
 
 // Links express to the stylesheets
 app.use(express.static(__dirname + "/public"));
@@ -80,6 +82,11 @@ app.post("/answer_to/:q_id", function(req, res) {
 	console.log("Received Answer!");
 	console.log(util.inspect(req.body) + " q_id : " + req.params.q_id);
 	res.redirect("/question_forum/"+req.params.q_id);	
+});
+
+/* listens for a request from about us page and loads it*/
+app.get("/about", function(req,res){
+	res.render('about.ejs');
 });
 
 /* Listens to conctact us page request and loads it*/
