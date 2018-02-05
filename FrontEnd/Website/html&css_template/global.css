@@ -20,6 +20,12 @@ h2 {
 	font-size: 1.75em;
 }
 
+h3 {
+	font-size: 2.5em;
+	margin: 20px auto 10px;
+    text-align: center;
+}
+
 p {
 	font-size: 1.25em;
 	line-height: 1.5em;
