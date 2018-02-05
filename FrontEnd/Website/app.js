@@ -22,6 +22,9 @@ app.use(express.static(__dirname + "/public"));
  * ============================================================================
  */
 
+ app.get("/home_page.html", function(req, res) {
+	res.render('homepage.ejs');
+ });
 
 
 /* Listens for the question page request - done through the search */
