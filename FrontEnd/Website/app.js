@@ -87,6 +87,12 @@ app.get("/contact" , function(req,res){
      res.render('contact.ejs');
 });
 
+// Listens for a request to the search page and renders it with the results
+app.get("/search", function(req, res) {
+	// Titles will be passed in once hooked up to DB
+	res.render('search_page.ejs');
+});
+
 /* Listens for user input from conctact us page*/
 app.post("/contact", function(req,res){
      var fname = req.body.firstname;
