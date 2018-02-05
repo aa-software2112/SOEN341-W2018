@@ -51,14 +51,12 @@ app.get("/home_page.html", function(req, res) {
 					num_votes: Math.round(Math.random()*1000 + 1),
 					num_answers: Math.round(Math.random()*1000 + 1),
 					num_views: Math.round(Math.random()*1000 + 1),
-					answer: "I often hear my professor lecture about polymorphism, but I think I missed the class where he " +
-					"explained what it was (the snooze button :/ ). Can someone refresh me on the ins-and-outs of polymorphism, " +
-					"specifically, its implementation within jav",
+					answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Senectus et netus et malesuada fames ac turpis egestas integer.",
 					date_ans: date.format(new Date(), 'DD/MM/YYYY'),
 					time_ans: date.format(new Date(), 'h:m A').toUpperCase()
 					
 				});
-				
+				arr.sort(sortBy('num_votes'));
 				return arr
 			})()
 		};
@@ -66,8 +64,6 @@ app.get("/home_page.html", function(req, res) {
 		// const homepage = question_data.filter((homepage) => {
 		// 	return homepage.id == req.params.id
 		//   })[0]
-		
-		//question_data.sort(sortBy('date_ans'));
 		
 		res.render('homepage.ejs', {homepage: question_data});
 	});
