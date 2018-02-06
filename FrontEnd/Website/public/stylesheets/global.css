@@ -543,7 +543,6 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 .summary {
-    float: left;
     padding: 10px 0 20px 0;
     border-bottom: 1px solid #f4f4f4;
 }
