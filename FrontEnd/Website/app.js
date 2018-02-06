@@ -24,7 +24,9 @@ app.use(express.static(__dirname + "/public"));
 * ============================================================================
 */
 
-app.get("/home_page.html", function(req, res) {
+app.get(
+	['/', '/home_page.html'],
+		function(req, res) {
 	
 	const output = {
 		/*
