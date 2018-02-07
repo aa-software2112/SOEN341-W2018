@@ -26,7 +26,7 @@ CREATE TABLE `question` (
   `question_title` varchar(100) NOT NULL,
   `question_body` varchar(1000) NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
-  `date_asked` date NOT NULL,
+  `datetime_asked` datetime NOT NULL,
   `question_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`question_id`),
   KEY `user_id` (`user_id`),
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-27 14:12:30
+-- Dump completed on 2018-02-07  4:50:59

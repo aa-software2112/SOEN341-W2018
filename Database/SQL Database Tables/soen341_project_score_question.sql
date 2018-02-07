@@ -26,7 +26,7 @@ CREATE TABLE `score_question` (
   `score` enum('-1','1') NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
   `question_id` int(10) unsigned NOT NULL,
-  `date_scored_question` date NOT NULL,
+  `datetime_scored_question` datetime NOT NULL,
   PRIMARY KEY (`user_id`,`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-27 14:12:30
+-- Dump completed on 2018-02-07  4:50:59
