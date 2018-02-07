@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/footer.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+</head>
+
+<body>
+
+	<!-- The main object loaded is referenced by "ask" -->
+
+    <% include partials/header %>
+	<div class="body-container">
+		<div class="content-container center-div">
+			<div class="alignment-container">
+				<div class="make-flex flex-vert">
+					<form class="make-flex flex-vert center-div" id="ask-form" method="post" action=<%= "/answer_to/" + ask.q_id %> >
+						<p class="ask-form-p">Question Title</p>
+						<input  id="question-title-form" name="question-title" type="text" required>
+					</form>
+                    <form class="make-flex flex-vert center-div" id="ask-form" method="post" action=<%= "/answer_to/" + ask.q_id %> >
+                        <p class="ask-form-p">Question Body</p>
+                        <textarea class="center-div text-input" id="question-body-form" name="question-body" required></textarea>
+                        <input class="button self-right" id="submit-ask" type="submit" value="Ask!">
+                    </form>
+                </div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<% include partials/footer %>
+
+</body>
+
+</html>
