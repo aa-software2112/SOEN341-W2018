@@ -1,3 +1,7 @@
+
+	Notes to keep track of everything related to database:
+	Video Link & Notes on created Database + tables + Alteration made to tables
+
 	0. Install MySQL 
 
 https://www.youtube.com/watch?v=WuBcTJnIuzo
