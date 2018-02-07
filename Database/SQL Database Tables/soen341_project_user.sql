@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
-  `username` varchar(30) DEFAULT NULL,
+  `username` varchar(30) NOT NULL,
   `email` varchar(60) NOT NULL,
   `password` varchar(60) NOT NULL,
   `country` varchar(40) DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
-  `gender` enum('M','F','O') DEFAULT NULL,
-  `date_entered` date NOT NULL,
+  `gender` enum('M','F','O') NOT NULL,
+  `datetime_entered` datetime NOT NULL,
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`user_id`,`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-27 14:12:30
+-- Dump completed on 2018-02-07  4:50:59
