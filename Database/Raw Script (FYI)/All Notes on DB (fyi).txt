@@ -1,0 +1,139 @@
+	0. Install MySQL 
+
+https://www.youtube.com/watch?v=WuBcTJnIuzo
+
+Hostname: Whatever you want
+Username: root (or whatever you want)
+Password: SOEN341W18  (or whatever you want)
+
+
+	1. Code to create database using MYSQL Command Line Client 
+
+SHOW DATABASES;
+		
+CREATE DATABASE SOEN341_PROJECT; 
+	
+
+		1.1 Code to see tables inside database.
+
+SHOW DATABASES;
+
+USE SOEN341_PROJECT;
+		
+SELECT DATABASE();
+
+SHOW TABLES;
+
+DESCRIBE [table];
+
+
+
+	2. Code of first version of created Tables 
+
+CREATE TABLE User(
+first_name VARCHAR(30) NOT NULL,
+last_name VARCHAR(30) NOT NULL,
+username VARCHAR(30) NULL,
+email VARCHAR(60) NOT NULL,
+password VARCHAR(60) NOT NULL,
+Country VARCHAR(40) NULL,
+birth_date DATE NULL,
+sex ENUM('M', 'F', 'O') NULL,
+date_entered DATE,
+user_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
+);
+
+CREATE TABLE Question(
+question_title VARCHAR(100) NOT NULL,
+question_body VARCHAR(1000) NOT NULL,
+user_id INT UNSIGNED NOT NULL, -- WHERE user_id = user who asked the question
+date_asked DATE,
+question_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
+);
+
+CREATE TABLE Answer(
+answer_body VARCHAR(1000) NOT NULL,
+user_id INT UNSIGNED NOT NULL, -- WHERE user_id = user who gave answered to question
+question_id INT UNSIGNED NOT NULL,
+date_answered DATE,
+answer_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
+);
+
+CREATE TABLE Score_Answer(
+Score Enum('-1', '1') NULL,
+user_id INT UNSIGNED NOT NULL, -- WHERE user_id = user who rated (scored) the answered
+answer_id INT UNSIGNED NOT NULL, -- WHERE answer_id = answer that was rated by user
+date_scored_answer DATE,
+PRIMARY KEY(user_id, answer_id) /* 
+	We combined the event and user id to make sure we don't have
+	duplicate scores and it makes it easier to change scores
+	Since neither the answer ids or the student ids are unique on their
+	own we are able to make them unique by combining them */
+); -- This would prevent users to vote more than once on same answer
+
+CREATE TABLE Score_Question(
+Score Enum('-1', '1') NULL,
+user_id INT UNSIGNED NOT NULL, -- WHERE user_id = user who rated (scored) the question
+question_id INT UNSIGNED NOT NULL, -- WHERE question_id = question that was rated by user
+date_scored_question DATE,
+PRIMARY KEY(user_id, question_id) 
+); 
+
+ 
+
+	3. Alterations done to Tables. 
+
+		3.1. (January)
+
+ALTER TABLE user CHANGE date_entered date_entered DATE NOT NULL;
+
+ALTER TABLE user CHANGE COLUMN user_id user_id INT UNSIGNED NOT NULL, DROP PRIMARY KEY;
+
+ALTER TABLE user ADD PRIMARY KEY(user_id, email);
+
+Alter Table user CHANGE user_id user_id INT UNSIGNED NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE user CHANGE COLUMN sex gender ENUM('M', 'F', 'O') NULL;
+
+ALTER TABLE user CHANGE COLUMN Country country VARCHAR(40) NULL;
+
+ALTER TABLE question ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE RESTRICT; -- (or set null. Note: You restrict the deletion of the user_id from user table, until it is deleted from the question table).
+
+ALTER TABLE question CHANGE date_asked date_asked DATE NOT NULL;
+
+ALTER TABLE answer ADD CONSTRAINT question_id FOREIGN KEY (question_id) REFERENCES question(question_id) ON DELETE RESTRICT; -- (or set null. Note: you restrict the deletion of the question_id until it is deleted from answer table. Note2: I think you also indirectly restrict the deletion of user_id from the user table.)
+
+ALTER TABLE answer CHANGE date_answered date_answered DATE NOT NULL;
+
+ALTER TABLE score_answer CHANGE Score score Enum('-1', '1') NOT NULL;
+
+ALTER TABLE score_answer CHANGE date_scored_answer date_scored_answer DATE NOT NULL;
+
+ALTER TABLE score_question CHANGE Score score Enum('-1', '1') NOT NULL;
+
+ALTER TABLE score_question CHANGE date_scored_question date_scored_question DATE NOT NULL;
+
+
+		3.2.  (2018-02-06)
+
+ALTER TABLE user CHANGE date_entered datetime_entered DATETIME NOT NULL;
+ALTER TABLE user CHANGE username username VARCHAR(30) NOT NULL;
+ALTER TABLE user CHANGE gender gender ENUM('M', 'F', 'O') NOT NULL;
+
+ALTER TABLE question CHANGE date_asked datetime_asked DATETIME NOT NULL;
+
+ALTER TABLE answer CHANGE date_answered datetime_answered DATETIME NOT NULL;
+
+ALTER TABLE score_question CHANGE date_scored_question datetime_scored_question DATETIME NOT NULL;
+
+ALTER TABLE score_answer CHANGE date_scored_answer datetime_scored_answer DATETIME NOT NULL;
+
+
+
+
+3. How to export / import database.
+
+https://dev.mysql.com/doc/workbench/en/wb-admin-export-import-management.html
+
+
+
