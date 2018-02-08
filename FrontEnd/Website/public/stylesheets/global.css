@@ -20,6 +20,12 @@ h2 {
 	font-size: 1.75em;
 }
 
+h3 {
+	font-size: 2.5em;
+	margin: 20px auto 10px;
+    text-align: center;
+}
+
 p {
 	font-size: 1.25em;
 	line-height: 1.5em;
@@ -755,4 +761,50 @@ li a:hover, .dropdown:hover .dropbtn {
 
 .ask-form-p {
 	margin: 10px 0 10px 0;
+}
+/* About us page/ About us */
+
+#about {
+	border-radius: 8px;
+	padding: 10px 15px 1px 30px;
+	background-color: rgb(234, 247, 250); /* light blue */
+}
+
+#about-body {
+	max-width: 900px;
+	margin: 40px auto;
+	font-family: Verdana;
+	line-height: 1.5em;
+	font-size: 1.2em;
+	padding: 10px;
+}
+
+
+/* About us page / meet the team*/
+
+#team {
+	border-radius: 8px;
+	padding: 10px 15px 10px 30px;
+
+}
+
+img.circular--square {
+  width:  176px;
+  height: 180px;
+  display: block
+  background-size: contain;
+  background-repeat: no-repeat;;
+  border-radius: 50%;
+}
+.column {
+    float: left;
+    width: 50%;
+    margin-bottom: 50px;
+    padding: 10px 100px;
+    text-align: center;
+}
+
+#team-text {
+	font-size: 1.4em;
+	color: rgb(0, 0, 0);
 }
