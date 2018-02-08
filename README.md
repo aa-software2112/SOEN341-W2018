@@ -7,7 +7,7 @@ Pull Request Test for Sprint 1:
 - Jason Chung Kow Chong - 27480822
 - Thomas Serrano - 26710387
 - Anthony Andreoli - 26605621
-- Ruochen Jia
+- Ruochen Jia - 40017033
 - Abishand - 40030544
 - Saleh - 40018218
 - Alexander Chung - 27752016
