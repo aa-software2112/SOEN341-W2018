@@ -14,38 +14,38 @@
 		<div class="body-container">
 			<div class="content-container center-div">
 				<div class="alignment-container">
-					<div class="box">
-					 <h3 class="title">Create Account</h3><br><br>
+					<div class="signup_box">
+					 <h3 class="signup_title">Create Account</h3><br><br>
 
 			<form method="post" action="/sign_up">
-				<div class="text-container">
-					 <div class="left">
-					 <label><b>First name</b></label><br>
-     				 <input class="textbox" type="text" placeholder="Enter First Name" name="fname" required></div>
+				<div class="signup_text-container">
+					 <div class="signup_left">
+					 <label class="signup_labels"><b>First name</b></label><br>
+     				 <input class="signup_textbox" type="text" placeholder="Enter First Name" name="fname" required></div>
 
-     				 <div class="right">
-     				 <label><b>Last Name</b></label><br>
-     				 <input class="textbox" type="text" placeholder="Enter Last Name" name="lname" required><br><br></div>
+     				 <div class="signup_right">
+     				 <label class="signup_labels"><b>Last Name</b></label><br>
+     				 <input class="signup_textbox" type="text" placeholder="Enter Last Name" name="lname" required><br><br></div>
      			</div>
 
-     			<div class="text-container">
-					 <div class="left">
-					 <label><b>Username</b></label><br>
-     				 <input class="textbox" type="text" placeholder="Enter Username" name="uname" required></div>
+     			<div class="signup_text-container">
+					 <div class="signup_left">
+					 <label class="signup_labels"><b>Username</b></label><br>
+     				 <input class="signup_textbox" type="text" placeholder="Enter Username" name="uname" required></div>
 
-     				 <div class="right">
-     				 <label><b>Email</b></label><br>
-     				 <input class="textbox" type="email" placeholder="Enter Email" name="email" required><br><br></div>
+     				 <div class="signup_right">
+     				 <label class="signup_labels"><b>Email</b></label><br>
+     				 <input class="signup_textbox" type="email" placeholder="Enter Email" name="email" required><br><br></div>
      			</div>
 
-     			<div class="text-container">
-     				 <div class="left">
-					 <label><b>Password</b></label><br>
-     				 <input class="textbox" type="password" placeholder="Enter Password" name="pw" required></div>
+     			<div class="signup_text-container">
+     				 <div class="signup_left">
+					 <label class="signup_labels"><b>Password</b></label><br>
+     				 <input class="signup_textbox" type="password" placeholder="Enter Password" name="pw" required></div>
 
-     				 <div class="right">
-     				 <label><b>Country</b></label><br>
-     				 <select class="country" name="country">
+     				 <div class="signup_right">
+     				 <label class="signup_labels"><b>Country</b></label><br>
+     				 <select style="width: 100%; padding: 6px 0px; margin-top: 8px;" name="country">
 						<option value="Afganistan">Afghanistan</option>
 						<option value="Albania">Albania</option>
 						<option value="Algeria">Algeria</option>
@@ -299,10 +299,10 @@
 
 
 
-     			<div class="text-container">
-     				<div class="left">
-					 <label><b>Birth Date</b></label><br>
-     				 <select name="Month">
+     			<div class="signup_text-container">
+     				<div class="signup_left"><br>
+					 <label class="signup_labels"><b>Birth Date</b></label><br>
+     				 <select class="signup_select" name="Month">
      				 	 <option value="01">January</option>
      				 	 <option value="02">February</option>
      				 	 <option value="03">March</option>
@@ -318,7 +318,7 @@
      				 </select>
 
 
-     				 <select name="Day">
+     				 <select class="signup_select" name="Day">
      				 	<script type="text/javascript">
      				 		for (var i = 1; i <= 31; i++) {
      				 			if (i <= 9) {
@@ -331,7 +331,7 @@
      				 	</script>
      				 </select>
 
-     				 <select name="year">
+     				 <select class="signup_select" name="year">
      				 	<script type="text/javascript">
      				 	for (var i = 1900; i <= 2018; i++) {
      				 		document.write("<option value=\"" + i + "\">" + i + "</option>");
@@ -340,26 +340,26 @@
      				 </select></div>
 
 
-     				<div class="right">
-     				 <label style="line-height: 1.5"><b>Gender</b></label><br>
+     				<div class="signup_right"><br>
+     				 <label style="line-height: 1.5; display: inline;"><b>Gender</b></label><br>
 
-     				 <label class="container">Male
+     				 <label class="signup_labels">Male
   					<input type="radio" name="Gender">
 					  <span class="checkmark"></span>
 					</label>&nbsp;
 
-					<label class="container">Female
+					<label class="signup_labels">Female
 					  <input type="radio" name="Gender">
 					  <span class="checkmark"></span>
 					</label>&nbsp;
 
-					<label class="container">Other
+					<label class="signup_labels">Other
 					  <input type="radio" name="Gender">
 					  <span class="checkmark"></span>
 					</label></div>
      			</div><br><br>
         
-      				<button class="button" type="submit">Sign Up</button>
+      				<button class="signup_button" type="submit">Sign Up</button>
       		</form>
 				</div>
 			</div>
