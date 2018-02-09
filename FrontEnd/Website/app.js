@@ -5,6 +5,7 @@ var util = require('util');
 var bodyParser = require("body-parser");
 var date = require('date-and-time');
 app.use(bodyParser.urlencoded({extended: true}));
+var sortBy = require('sort-by');
 app.set("view engine", "ejs");
 //Static files in Express must go inside the directory specified. This is used for about us page, so far.
 app.use( express.static( "public/about_team_img" ) ); 
@@ -14,6 +15,110 @@ app.use(express.static(__dirname + "/public"));
 
 
 /* INSERTS PAGE GET/POST CONNECTIONS HERE */
+
+/** <<<<<<<<<<<<<<< Homepage >>>>>>>>>>>>>>
+* ============================================================================
+* > homepage.ejs
+* Listens for the question list request.
+* Depending of the given tab.
+* ============================================================================
+*/
+
+app.get(
+	['/', '/home_page.html'],
+	function(req, res) {
+		
+		const output = {
+			/*
+			* ---------------------------------------------------------------------------
+			* > Object newest
+			* username, question, # of votes, # of answers, # of views, date and time
+			* ---------------------------------------------------------------------------
+			*/
+			newest: {
+				newest_question_list:
+				(function() {
+					arr = [];
+					var num_of_questions = 10;
+					for (var i = 0; i < num_of_questions; i++)
+					arr.push(
+						{
+							userName: (function() {
+								var text = "";
+								var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+								
+								for (var i = 0; i < 5; i++)
+								text += possible.charAt(Math.floor(Math.random() * possible.length));
+								
+								return text;
+							})(),
+							question: (function() {
+								var text = "";
+								var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+								
+								for (var i = 0; i < 200; i++)
+								text += possible.charAt(Math.floor(Math.random() * possible.length));
+								
+								return text;
+							})(),
+							numOfVotes: Math.floor(Math.random() * 100), 
+							numOfAnswers: Math.floor(Math.random() * 100),
+							numOfViews: Math.floor(Math.random() * 100),
+							date_ans: date.format(new Date(), 'DD/MM/YYYY'),
+							time_ans: date.format(new Date(), 'h:m A').toUpperCase()
+						}
+					);
+					return arr
+				})()
+			},
+			
+			/** 
+			* ---------------------------------------------------------------------------
+			* > Object newest
+			* ---------------------------------------------------------------------------
+			*/
+			popular: {
+				popular_question_list:
+				(function() {
+					arr = [];
+					var num_of_questions = 10;
+					for (var i = 0; i < num_of_questions; i++)
+					arr.push(
+						{
+							userName: (function() {
+								var text = "";
+								var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+								
+								for (var i = 0; i < 5; i++)
+								text += possible.charAt(Math.floor(Math.random() * possible.length));
+								
+								return text;
+							})(),
+							question: (function() {
+								var text = "";
+								var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+								
+								for (var i = 0; i < 200; i++)
+								text += possible.charAt(Math.floor(Math.random() * possible.length));
+								
+								return text;
+							})(),
+							numOfVotes: Math.floor(Math.random() * 100), 
+							numOfAnswers: Math.floor(Math.random() * 100),
+							numOfViews: Math.floor(Math.random() * 100),
+							date_ans: date.format(new Date(), 'DD/MM/YYYY'),
+							time_ans: date.format(new Date(), 'h:m A').toUpperCase()
+						}
+					);
+					arr.sort(sortBy('-numOfVotes'));
+					return arr
+				})()
+			}
+			
+		};	
+		// Populate the homepage.ejs file with the output object.
+		res.render('homepage.ejs', {homepage: output});
+	});
 
 /* Listens for the question page request - done through the search */
 app.get("/question_forum/:q_id", function(req, res) {
