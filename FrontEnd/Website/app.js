@@ -208,7 +208,7 @@ app.get("/search", function(req, res) {
 // Gets data from the search bar
 app.post("/search", function(req, res) {
 	var search = req.body.search;
-	console.log("Search initiated for: " + search);
+	console.log(req.body);
 	res.redirect("/search");
 });
 
@@ -227,7 +227,8 @@ app.post("/contact", function(req,res){
      var fname = req.body.firstname;
      var lname = req.body.lastname;
      var country = req.body.country;
-     console.log (" Thank you "+ fname + " "+ lname + " from "+ country + " for contacting us.");
+     //console.log (" Thank you "+ fname + " "+ lname + " from "+ country + " for contacting us.");
+     console.log(req.body);
      res.redirect("/contact");
 });
 
@@ -244,9 +245,10 @@ app.post("/sign_up", function(req,res){
      var year = req.body.year;
      var gender = req.body.gender;
 
-	 console.log("New user added:");    
-     console.log ("First Name: " + fName + "\nLast Name: " + lName + "\nUsername: " + uName + "\nEmail: " + email + "\nPassword: " + "\nCountry: " + country + 
-     	"\nDate of Birth: " + month+"/" + day + "/" + year + "\nGender: " + gender);
+	 //console.log("New user added:");    
+     //console.log ("First Name: " + fName + "\nLast Name: " + lName + "\nUsername: " + uName + "\nEmail: " + email + "\nPassword: " + "\nCountry: " + country + 
+     //	"\nDate of Birth: " + month+"/" + day + "/" + year + "\nGender: " + gender);
+     console.log(req.body);
      res.redirect("/sign_up");
 });
 
@@ -254,9 +256,8 @@ app.post("/sign_up", function(req,res){
 app.post("/login", function(req,res){
      var email = req.body.email;
      var password = req.body.password;
-	 console.log("user logged in:");    
-     console.log ("Email: " + email + "\nPassword: " + password);
-     res.redirect("/login_page.ejs");
+	 console.log(req.body);
+     res.redirect("/login");
 });
 
 
