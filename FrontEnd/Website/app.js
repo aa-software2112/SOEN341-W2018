@@ -272,6 +272,10 @@ app.post("/askform" , function(req,res){
 	res.redirect("/question_forum/234");
 });
 
+app.get("/user_profile", function (req, res) {
+	res.render("user_profile.ejs");
+});
+
 
 
 // Catches invalid URL requests

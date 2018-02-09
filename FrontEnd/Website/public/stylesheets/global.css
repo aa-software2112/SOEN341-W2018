@@ -260,7 +260,7 @@ form {
 #logo-div {
 	height: 200px;
 	width: 200px;
-	background-image: url("logos/spring-patterns_02.jpg");
+	background-image: url("/spring-patterns_02.jpg");
 	background-size: cover;
 }
 
