@@ -105,6 +105,11 @@ app.get("/sign_up", function(req,res){
 	res.render('sign_up.ejs');
 });
 
+//listens for login page request to load it
+app.get("/sign_up", function(req,res){
+	res.render('login.ejs');
+});
+
 /* Listens for user input from conctact us page*/
 app.post("/contact", function(req,res){
      var fname = req.body.firstname;
@@ -132,6 +137,16 @@ app.post("/sign_up", function(req,res){
      	"\nDate of Birth: " + month+"/" + day + "/" + year + "\nGender: " + gender);
      res.redirect("/sign_up");
 });
+
+// logs info from user from login page
+app.post("/sign_up", function(req,res){
+     var email = req.body.email;
+     var password = req.body.password;
+	 console.log("user logged in:");    
+     console.log ("Email: " + email + "\nPassword: " + password);
+     res.redirect("/login);
+});
+
 
 // Catches invalid URL requests
 app.get("*", function(req, res) {
