@@ -144,7 +144,7 @@ app.post("/login", function(req,res){
      var password = req.body.password;
 	 console.log("user logged in:");    
      console.log ("Email: " + email + "\nPassword: " + password);
-     res.redirect("/login_page);
+     res.redirect("/login_page.ejs);
 });
 
 
