@@ -21,17 +21,17 @@
 				<div class="signup_text-container">
 					 <div class="signup_left">
 					 <label class="signup_labels"><b>First name</b></label><br>
-     				 <input class="signup_textbox" type="text" placeholder="Enter First Name" name="fname" required></div>
+     				 <input class="signup_textbox" type="text" placeholder="Enter First Name" name="fName" required></div>
 
      				 <div class="signup_right">
      				 <label class="signup_labels"><b>Last Name</b></label><br>
-     				 <input class="signup_textbox" type="text" placeholder="Enter Last Name" name="lname" required><br><br></div>
+     				 <input class="signup_textbox" type="text" placeholder="Enter Last Name" name="lName" required><br><br></div>
      			</div>
 
      			<div class="signup_text-container">
 					 <div class="signup_left">
 					 <label class="signup_labels"><b>Username</b></label><br>
-     				 <input class="signup_textbox" type="text" placeholder="Enter Username" name="uname" required></div>
+     				 <input class="signup_textbox" type="text" placeholder="Enter Username" name="uName" required></div>
 
      				 <div class="signup_right">
      				 <label class="signup_labels"><b>Email</b></label><br>
@@ -41,7 +41,7 @@
      			<div class="signup_text-container">
      				 <div class="signup_left">
 					 <label class="signup_labels"><b>Password</b></label><br>
-     				 <input class="signup_textbox" type="password" placeholder="Enter Password" name="pw" required></div>
+     				 <input class="signup_textbox" type="password" placeholder="Enter Password" name="password" required></div>
 
      				 <div class="signup_right">
      				 <label class="signup_labels"><b>Country</b></label><br>
@@ -302,7 +302,7 @@
      			<div class="signup_text-container">
      				<div class="signup_left"><br>
 					 <label class="signup_labels"><b>Birth Date</b></label><br>
-     				 <select class="signup_select" name="Month">
+     				 <select class="signup_select" name="month">
      				 	 <option value="01">January</option>
      				 	 <option value="02">February</option>
      				 	 <option value="03">March</option>
@@ -318,7 +318,7 @@
      				 </select>
 
 
-     				 <select class="signup_select" name="Day">
+     				 <select class="signup_select" name="day">
      				 	<script type="text/javascript">
      				 		for (var i = 1; i <= 31; i++) {
      				 			if (i <= 9) {
@@ -344,18 +344,15 @@
      				 <label style="line-height: 1.5; display: inline;"><b>Gender</b></label><br>
 
      				 <label class="signup_labels">Male
-  					<input type="radio" name="Gender">
-					  <span class="checkmark"></span>
+  					<input type="radio" name="gender" value="male">
 					</label>&nbsp;
 
 					<label class="signup_labels">Female
-					  <input type="radio" name="Gender">
-					  <span class="checkmark"></span>
+					  <input type="radio" name="gender" value="female">
 					</label>&nbsp;
 
 					<label class="signup_labels">Other
-					  <input type="radio" name="Gender">
-					  <span class="checkmark"></span>
+					  <input type="radio" name="gender" value="other">
 					</label></div>
      			</div><br><br>
         
