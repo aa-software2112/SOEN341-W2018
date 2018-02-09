@@ -106,7 +106,7 @@ app.get("/sign_up", function(req,res){
 });
 
 //listens for login page request to load it
-app.get("/sign_up", function(req,res){
+app.get("/login", function(req,res){
 	res.render('login.ejs');
 });
 
@@ -139,7 +139,7 @@ app.post("/sign_up", function(req,res){
 });
 
 // logs info from user from login page
-app.post("/sign_up", function(req,res){
+app.post("/login", function(req,res){
      var email = req.body.email;
      var password = req.body.password;
 	 console.log("user logged in:");    
