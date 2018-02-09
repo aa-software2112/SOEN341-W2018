@@ -260,6 +260,19 @@ app.post("/login", function(req,res){
      res.redirect("/login");
 });
 
+app.get("/ask", function(req, res) {
+	res.render("ask.ejs");
+});
+
+//logs of questions from the ask_questions
+app.post("/askform" , function(req,res){
+	var q_title = req.body.q_title;
+	var q_body = req.body.q_body;
+	console.log(req.body);
+	res.redirect("/question_forum/234");
+});
+
+
 
 // Catches invalid URL requests
 app.get("*", function(req, res) {
@@ -272,11 +285,3 @@ app.listen(3000, function() {
 	console.log("Working Directory: " + __dirname);
 });
 
-//logs of questions from the ask_questions
-app.post(“/ask” , function(req,res){
-	var q_title = req.body.q_title;
-	var q_body = req.body.q_body;
-		console.log(“Post Questions”)
-	console.log(“q_title: ”+”q_body”)
-	res.redirct(“/ask”);
-});
