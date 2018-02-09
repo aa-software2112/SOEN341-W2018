@@ -11,4 +11,4 @@ Pull Request Test for Sprint 1:
 - Abishand - 40030544
 - Saleh - 40018218
 - Alexander Chung - 27752016
-- Nizar
+- Nizar Belhassan - 27519443

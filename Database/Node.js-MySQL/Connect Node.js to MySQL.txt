@@ -1,0 +1,18 @@
+I)  Install MySQL, configure the server as follow :
+    host :'localhost',
+    user : 'root',
+    password : 'SOEN341W18',
+    database : 'soen341_project'
+
+Suggested text editor : Atom
+
+II) 
+    Commands for the terminal (windows powershell):
+    Check first that you are in the appropriate directory, if it is not the case go to http://blog.gvm-it.eu/post/20404719601/getting-started-with-nodejs-on-windows
+    1) npm init // to create a .json file which includes information about the app and dependencies.
+    2) npm install --save mysql
+
+    Create a .js file to establish the connection between MySQL and Node.js.
+
+    Create .js files to manipulate the database directly.
+
