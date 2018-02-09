@@ -271,3 +271,12 @@ app.listen(3000, function() {
 	console.log("Server Running on Port 3000");
 	console.log("Working Directory: " + __dirname);
 });
+
+//logs of questions from the ask_questions
+app.post(“/ask” , function(req,res){
+	var q_title = req.body.q_title;
+	var q_body = req.body.q_body;
+		console.log(“Post Questions”)
+	console.log(“q_title: ”+”q_body”)
+	res.redirct(“/ask”);
+});
