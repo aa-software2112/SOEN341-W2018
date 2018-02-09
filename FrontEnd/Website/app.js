@@ -114,7 +114,7 @@ app.post("/contact", function(req,res){
      res.redirect("/contact");
 });
 
-// logs info from user
+// logs info from user from signup page
 app.post("/sign_up", function(req,res){
      var fName = req.body.fName;
      var lName = req.body.lName;
