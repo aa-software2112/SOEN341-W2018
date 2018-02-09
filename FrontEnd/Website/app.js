@@ -100,6 +100,11 @@ app.get("/search", function(req, res) {
 	res.render('search_page.ejs');
 });
 
+//listens for signup page request to load it
+app.get("/sign_up", function(req,res){
+	res.render('sign_up.ejs');
+});
+
 /* Listens for user input from conctact us page*/
 app.post("/contact", function(req,res){
      var fname = req.body.firstname;
@@ -107,6 +112,25 @@ app.post("/contact", function(req,res){
      var country = req.body.country;
      console.log (" Thank you "+ fname + " "+ lname + " from "+ country + " for contacting us.");
      res.redirect("/contact");
+});
+
+// logs info from user from signup page
+app.post("/sign_up", function(req,res){
+     var fName = req.body.fName;
+     var lName = req.body.lName;
+     var uName = req.body.uName;
+     var email = req.body.email;
+     var password = req.body.password;
+     var country = req.body.country;
+     var month = req.body.month;
+     var day = req.body.day;
+     var year = req.body.year;
+     var gender = req.body.gender;
+
+	 console.log("New user added:");    
+     console.log ("First Name: " + fName + "\nLast Name: " + lName + "\nUsername: " + uName + "\nEmail: " + email + "\nPassword: " + "\nCountry: " + country + 
+     	"\nDate of Birth: " + month+"/" + day + "/" + year + "\nGender: " + gender);
+     res.redirect("/sign_up");
 });
 
 // Catches invalid URL requests
