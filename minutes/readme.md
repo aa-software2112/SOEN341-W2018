@@ -1,7 +1,13 @@
 Meeting Times:
 
-Feb. 2, 2018: 1:30 - 1:45
-    Everyone present except Abishand who was at an interview; Client was informed of this
+Feb. 9, 2018：13:15 - 13:30
+    Everyone present except Saleh Ali who was at an interview; Client was informed of the absent 
+
+Feb. 9, 2018: 10:00 - 13:00
+    Everyone present
+
+Feb. 2, 2018: 13:30 - 13:45
+    Everyone present except Abishand who was at an interview; Client was informed of the absent
 
 Feb. 2, 2018: 10:00 - 13:00
     Everyone present
@@ -24,3 +30,5 @@ Jan. 19, 2018: 13:45 - 14:05
     
 Jan. 12, 2018: 11:30 - 13:00
     Everyone except Ruochen (not part of team yet)
+    
+
