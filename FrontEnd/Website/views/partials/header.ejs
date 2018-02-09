@@ -24,13 +24,16 @@
 
                     <div class="search-box-div">
                         <!-- The form -->
-                        <form class="search-box" action="action_page.php">
-                            <input type="text" placeholder="Search.." name="search">
-                            <button type="submit"><i class="fa fa-search"></i></button>
+
+                        <form class="search-box" action="/:" method="POST">
+                            <input type="text" placeholder="Search.." name="search"  pattern= ".{1,100}" 
+                            title="Search must be under 100 characters" required>
+                            <button type="submit" formaction="/search"><i class="fa fa-search"></i></button>
+
                         </form>
                     </div>
 
-                    <!-- Dropdown menu -->
+                    <!-- Dropdown menu 
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropbtn">Help ?</a>
                         <div class="dropdown-content">
@@ -39,6 +42,7 @@
                             <a href="#">Link 3</a>
                         </div>
                     </li>
+                -->
 
                     <div class="login-signup-div">
                         <div class="login-div">
@@ -49,7 +53,7 @@
 
                         <div class"signup-div">
                             <li class= "signup-btn-li">
-                                <a class="signup-btn" id="signup-button" href="/sign_up.html">Sign up</a>
+                                <a class="signup-btn" id="signup-button" href="/sign_up">Sign up</a>
                             </li>
                         </div>
 
