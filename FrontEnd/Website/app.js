@@ -100,6 +100,13 @@ app.get("/search", function(req, res) {
 	res.render('search_page.ejs');
 });
 
+// Gets data from the search bar
+app.post("/search", function(req, res) {
+	var search = req.body.search;
+	console.log("Search initiated for: " + search);
+	res.redirect("/search");
+});
+
 //listens for signup page request to load it
 app.get("/sign_up", function(req,res){
 	res.render('sign_up.ejs');
