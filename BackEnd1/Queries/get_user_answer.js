@@ -14,14 +14,12 @@ con.connect(function(err) {
   console.log("Connected!");
   
   //Select a record in the "question, answer, score_question" table:
-  var sql = "SELECT question.question_id, question.question_title, answer.answer_body, answer.datetime_answered,
-			(SELECT COUNT(*) FROM score_answer WHERE answer_id=answer.answer_id) AS answer_score  
-			From question, answer, score_answer
-			WHERE answer.user_id=1";
+  var sql = "SELECT DISTINCT question.question_id, question.question_title, answer.answer_body, answer.datetime_answered, (SELECT COUNT(*) FROM score_answer WHERE answer_id=answer.answer_id) AS answer_score From question, answer, score_answer WHERE answer.user_id=1";
 			// Replace the # with values from GET in -> answer.user_id=#
   
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("1 record inserted");
+    console.log(result);
   });
 });
