@@ -1,25 +1,21 @@
 // Set up express, body parser, and ejs
 var express = require("express");
 
+// Database 
 const mysql = require('mysql');
-
-const db = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'SOEN341W18',
-	database: 'soen341_project',
-	port: '3306'
-});
-
-db.connect(function(err) {
-	if (err) throw err;
-	console.log("Connected!");
-});
-
-
+var db = require('./database/database');
 
 
 var app = express();
+
+// Routes 
+// var router = express.Router();
+// router.get("/",function(req,res){
+// 	res.json({"message" : "Hello World"});
+// });
+
+// app.use("/api",router);
+
 var util = require('util');
 var bodyParser = require("body-parser");
 var date = require('date-and-time');
@@ -60,109 +56,112 @@ app.use(express.static(__dirname + "/public"));
 * ============================================================================
 */
 
-app.get(['/', '/home_page.html'], (req, res) => {
+app.get(['/', '/home'], (req, res) => {
+	
+	
 	var sql = "SELECT DISTINCT question.question_title, \
 	question.question_body, question.datetime_asked, \
 	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) \
 	AS number_question_replies, (SELECT COUNT(*) \
 	FROM score_question WHERE question_id=question.question_id) \
 	AS question_score From question, answer, score_question WHERE question.user_id=24776";
+	
 	db.query(sql, function (err, result) {
-		if (err) throw err;
-		console.log("1 record inserted");
-		console.log(result);
-
-		for (var i in result) {
-			console.log('Post Titles: ', result[i].question_title);
-		}
-
-		const output = {
-			/*
-			* ---------------------------------------------------------------------------
-			* > Object newest
-			* username, question, # of votes, # of answers, # of views, date and time
-			* ---------------------------------------------------------------------------
-			*/
+		if (err) {
+			res.status(500).json({"status_code": 500,"status_message": "internal server error"});
+		} else {
+			
 		
-			newest: {
-				newest_question_list:
-				(function() {
-					arr = [];
-					var num_of_questions = 10;
+
+			const output = {
+				/*
+				* ---------------------------------------------------------------------------
+				* > Object newest
+				* username, question, # of votes, # of answers, # of views, date and time
+				* ---------------------------------------------------------------------------
+				*/
 				
-					for (var i = 0; i < num_of_questions; i++)
-					arr.push(
-						{
-							userName: (function() {
-								var text = "";
-								var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-								
-								for (var i = 0; i < 5; i++)
-								text += possible.charAt(Math.floor(Math.random() * possible.length));
-								
-								return text;
-							})(),
-							question: result[1].question_title,
-							numOfVotes: Math.floor(Math.random() * 100), 
-							numOfAnswers: Math.floor(Math.random() * 100),
-							numOfViews: Math.floor(Math.random() * 100),
-							date_ans: result[1].datetime_asked,
-							time_ans: date.format(new Date(), 'h:m A').toUpperCase()
+				newest: {
+					newest_question_list:
+					(function() {
+						var newestQuestionList = [];
+						var num_of_questions = 10;
+						
+						for (var i = 0; i < num_of_questions; i++)
+						 question = {
+								userName: (function() {
+									var text = "";
+									var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+									
+									for (var i = 0; i < 5; i++)
+									text += possible.charAt(Math.floor(Math.random() * possible.length));
+									
+									return text;
+								})(),
+								question: result[1].question_title,
+								numOfVotes: Math.floor(Math.random() * 100), 
+								numOfAnswers: Math.floor(Math.random() * 100),
+								numOfViews: Math.floor(Math.random() * 100),
+								date_ans: result[1].datetime_asked,
+								time_ans: date.format(new Date(), 'h:m A').toUpperCase()
 						}
-					);
-					return arr
-				})()
-			},
-			
-			/** 
-			* ---------------------------------------------------------------------------
-			* > Object newest
-			* ---------------------------------------------------------------------------
-			*/
-			popular: {
-				popular_question_list:
-				(function() {
-					arr = [];
-					var num_of_questions = 10;
-					for (var i = 0; i < num_of_questions; i++)
-					arr.push(
-						{
-							userName: (function() {
-								var text = "";
-								var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-								
-								for (var i = 0; i < 5; i++)
-								text += possible.charAt(Math.floor(Math.random() * possible.length));
-								
-								return text;
-							})(),
-							question: (function() {
-								var text = "";
-								var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-								
-								for (var i = 0; i < 200; i++)
-								text += possible.charAt(Math.floor(Math.random() * possible.length));
-								
-								return text;
-							})(),
-							numOfVotes: Math.floor(Math.random() * 100), 
-							numOfAnswers: Math.floor(Math.random() * 100),
-							numOfViews: Math.floor(Math.random() * 100),
-							date_ans: date.format(new Date(), 'DD/MM/YYYY'),
-							time_ans: date.format(new Date(), 'h:m A').toUpperCase()
-						}
-					);
-					arr.sort(sortBy('-numOfVotes'));
-					return arr
-				})()
+						newestQuestionList.push(question);
+						return newestQuestionList
+					})()
+				},
+				
+				/** 
+				* ---------------------------------------------------------------------------
+				* > Object newest
+				* ---------------------------------------------------------------------------
+				*/
+				popular: {
+					popular_question_list:
+					(function() {
+						popularQuestionList = [];
+						var num_of_questions = 10;
+						for (var i = 0; i < num_of_questions; i++)
+						popularQuestionList.push(
+							{
+								userName: (function() {
+									var text = "";
+									var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+									
+									for (var i = 0; i < 5; i++)
+									text += possible.charAt(Math.floor(Math.random() * possible.length));
+									
+									return text;
+								})(),
+								question: (function() {
+									var text = "";
+									var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+									
+									for (var i = 0; i < 200; i++)
+									text += possible.charAt(Math.floor(Math.random() * possible.length));
+									
+									return text;
+								})(),
+								numOfVotes: Math.floor(Math.random() * 100), 
+								numOfAnswers: Math.floor(Math.random() * 100),
+								numOfViews: Math.floor(Math.random() * 100),
+								date_ans: date.format(new Date(), 'DD/MM/YYYY'),
+								time_ans: date.format(new Date(), 'h:m A').toUpperCase()
+							}
+						);
+						popularQuestionList.sort(sortBy('-numOfVotes'));
+						return popularQuestionList
+					})()
+				}
+				
 			}
-			
+			res.render('homepage.ejs', {homepage: output});
 		};	
 		// Populate the homepage.ejs file with the output object.
-		res.render('homepage.ejs', {homepage: output});
-
+		
+		
 		
 	});
+	
 	// let sql = 'SELECT question.question_title, question.question_body, question.datetime_asked, (SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS number_question_replies, (SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS question_score From question, answer, score_question WHERE question.user_id=1";'
 	// let query = db.query(sql, (err, results) => {
 	// 	if (err) throw err;
