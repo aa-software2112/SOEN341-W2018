@@ -1,12 +1,30 @@
 function checkLogin(){
-				return checkPassword();
+				return (checkPassword() && checkEmail());
 			}
 
 
 
+			function checkEmail(){
+				var domEmail = document.getElementById("signup_email");
+				 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  				 var emailReturn = re.test(domEmail.value);
+
+  				 if(emailReturn)
+					return true;
+				else{
+					alert("Email is not in correct format.");
+					return false;
+				}
+  				 
+
+
+			}		
+
+
+
 			function checkPassword(){
-				var dom = document.getElementById("password");
-				var password = dom.value;
+				var domPassword = document.getElementById("signup_password");
+				var password = domPassword.value;
 				var lowerLetter = password.search(/[a-z]/);
 				var upperLetter = password.search(/[A-Z]/);
 				var number = password.search(/[0-9]/);
@@ -38,3 +56,5 @@ function checkLogin(){
 
 
 			}
+
+
