@@ -1,0 +1,203 @@
+---------------------------------------------------------------------------------
+	
+	---1. Top_ten_questions([“newest”, “views”, “votes”])
+	
+	//Full query :
+	
+	/*ORDER BY num_views*/
+	
+	SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers,
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
+	 datetime_asked
+	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id
+	ORDER BY num_views DESC
+	LIMIT 10;
+	/*ORDER BY num_votes*/
+	
+	SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers,
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
+	 datetime_asked
+	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id
+	ORDER BY num_votes DESC
+	LIMIT 10;
+	
+	/*ORDER BY datetime_asked*/
+	
+	SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers,
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
+	 datetime_asked
+	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id
+	WHERE (answer.question_id is NOT NULL) OR (answer.question_id IS NULL)
+	ORDER BY datetime_asked DESC
+	LIMIT 10;
+	
+	--------------------------------------------------------------------
+	---2. Get_question_from_search(search_string, sort_by=[“newest”, “views”, “votes”])
+	
+	/* question_id AND user_id should be provided from the search_string,
+	we match the string entered by the user in the search bar with the question_body AND question_title in the database via an algorithm, once we have a match, we get the question_id from the current row */
+	
+		/*ORDER BY num_views*/
+		
+	SELECT question.question_title,question.question_id, user.username AS asked_by,
+	(SELECT COUNT(*) FROM score_question WHERE question_id= 26952 AND question.question_id= 26952) AS num_votes,
+	(SELECT COUNT(*) FROM answer WHERE question_id= 26952 AND question.question_id= 26952) AS num_views,
+	datetime_asked
+	FROM question JOIN user ON question.user_id=24776 AND user.user_id=24776 AND question.question_id= 26952
+	ORDER BY num_views DESC;
+	
+		/*ORDER BY num_votes*/
+		
+	SELECT question.question_title,question.question_id, user.username AS asked_by,
+	(SELECT COUNT(*) FROM score_question WHERE question_id= 26952 AND question.question_id= 26952) AS num_votes,
+	(SELECT COUNT(*) FROM answer WHERE question_id= 26952 AND question.question_id= 26952) AS num_views,
+	datetime_asked
+	FROM question JOIN user ON question.user_id=24776 AND user.user_id=24776 AND question.question_id= 26952
+	ORDER BY num_votes DESC;
+	
+	/*ORDER BY datetime_asked*/
+	
+		SELECT question.question_title,question.question_id, user.username AS asked_by,
+	(SELECT COUNT(*) FROM score_question WHERE question_id= 26952 AND question.question_id= 26952) AS num_votes,
+	(SELECT COUNT(*) FROM answer WHERE question_id= 26952 AND question.question_id= 26952) AS num_views,
+	datetime_asked
+	FROM question JOIN user ON question.user_id=24776  AND user.user_id=24776 AND question.question_id= 26952
+	ORDER BY datetime_asked DESC;
+	
+	---------------------------------------------------------------------------
+	----3.Get_forum(question_id)
+	
+		/*ORDER BY datetime_asked*/
+		
+	SELECT question.question_title,
+	question.question_body,
+	user.username AS asked_by,
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
+	answer.answer_body AS answers,
+	answer.user_id AS answered_by,
+	datetime_asked
+	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.question_id=answer.question_id
+	ORDER BY datetime_asked DESC;
+	
+	/*ORDER BY num_votes*/
+	
+	SELECT question.question_title,
+	question.question_body,
+	user.username AS asked_by,
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
+	answer.answer_body AS answers,
+	answer.user_id AS answered_by,
+	datetime_asked
+	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.question_id=answer.question_id
+	ORDER BY (SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) DESC;
+	
+	/*ORDER BY num_views*/ 
+	
+	SELECT question.question_title,
+	question.question_body,
+	user.username AS asked_by,
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
+	answer.answer_body AS answers,
+	answer.user_id AS answered_by,
+	datetime_asked
+	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.question_id=answer.question_id
+	ORDER BY (SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) DESC;
+	
+	--------------------------------------------------------------------------------------------------------
+	----7. Get_user_questions(user_id) – gets all questions that a user has asked
+	
+	----------------> I added here question_body <-----------------------------------------------
+	
+	/*ORDER BY datetime_asked*/
+	
+	SELECT
+	question.question_title ,
+	question.question_ID,
+	question.question_body,
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=24776) AS num_answers,
+	datetime_asked
+	FROM question
+	WHERE question.user_id=24776
+	ORDER BY datetime_asked DESC;
+	
+	
+	/*ORDER BY num_votes*/
+		
+	SELECT
+	question.question_title ,
+	question.question_ID,
+	question.question_body,
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=24776) AS num_answers,
+	datetime_asked
+	FROM question
+	WHERE question.user_id=24776
+	ORDER BY(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) DESC;
+	
+	/*ORDER BY num_views*/ 
+	
+	SELECT
+	question.question_title ,
+	question.question_ID,
+	question.question_body,
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=24776) AS num_answers,
+	datetime_asked
+	FROM question
+	WHERE question.user_id=24776
+	ORDER BY (SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) DESC;
+	
+	------------------------------------------------------------------------------------------------------------------
+	--- 8.Get_user_answers(user_id) – gets all answers that a user has submitted
+	
+	/*ORDER BY datetime_answered*/
+	
+	SELECT DISTINCT
+	question.question_title AS question_title,
+	question.question_id AS question_id,
+	answer_body,
+	datetime_answered,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=24776) AS num_answers,
+	datetime_answered
+	FROM answer JOIN question ON question.question_id=answer.question_id
+	WHERE answer.user_id=24776
+	ORDER BY datetime_answered DESC;
+	
+	/*ORDER BY num_votes*/
+	SELECT DISTINCT
+	question.question_title AS question_title,
+	question.question_id AS question_id,
+	answer_body,
+	datetime_answered,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=24776) AS num_answers,
+	datetime_answered
+	FROM answer JOIN question ON question.question_id=answer.question_id
+	WHERE answer.user_id=24776
+	ORDER BY(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) DESC;
+	
+	/*ORDER BY num_views*/ 
+	SELECT DISTINCT
+	question.question_title AS question_title,
+	question.question_id AS question_id,
+	answer_body,
+	datetime_answered,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=24776) AS num_answers,
+	datetime_answered
+	FROM answer JOIN question ON question.question_id=answer.question_id
+	WHERE answer.user_id=24776
+	ORDER BY (SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) DESC;
+	
+	-----------------------------------------------------------------------------------
+	/* STORE QUESTION : */
+	INSERT INTO question (question_title, question_body, user_id, datetime_asked, question_id) VALUES ('How many years does it take to earn a Software Engineering degree', 'Hello, just enrolled in Software engineering in y University. If I take a full course load in university, how long will it take me to complete my degree?', '1', '2018-02-09 23:59:59', NULL)
+	

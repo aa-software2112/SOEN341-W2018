@@ -1,4 +1,15 @@
-  
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Profile</title>
+	<link rel="stylesheet" type="text/css" href="global.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body> 
    <% include partials/header %>
 
 		<div class="body-container">
@@ -44,13 +55,16 @@
 						
 						<div class="user-div" id="user-stats-div">
 							<div class="center-div" id="view-title">
-								<p class="align-center">
-								Your Answers / Your Questions
-								</p>
+								<div class="container">
+									<ul class="nav nav-tabs">
+										<li><a data-toggle="tab" href="#questions">Your Questions</a></li>
+										<li><a data-toggle="tab" href="#answers">Your Answers</a></li>
+									</ul>
+								</div>
 							</div>
 							<div class="make-flex flex-vert" id="view-results">
-								
-							<div class="make-flex flex-vert  view-result">
+							<div class="tab-content">	
+								<div class="make-flex flex-vert  view-result">
 									<p class="view-result-p">
 										<a href="user_profile.html">
 											What is polymorphism in Java, and how can I test it?
@@ -66,7 +80,7 @@
 									</p>
 								</div>
 							
-							<div class="make-flex flex-vert  view-result">
+								<div class="make-flex flex-vert  view-result">
 										<p class="view-result-p">
 											<a href="user_profile.html">
 												What is polymorphism in Java, and how can I test it?
@@ -82,7 +96,7 @@
 										</p>
 								</div>
 								
-							<div class="make-flex flex-vert  view-result">
+								<div class="make-flex flex-vert  view-result">
 									<p class="view-result-p">
 										<a href="user_profile.html">
 											What is polymorphism in Java, and how can I test it?
@@ -98,7 +112,7 @@
 									</p>
 								</div>
 							
-							<div class="make-flex flex-vert  view-result">
+								<div class="make-flex flex-vert  view-result">
 									<p class="view-result-p">
 										<a href="user_profile.html">
 											What is polymorphism in Java, and how can I test it?
@@ -114,7 +128,7 @@
 									</p>
 								</div>
 							
-							<div class="make-flex flex-vert  view-result">
+								<div class="make-flex flex-vert  view-result">
 									<p class="view-result-p">
 										<a href="user_profile.html">
 											What is polymorphism in Java, and how can I test it?
@@ -130,7 +144,7 @@
 									</p>
 								</div>
 							
-							<div class="make-flex flex-vert  view-result">
+								<div class="make-flex flex-vert  view-result">
 									<p class="view-result-p">
 										<a href="user_profile.html">
 											What is polymorphism in Java, and how can I test it?
@@ -146,7 +160,7 @@
 									</p>
 								</div>
 							
-							<div class="make-flex flex-vert  view-result">
+								<div class="make-flex flex-vert  view-result">
 									<p class="view-result-p">
 										<a href="user_profile.html">
 											What is polymorphism in Java, and how can I test it?
@@ -162,7 +176,7 @@
 									</p>
 								</div>
 							
-							<div class="make-flex flex-vert  view-result">
+								<div class="make-flex flex-vert  view-result">
 									<p class="view-result-p">
 										<a href="user_profile.html">
 											What is polymorphism in Java, and how can I test it?
@@ -177,7 +191,120 @@
 										Posted: 31/01/2018
 									</p>
 								</div>
-								
+								<div id="answers" class="tab-pane fade">
+							<div class="make-flex flex-vert  view-result">
+								<p class="view-result-p">
+									<a href="/user_profile">
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+									</a>
+								</p>
+								<p class="self-right date-result-p">
+									Posted: 31/01/2018
+								</p>
+							</div>
+							<div class="make-flex flex-vert  view-result">
+								<p class="view-result-p">
+									<a href="/user_profile">
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+									</a>
+								</p>
+								<p class="self-right date-result-p">
+									Posted: 31/01/2018
+								</p>
+							</div>
+							<div class="make-flex flex-vert  view-result">
+								<p class="view-result-p">
+									<a href="user_profile.html">
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+									</a>
+								</p>
+								<p class="self-right date-result-p">
+									Posted: 31/01/2018
+								</p>
+							</div>
+							<div class="make-flex flex-vert  view-result">
+								<p class="view-result-p">
+									<a href="user_profile.html">
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+									</a>
+								</p>
+								<p class="self-right date-result-p">
+									Posted: 31/01/2018
+								</p>
+							</div>
+							<div class="make-flex flex-vert  view-result">
+								<p class="view-result-p">
+									<a href="user_profile.html">
+											This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+									</a>
+								</p>
+								<p class="self-right date-result-p">
+									Posted: 31/01/2018
+								</p>
+							</div>
+							<div class="make-flex flex-vert  view-result">
+								<p class="view-result-p">
+									<a href="user_profile.html">
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+									</a>
+								</p>
+								<p class="self-right date-result-p">
+									Posted: 31/01/2018
+								</p>
+							</div>
+							<div class="make-flex flex-vert  view-result">
+								<p class="view-result-p">
+									<a href="user_profile.html">
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+									</a>
+								</p>
+								<p class="self-right date-result-p">
+									Posted: 31/01/2018
+								</p>
+							</div>
+							<div class="make-flex flex-vert  view-result">
+								<p class="view-result-p">
+									<a href="user_profile.html">
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+										This is polymorphism in Java.
+									</a>
+								</p>
+								<p class="self-right date-result-p">
+									Posted: 31/01/2018
+								</p>
+							</div>
+						</div>
 							</div>
 						
 						
@@ -196,3 +323,6 @@
 		</div>
 
 	   <% include partials/footer %>
+</body>
+</html>
+	   
