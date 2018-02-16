@@ -34,15 +34,6 @@ app.use(express.static(__dirname + "/public"));
 * ============================================================================
 */
 
-// app.get('/createdb', (req, res) => {
-// 	let sql = 'CREATE DATABASE SOEN341 PROJECT';
-// 	db.query(sql, (err, result) => {
-// 		if (err) throw err;
-// 		console.log(result);
-// 		res.send('Database Created');
-// 	});
-// });
-
 
 
 
@@ -62,11 +53,19 @@ app.get(['/', '/home'], (req, res) => {
 	var sql = "SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers, \
 	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
 	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
-	 datetime_asked \
+	datetime_asked \
 	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id \
 	WHERE (answer.question_id is NOT NULL) OR (answer.question_id IS NULL) \
 	ORDER BY datetime_asked DESC \
 	LIMIT 10;";
+	
+	var query_popular = "SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers, \
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
+	datetime_asked \
+	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id \
+	ORDER BY num_votes DESC \
+	LIMIT 10;"
 	
 	db.query(sql, function (err, result) {
 		if (err) {
@@ -90,24 +89,15 @@ app.get(['/', '/home'], (req, res) => {
 						var num_of_questions = 10;
 						
 						for (var i = 0; i < num_of_questions; i++) {
-						var questions = {
-							userName: result[i].asked_by,
-							question: result[i].question_title,
-							numOfVotes: result[i].num_votes,
-							numOfAnswers: result[i].num_views,
-							date_ans: result[i].datetime_asked
-
-							
-							
-							
-							
-						}
-						newestQuestionList.push(questions);
-					}
-					
-						
-
-						
+							var questions = {
+								userName: result[i].asked_by,
+								question: result[i].question_title,
+								numOfVotes: result[i].num_votes,
+								numOfAnswers: result[i].num_views,
+								date_ans: result[i].datetime_asked							
+							}
+							newestQuestionList.push(questions);
+						}						
 						return newestQuestionList
 					})()
 				},
@@ -164,14 +154,12 @@ app.get(['/', '/home'], (req, res) => {
 		
 	});
 	
-	// let sql = 'SELECT question.question_title, question.question_body, question.datetime_asked, (SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS number_question_replies, (SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS question_score From question, answer, score_question WHERE question.user_id=1";'
-	// let query = db.query(sql, (err, results) => {
-	// 	if (err) throw err;
-	// 	console.log(results);
-	// 	res.send('Post 2 added...');
-	// });
+	
 	
 });
+
+
+
 
 /* Listens for the question page request - done through the search */
 app.get("/question_forum/:q_id", function(req, res) {
@@ -252,7 +240,7 @@ app.get("/question_forum/:q_id", function(req, res) {
 		res.render('contact.ejs');
 	});
 	
-	// Listens for a request to the search page and renders it with the results
+	// Listens for a request to the search page and renders it with the result21s
 	app.get("/search", function(req, res) {
 		// Titles will be passed in once hooked up to DB
 		res.render('search_page.ejs');
