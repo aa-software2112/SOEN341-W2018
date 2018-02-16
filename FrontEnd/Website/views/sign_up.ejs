@@ -17,7 +17,7 @@
 					<div class="signup_box">
 					 <h3 class="signup_title">Create Account</h3><br><br>
 
-			<form method="post" action="/sign_up">
+			<form method="post" action="/sign_up" onsubmit="return checkLogin()">
 				<div class="signup_text-container">
 					 <div class="signup_left">
 					 <label class="signup_labels"><b>First name</b></label><br>
@@ -35,13 +35,13 @@
 
      				 <div class="signup_right">
      				 <label class="signup_labels"><b>Email</b></label><br>
-     				 <input class="signup_textbox" type="email" placeholder="Enter Email" name="email" required><br><br></div>
+     				 <input class="signup_textbox" type="email" placeholder="Enter Email" id="signup_email" name="email" required><br><br></div>
      			</div>
 
      			<div class="signup_text-container">
      				 <div class="signup_left">
 					 <label class="signup_labels"><b>Password</b></label><br>
-     				 <input class="signup_textbox" type="password" placeholder="Enter Password" name="password" required></div>
+     				 <input class="signup_textbox" type="password" placeholder="Enter Password" id="signup_password" name="password" required><br><span style="font-size: 13px;">Password must contain: uppercase letter, lowercase letter, and a number.</span></div>
 
      				 <div class="signup_right">
      				 <label class="signup_labels"><b>Country</b></label><br>
