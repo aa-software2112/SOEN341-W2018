@@ -2,6 +2,8 @@ var likeQuestion = 0;
 var dislikeQuestion = 0;
 var likeCount;
 var dislikeCount;
+var likeUsed = false;
+var dislikeUsed = false;
 
 //function that will run the increment function when the user clicks on the button
 function getElementBtnIncrement(){
@@ -14,13 +16,22 @@ function getElementBtnIncrement(){
 
 //function that increments the counter by one and displays it
 function incrementQuestion(){
-	likeQuestion++;
-	likeCount.innerHTML = likeQuestion; 
+	if(!likeUsed){
+		likeQuestion++;
+		likeCount.innerHTML = likeQuestion; 
+		likeUsed = true;
+	}
+
 }
 
 function decrementQuestion(){
-	dislikeQuestion++;
-	dislikeCount.innerHTML = dislikeQuestion; 
+	if(!dislikeUsed){
+		dislikeQuestion++;
+		dislikeCount.innerHTML = dislikeQuestion; 
+		dislikeUsed = true;
+	}
+	
+	
 }
 
 window.addEventListener( "load", getElementBtnIncrement, false ); 
