@@ -7,12 +7,15 @@ function checkLogin(){
 			function checkPassword(){
 				var dom = document.getElementById("password");
 				var password = dom.value;
-				var letter = password.search(/[A-Z]/);
+				var lowerLetter = password.search(/[a-z]/);
+				var upperLetter = password.search(/[A-Z]/);
 				var number = password.search(/[0-9]/);
-				var letterCheck;
+				var lowerLetterCheck;
 				var numberCheck;
+				var upperLetterCheck;
 				//checks if it contains at least one number and letter
-				letterCheck = (letter != -1);
+				lowerLetterCheck = (lowerLetter != -1);
+				upperLetterCheck = (upperLetter != -1);
 				numberCheck = (number != -1);
 
 				//checks if pass contains letters and numbers only
@@ -21,15 +24,15 @@ function checkLogin(){
 				var returnVal;
 
 				//checks if password is at least 4 characters
-				if((ok == 0) && (password.length >= 4))
-					returnVal = (letterCheck && numberCheck);
+				if((ok == 0) && (password.length >= 6))
+					returnVal = (lowerLetterCheck && numberCheck && upperLetterCheck);
 				else
 					returnVal = false;
 
 				if(returnVal)
 					return true;
 				else{
-					alert("Username or password does not match the allowed format");
+					alert("Password does not match the allowed format.\nMake sure password contains letters and numbers only.");
 					return false;
 				}
 
