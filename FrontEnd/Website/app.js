@@ -59,20 +59,22 @@ app.use(express.static(__dirname + "/public"));
 app.get(['/', '/home'], (req, res) => {
 	
 	
-	var sql = "SELECT DISTINCT question.question_title, \
-	question.question_body, question.datetime_asked, \
-	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) \
-	AS number_question_replies, (SELECT COUNT(*) \
-	FROM score_question WHERE question_id=question.question_id) \
-	AS question_score From question, answer, score_question WHERE question.user_id=24776";
+	var sql = "SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers, \
+	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
+	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
+	 datetime_asked \
+	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id \
+	WHERE (answer.question_id is NOT NULL) OR (answer.question_id IS NULL) \
+	ORDER BY datetime_asked DESC \
+	LIMIT 10;";
 	
 	db.query(sql, function (err, result) {
 		if (err) {
 			res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 		} else {
 			
-		
-
+			console.log(result);
+			
 			const output = {
 				/*
 				* ---------------------------------------------------------------------------
@@ -87,25 +89,25 @@ app.get(['/', '/home'], (req, res) => {
 						var newestQuestionList = [];
 						var num_of_questions = 10;
 						
-						for (var i = 0; i < num_of_questions; i++)
-						 question = {
-								userName: (function() {
-									var text = "";
-									var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-									
-									for (var i = 0; i < 5; i++)
-									text += possible.charAt(Math.floor(Math.random() * possible.length));
-									
-									return text;
-								})(),
-								question: result[1].question_title,
-								numOfVotes: Math.floor(Math.random() * 100), 
-								numOfAnswers: Math.floor(Math.random() * 100),
-								numOfViews: Math.floor(Math.random() * 100),
-								date_ans: result[1].datetime_asked,
-								time_ans: date.format(new Date(), 'h:m A').toUpperCase()
+						for (var i = 0; i < num_of_questions; i++) {
+						var questions = {
+							userName: result[i].asked_by,
+							question: result[i].question_title,
+							numOfVotes: result[i].num_votes,
+							numOfAnswers: result[i].num_views,
+							date_ans: result[i].datetime_asked
+
+							
+							
+							
+							
 						}
-						newestQuestionList.push(question);
+						newestQuestionList.push(questions);
+					}
+					
+						
+
+						
 						return newestQuestionList
 					})()
 				},
