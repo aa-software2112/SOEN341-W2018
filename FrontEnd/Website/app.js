@@ -279,26 +279,35 @@ app.post("/contact", function(req,res){
      res.redirect("/contact");
 });
 
-// logs info from user from signup page
+/* logs info from user from signup page*/
 app.post("/sign_up", function(req,res){
-     var fName = req.body.fName;
-     var lName = req.body.lName;
-     var uName = req.body.uName;
-     var email = req.body.email;
-     var password = req.body.password;
-     var country = req.body.country;
-     var month = req.body.month;
-     var day = req.body.day;
-     var year = req.body.year;
-     var gender = req.body.gender;
 
-	 //console.log("New user added:");    
-     //console.log ("First Name: " + fName + "\nLast Name: " + lName + "\nUsername: " + uName + "\nEmail: " + email + "\nPassword: " + "\nCountry: " + country + 
-     //	"\nDate of Birth: " + month+"/" + day + "/" + year + "\nGender: " + gender);
-     console.log(req.body);
+	//THIS IS THE OBJECT TO BE POSTED IN THE DATABSE USER TABLE. EVERY DATA IS GOTTEN FROM THE SIGN UP FORM
+      var newUser = {
+
+ 	first_name : req.body.fName,
+ 	last_name : req.body.lName,
+ 	username : req.body.uName,
+ 	email : req.body.email,
+ 	password : req.body.password,
+ 	country : req.body.country,
+ 	birth_date : req.body.year +"-" + req.body.month + "-"+req.body.day,
+ 	gender : req.body.gender,
+ 	datetime_entered : date.format(new Date(), 'YYYY-MM-DD h:m:s'), 
+
+ };
+
+//MYSQL QUERRY (MIGHT NEED MODIFICATIONS)
+ var sql =" insert into user set ?";
+con.query(sql, newUser, function(err,result){
+ 	if(err){
+ 		console.log(err);
+ 		return;
+ 	}
+ 	console.log("User succesfully added ")
      res.redirect("/sign_up");
 });
-
+});
 // logs info from user from login page
 app.post("/login", function(req,res){
      var email = req.body.email;
