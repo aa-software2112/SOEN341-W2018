@@ -207,13 +207,34 @@ app.get("/question_forum/:q_id", function(req, res) {
       };
 	res.render('forum_page.ejs', {forum: outputQ});
 
-/* Listens for an answer from the forum page */
+
+/*POST THE ANSWER ON THE ANSWER BOX, THERE IS A QUERRY INSIDE. AND YES THIS APP.POST IS INSIDE THE APP.GET FROM ABOVE*/
 app.post("/answer_to/:q_id", function(req, res) {
+	//OBJECTED TO BE POSTED TO ANSWER TABLE
+	var newA ={
+		answer_body : req.body.answer_body,
+		user_id : "1", //This can be changed to any user id that is in our local table, to be modified for log in implementation
+		question_id : outputQ.q_id,
+		datetime_answered :  date.format(new Date(), 'YYYY-MM-DD h:m:s'), 
+	}
 	
-	console.log("Received Answer!");
-	console.log(util.inspect(req.body) + " q_id : " + req.params.q_id);
-	res.redirect("/question_forum/"+req.params.q_id);	
+	//MYSQL QUERRY
+	 var sql =" insert into answer set ?";
+con.query(sql, newA, function(err,result){
+ 	if(err){
+ 		console.log(err);
+ 		return;
+ 	}
+ 	console.log("Answer succesfully added ")
+     res.redirect("/question_forum/"+outputQ.q_id);
 });
+});
+      });
+      
+	
+});
+
+	});
 
 /* listens for a request from about us page and loads it*/
 app.get("/about", function(req,res){
