@@ -149,7 +149,7 @@ app.get(['/', '/home'], (req, res) => {
 	});
 });	
 
-/* Listens for the question page request - done through the search */
+//* Listens for the question page request - done through the search */
 app.get("/question_forum/:q_id", function(req, res) {
 	
 	// Verify that the question id is a number
@@ -158,57 +158,54 @@ app.get("/question_forum/:q_id", function(req, res) {
 		res.render('invalid_page', null);
 		return;
 	}
-	
-	// Get the entire page's data --> var outputObj = get_forum(question_id);
-	var outputObj = {
-		q_id: req.params.q_id,
-		title: "What is polymorphism in Java, and how can I test it?",
-		body: "I often hear my professor lecture about polymorphism, but I think I missed the class where he " +
-			"explained what it was (the snooze button :/ ). Can someone refresh me on the ins-and-outs of polymorphism, " +
-			"specifically, its implementation within java",
-		user_asked: "Anthony2112",
+	//query from question table joined with user's table user_id
+	var sql = "select question.question_title,question.question_body, question.datetime_asked, question.question_id, user.username AS asked_by FROM question JOIN user ON question.user_id = user.user_id WHERE question_id = ?";
+	con.query(sql,[qId], function(err,result){
+  if(err){
+    console.log(err);
+    return;
+  }
+      //debugging to show question object
+      console.log(result);
+
+       //second query getting answer table and also joined with user's table user_id (yes, this is a query inside a query)
+      var sql2 ="select answer.answer_body, answer.answer_id, answer.datetime_answered, user.username AS answered_by FROM answer JOIN user ON answer.user_id = user.user_id WHERE answer.question_id = ?";
+      con.query(sql2,[qId], function(err,answer){
+
+      	//debugging
+      	console.log(answer);
+
+      	//Object to be sent to forum page
+		var outputQ = {
+
+      	//takes the last object in the result array and gets its respective parameter 
+      	q_id : result[result.length-1].question_id,
+      	title : result[result.length-1].question_title,
+      	body : result[result.length-1].question_body,
+
+      	// following code implemented using SQL2 query
+      	user_asked: result[result.length-1].asked_by,
 		question_pts: 10,
-		date_asked: date.format(new Date(), 'DD/MM/YYYY'),
-		time_asked: date.format(new Date(), 'h:m A').toUpperCase(),
+		datetime_asked: result[result.length-1].datetime_asked,
+
+		// for answers, we store all the answers related to the given question_id in an array, where we iterate through the ANSWER object that was posted to the database from SQL2 query
 		answers:      
 			(function() {
 				arr = [];
-				var num_answers = Math.round(Math.random()*15)+1;
+				var num_answers = answer.length;
 				for (var i = 0; i<num_answers; i++)
 					arr.push(
 					{
-						answer: "From what I remember in my COMP 249 class @ Concordia University," +
-						"polymorphism is when an object takes on different forms based on the left-hand-side" +
-						"type and the right-hand-side object.",
-						user_answered: (function() {
-							var size = Math.round(Math.random()*10) + 1; // Size of username
-							var uname = new String("");
-							
-							for(var s = 0; s<size; s++)
-								uname = uname.concat(
-								String.fromCharCode(Math.round(Math.random()*42) + 48)
-								);
-							
-							return uname;
-						})(),
+						answer: answer[i].answer_body,
+						user_answered: answer[i].answered_by,
 						answer_pts: Math.round(Math.random()*1000 + 1),
-						date_answered: date.format(new Date(), 'DD/MM/YYYY'),
-						time_answered: date.format(new Date(), 'h:m A').toUpperCase()
+						datetime_answered: answer[i].datetime_answered
 					});
 		
 				return arr
 			})()
-	};
-	
-	
-	
-	console.log("Requested Question Forum q_id = " + util.inspect(req.params));
-	// if q_id is valid
-	res.render('forum_page.ejs', {forum: outputObj});
-	// else
-	// res.render('invalid_page.ejs', null);
-	
-});
+      };
+	res.render('forum_page.ejs', {forum: outputQ});
 
 /* Listens for an answer from the forum page */
 app.post("/answer_to/:q_id", function(req, res) {
