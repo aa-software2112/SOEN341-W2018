@@ -308,6 +308,7 @@ con.query(sql, newUser, function(err,result){
      res.redirect("/sign_up");
 });
 });
+
 // logs info from user from login page
 app.post("/login", function(req,res){
      var email = req.body.email;
@@ -322,10 +323,32 @@ app.get("/ask", function(req, res) {
 
 //logs of questions from the ask_questions
 app.post("/askform" , function(req,res){
-	var q_title = req.body.q_title;
-	var q_body = req.body.q_body;
-	console.log(req.body);
-	res.redirect("/question_forum/234");
+	qId++;
+	var newQ = {
+		question_title : req.body.q_title,
+		question_body: req.body.q_body,
+		user_id: "1",
+		datetime_asked : date.format(new Date(), 'YYYY-MM-DD h:m:s'),
+
+};
+var sql2 =" insert into question set ?";
+
+con.query(sql2, newQ, function(err,result){
+ 	if(err){
+ 		console.log(err);
+ 		return;
+ 	}
+
+ 	//debugging purpose
+ 	console.log("Question possted ");
+ 	console.log(newQ.question_id);
+
+ 	con.query("select * from question", function(err,qId){
+ 		var qId = qId[qId.length-1].question_id;
+ 		res.redirect("/question_forum/"+qId);
+ 	})
+     
+});
 });
 
 app.get("/user_profile", function (req, res) {
@@ -344,4 +367,3 @@ app.listen(3000, function() {
 	console.log("Server Running on Port 3000");
 	console.log("Working Directory: " + __dirname);
 });
-
