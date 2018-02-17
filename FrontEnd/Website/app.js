@@ -13,7 +13,27 @@ app.use( express.static( "public/about_team_img" ) );
 // Links express to the stylesheets
 app.use(express.static(__dirname + "/public"));
 
+var qId = "20"; //Static qId to fake loads of the last question from the database, must update everytime the server is open
 
+var mysql = require('mysql');
+
+
+//MUST CHANGE USER AND PASSWORD ACCORDING TO YOUR LOCAL DATABASE USER AND PASSWORD
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "soen341_project"
+});
+
+
+con.connect(function(err){
+	if (err){
+		throw err;
+	}
+	console.log(' connected ! :D');
+});
+  
 /* INSERTS PAGE GET/POST CONNECTIONS HERE */
 
 /** <<<<<<<<<<<<<<< Homepage >>>>>>>>>>>>>>
