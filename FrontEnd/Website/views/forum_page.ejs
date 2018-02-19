@@ -30,15 +30,16 @@
 						<br>
 
 						<div class="summary-question-tags">
-                                        		<a class="btn btn-primary" href="#" role="button">Like</a>
-                                        		<a class="btn btn-primary" href="#" role="button">Dislike</a>
+                                        		<a class="btn btn-primary" style="background-color: #20a7bc; border: #20a7bc; color: white; margin-right: 5px;" id="likeQuestion" role="button">Like</a><span id="likeCounter">0</span>
+                                        		<a class="btn btn-primary" id="dislikeQuestion" role="button" style="background-color: #20a7bc; border: #20a7bc; color: white;">Dislike</a>
+                                        		<span id="dislikeCounter">0</span>
                                         		<!--<a class="btn btn-primary" href="#" role="button">Tag</a>-->
                                     		</div>
 					</div>
 					
 					<div class="make-flex" id="user-asked-div">
 						<p class="align-center user-metrics-question center-div" id="user-asked-info">
-						<%= forum.user_asked %></br><%= forum.question_pts %></br><%= forum.date_asked %></br><%= forum.time_asked %>
+						<%= forum.user_asked %></br><%= forum.question_pts %></br><%= forum.datetime_asked %>
 						</p>
 					</div>
 					
@@ -59,7 +60,7 @@
 									<%= answers[ans_idx].answer %>
 								</p>
 								<p class="user-metrics-answer self-right">  
-									<%= answers[ans_idx].user_answered %> | <%= answers[ans_idx].answer_pts %> | <%= answers[ans_idx].date_answered %> | <%= answers[ans_idx].time_answered %>
+									<%= answers[ans_idx].user_answered %> | <%= answers[ans_idx].answer_pts %> | <%= answers[ans_idx].datetime_answered %> 
 								</p>
 								<div class="summary-question-tags">
                                        					 <a class="btn btn-primary" href="#" role="button">Like</a>
@@ -67,11 +68,6 @@
                                         				<!--<a class="btn btn-primary" href="#" role="button">Tag</a>-->
                                 				</div>
 							</div>
-							<!--<div class="make-flex user_answered_div">
-								<p class="align-center user-metrics center-div" id="user-answered-info">
-								<%= answers[ans_idx].user_answered %></br><%= answers[ans_idx].answer_pts %></br><%= answers[ans_idx].date_answered %></br><%= answers[ans_idx].time_answered %>
-								</p>
-							</div>	-->
 						</div>
 						
 					<% } %>
@@ -101,5 +97,3 @@
     
     
     </html>
-
-
