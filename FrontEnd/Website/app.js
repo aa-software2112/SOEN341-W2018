@@ -27,6 +27,7 @@ app.use( express.static( "public/about_team_img" ));
 // Links express to the stylesheets
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Link to the path in our URL
 app.use(['/', '/home'], homepage);
 // //app.user('/users', users);
 
@@ -64,14 +65,6 @@ app.use(['/', '/home'], homepage);
 
 
 /* INSERTS PAGE GET/POST CONNECTIONS HERE */
-
-/** <<<<<<<<<<<<<<< Homepage >>>>>>>>>>>>>>
-* ============================================================================
-* > homepage.ejs
-* Listens for the question list request.
-* Depending of the given tab.
-* ============================================================================
-*/
 
 
 

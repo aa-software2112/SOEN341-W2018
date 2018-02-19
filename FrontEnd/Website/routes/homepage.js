@@ -11,6 +11,14 @@ var sortBy = require('sort-by');
 const mysql = require('mysql');
 var db = require('../database/database');
 
+/** <<<<<<<<<<<<<<< Homepage >>>>>>>>>>>>>>
+* ============================================================================
+* > homepage.ejs
+* Listens for the question list request.
+* Depending of the given tab.
+* ============================================================================
+*/
+
 
 router.get(['/', '/home'], (req, res) => {
 	
