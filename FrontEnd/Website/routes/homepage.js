@@ -38,7 +38,7 @@ router.get(['/', '/home'], (req, res) => {
 	datetime_asked \
 	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id \
 	ORDER BY num_votes DESC \
-	LIMIT 10;"
+	LIMIT 10;";
 	
 	db.query(sql, function (err, result) {
 		if (err) {

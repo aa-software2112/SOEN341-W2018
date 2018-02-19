@@ -16,10 +16,10 @@ var db = require('../database/database');
 * ============================================================================
 */
 
-var qId = "20"; //Static qId to fake loads of the last question from the database, must update everytime the server is open
+var qId = "26957"; //Static qId to fake loads of the last question from the database, must update everytime the server is open
 
 //* Listens for the question page request - done through the search */
-router.get('/question_forum/:q_id', function(req, res) {
+router.get('/:q_id', (req, res) => {
 
 	// Verify that the question id is a number
 	if (isNaN(req.params.q_id))
@@ -28,7 +28,8 @@ router.get('/question_forum/:q_id', function(req, res) {
 		return;
 	}
 	//query from question table joined with user's table user_id
-	var sql = "select question.question_title,question.question_body, question.datetime_asked, question.question_id, user.username AS asked_by FROM question JOIN user ON question.user_id = user.user_id WHERE question_id = ?";
+	var sql = "select question.question_title,question.question_body, question.datetime_asked, question.question_id, user.username AS asked_by FROM question JOIN user ON question.user_id = user.user_id WHERE question_id = ?"
+
 	db.query(sql,[qId], function(err,result){
 		if(err){
 			console.log(err);

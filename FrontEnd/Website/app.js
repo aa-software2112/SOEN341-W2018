@@ -49,12 +49,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 */
 
 app.use(['/', '/home'], homepage);
+app.use('/question_forum', forum_page);
 app.use('/about', about_page);
 app.use('/contact', contact_page);
 app.use('/search', search_page);
 app.use('/sign_up', signup_page);
 app.use('/login', login_page);
 app.use('/ask', ask_page);
+app.use('/askform', ask_page);
+
 app.use('/user_profile', userprofile_page);
 
 

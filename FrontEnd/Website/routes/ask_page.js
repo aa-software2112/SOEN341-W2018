@@ -24,12 +24,12 @@ router.get('/', (req, res) => {
 });
 
 //logs of questions from the ask_questions
-router.post('/' , (req,res) => {
+router.post("/askform" , (req,res) => {
 	qId++;
 	var newQ = {
 		question_title : req.body.q_title,
 		question_body: req.body.q_body,
-		user_id: "1",
+		user_id: "24776",
 		datetime_asked : date.format(new Date(), 'YYYY-MM-DD h:m:s'),
 		
 	};
