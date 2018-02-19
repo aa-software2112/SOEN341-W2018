@@ -7,22 +7,12 @@ var bodyParser = require("body-parser");
 var date = require('date-and-time');
 var sortBy = require('sort-by');
 
+// Database connection
 const mysql = require('mysql');
+var db = require('../database/database');
 
-var db = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'SOEN341W18',
-	database: 'soen341_project',
-	port: '3306'
-});
 
-db.connect(function(err) {
-	if (err) throw err;
-	console.log("Connected!");
-});
-
-router.get('/', (req, res) => {
+router.get(['/', '/home'], (req, res) => {
 	
 	
 	var sql = "SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers, \

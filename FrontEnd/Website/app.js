@@ -6,7 +6,7 @@ var bodyParser = require("body-parser");
 var date = require('date-and-time');
 var sortBy = require('sort-by');
 
-var router = require('./routes/homepage');
+var homepage = require('./routes/homepage');
 //var users = require('./routes/users');
 
 // Database connection
@@ -15,20 +15,19 @@ var db = require('./database/database');
 
 var app = express();
 
-// router.get("/",function(req,res){
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Views engine setup
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
 //Static files in Express must go inside the directory specified. This is used for about us page, so far.
-app.use( express.static( "public/about_team_img" ) ); 
+app.use( express.static( "public/about_team_img" ));
 
 // Links express to the stylesheets
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', router);
+app.use(['/', '/home'], homepage);
 // //app.user('/users', users);
 
 // // Catch 404 and forward to err handler
