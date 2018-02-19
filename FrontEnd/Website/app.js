@@ -1,39 +1,66 @@
 // Set up express, body parser, and ejs
 var express = require("express");
-
-// Database 
-const mysql = require('mysql');
-var db = require('./database/database');
-
-
-var app = express();
-
-// Routes 
-// var router = express.Router();
-// router.get("/",function(req,res){
-// 	res.json({"message" : "Hello World"});
-// });
-
-// app.use("/api",router);
-
+var path = require('path');
 var util = require('util');
 var bodyParser = require("body-parser");
 var date = require('date-and-time');
-app.use(bodyParser.urlencoded({extended: true}));
 var sortBy = require('sort-by');
+
+var router = require('./routes/homepage');
+//var users = require('./routes/users');
+
+// Database connection
+const mysql = require('mysql');
+var db = require('./database/database');
+
+var app = express();
+
+// router.get("/",function(req,res){
+app.use(bodyParser.urlencoded({extended: true}));
+
+// Views engine setup
+app.set('views', path.join(__dirname, 'views'))
 app.set("view engine", "ejs");
+
 //Static files in Express must go inside the directory specified. This is used for about us page, so far.
 app.use( express.static( "public/about_team_img" ) ); 
 
 // Links express to the stylesheets
 app.use(express.static(__dirname + "/public"));
 
-/** <<<<<<<<<<<<<<< DATABASE CONNECTION >>>>>>>>>>>>>>
-* ============================================================================
-* 
-* ============================================================================
-*/
+app.use('/', router);
+// //app.user('/users', users);
 
+// // Catch 404 and forward to err handler
+// app.use(function(req, res, next) {
+// 	var err = new Error('Not found');
+// 	err.status = 404;
+// 	next(err);
+// });
+
+// // error handlers
+
+// // development error handler
+// // will print stacktrace
+// if (app.get('env') === 'development') {
+// 	app.use(function(err, req, res, next) {
+// 	  res.status(err.status || 500);
+// 	  res.render('error', {
+// 		message: err.message,
+// 		error: err
+// 	  });
+// 	});
+//   }
+  
+//   // production error handler
+//   // no stacktraces leaked to user
+//   app.use(function(err, req, res, next) {
+// 	res.status(err.status || 500);
+// 	res.render('error', {
+// 	  message: err.message,
+// 	  error: {}
+// 	});
+//   });
 
 
 
@@ -46,118 +73,6 @@ app.use(express.static(__dirname + "/public"));
 * Depending of the given tab.
 * ============================================================================
 */
-
-app.get(['/', '/home'], (req, res) => {
-	
-	
-	var sql = "SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers, \
-	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
-	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
-	datetime_asked \
-	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id \
-	WHERE (answer.question_id is NOT NULL) OR (answer.question_id IS NULL) \
-	ORDER BY datetime_asked DESC \
-	LIMIT 10;";
-	
-	var query_popular = "SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers, \
-	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
-	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
-	datetime_asked \
-	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id \
-	ORDER BY num_votes DESC \
-	LIMIT 10;"
-	
-	db.query(sql, function (err, result) {
-		if (err) {
-			res.status(500).json({"status_code": 500,"status_message": "internal server error"});
-		} else {
-			
-			console.log(result);
-			
-			const output = {
-				/*
-				* ---------------------------------------------------------------------------
-				* > Object newest
-				* username, question, # of votes, # of answers, # of views, date and time
-				* ---------------------------------------------------------------------------
-				*/
-				
-				newest: {
-					newest_question_list:
-					(function() {
-						var newestQuestionList = [];
-						var num_of_questions = 10;
-						
-						for (var i = 0; i < num_of_questions; i++) {
-							var questions = {
-								userName: result[i].asked_by,
-								question: result[i].question_title,
-								numOfVotes: result[i].num_votes,
-								numOfAnswers: result[i].num_views,
-								date_ans: result[i].datetime_asked							
-							}
-							newestQuestionList.push(questions);
-						}						
-						return newestQuestionList
-					})()
-				},
-				
-				/** 
-				* ---------------------------------------------------------------------------
-				* > Object newest
-				* ---------------------------------------------------------------------------
-				*/
-				popular: {
-					popular_question_list:
-					(function() {
-						popularQuestionList = [];
-						var num_of_questions = 10;
-						for (var i = 0; i < num_of_questions; i++)
-						popularQuestionList.push(
-							{
-								userName: (function() {
-									var text = "";
-									var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-									
-									for (var i = 0; i < 5; i++)
-									text += possible.charAt(Math.floor(Math.random() * possible.length));
-									
-									return text;
-								})(),
-								question: (function() {
-									var text = "";
-									var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-									
-									for (var i = 0; i < 200; i++)
-									text += possible.charAt(Math.floor(Math.random() * possible.length));
-									
-									return text;
-								})(),
-								numOfVotes: Math.floor(Math.random() * 100), 
-								numOfAnswers: Math.floor(Math.random() * 100),
-								numOfViews: Math.floor(Math.random() * 100),
-								date_ans: date.format(new Date(), 'DD/MM/YYYY'),
-								time_ans: date.format(new Date(), 'h:m A').toUpperCase()
-							}
-						);
-						popularQuestionList.sort(sortBy('-numOfVotes'));
-						return popularQuestionList
-					})()
-				}
-				
-			}
-			res.render('homepage.ejs', {homepage: output});
-		};	
-		// Populate the homepage.ejs file with the output object.
-		
-		
-		
-	});
-	
-	
-	
-});
-
 
 
 
@@ -330,4 +245,4 @@ app.get("/question_forum/:q_id", function(req, res) {
 		console.log("Working Directory: " + __dirname);
 	});
 	
-	
+	module.exports = app;
