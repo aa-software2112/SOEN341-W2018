@@ -63,11 +63,6 @@ app.use(['/', '/home'], homepage);
 //   });
 
 
-
-/* INSERTS PAGE GET/POST CONNECTIONS HERE */
-
-
-
 /* Listens for the question page request - done through the search */
 app.get("/question_forum/:q_id", function(req, res) {
 	
