@@ -16,7 +16,6 @@ var db = require('../database/database');
 *
 * ============================================================================
 */
-var qId = "20"; //Static qId to fake loads of the last question from the database, must update everytime the server is open
 
 
 router.get('/', (req, res) => {
@@ -25,7 +24,6 @@ router.get('/', (req, res) => {
 
 //logs of questions from the ask_questions
 router.post("/askform" , (req,res) => {
-	qId++;
 	var newQ = {
 		question_title : req.body.q_title,
 		question_body: req.body.q_body,
