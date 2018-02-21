@@ -16,11 +16,11 @@ var db = require('../database/database');
 * ============================================================================
 */
 
-var qId = "26957"; //Static qId to fake loads of the last question from the database, must update everytime the server is open
+//Static qId to fake loads of the last question from the database, must update everytime the server is open
 
 //* Listens for the question page request - done through the search */
 router.get('/:q_id', (req, res) => {
-
+	var qId = req.params.q_id;
 	// Verify that the question id is a number
 	if (isNaN(req.params.q_id))
 	{
@@ -29,7 +29,7 @@ router.get('/:q_id', (req, res) => {
 	}
 	//query from question table joined with user's table user_id
 	var sql = "select question.question_title,question.question_body, question.datetime_asked, question.question_id, user.username AS asked_by FROM question JOIN user ON question.user_id = user.user_id WHERE question_id = ?"
-
+	
 	db.query(sql,[qId], function(err,result){
 		if(err){
 			console.log(err);
@@ -78,32 +78,34 @@ router.get('/:q_id', (req, res) => {
 				res.render('forum_page.ejs', {forum: outputQ});
 				
 				
-				/*POST THE ANSWER ON THE ANSWER BOX, THERE IS A QUERRY INSIDE. AND YES THIS APP.POST IS INSIDE THE APP.GET FROM ABOVE*/
-				router.post("/answer_to/:q_id", function(req, res) {
-					//OBJECTED TO BE POSTED TO ANSWER TABLE
-					var newA ={
-						answer_body : req.body.answer_body,
-						user_id : "26957", //This can be changed to any user id that is in our local table, to be modified for log in implementation
-						question_id : outputQ.q_id,
-						datetime_answered :  date.format(new Date(), 'YYYY-MM-DD h:m:s'), 
-					}
-					
-					//MYSQL QUERRY
-					var sql =" insert into answer set ?";
-					db.query(sql, newA, function(err,result){
-						if(err){
-							console.log(err);
-							return;
-						}
-						console.log("Answer succesfully added ")
-						res.redirect("/question_forum/"+outputQ.q_id);
-					});
-				});
+				
 			});
 			
 			
 		});
 		
 	});
-    
-module.exports = router;
+	
+	/*POST THE ANSWER ON THE ANSWER BOX, THERE IS A QUERRY INSIDE. AND YES THIS APP.POST IS INSIDE THE APP.GET FROM ABOVE*/
+	router.post("/answer_to/:q_id", function(req, res) {
+		//OBJECTED TO BE POSTED TO ANSWER TABLE
+		var newA = {
+			answer_body : req.body.answer_body,
+			user_id : '24776', //This can be changed to any user id that is in our local table, to be modified for log in implementation
+			question_id : req.params.q_id,
+			datetime_answered :  date.format(new Date(), 'YYYY-MM-DD h:m:s'), 
+		}
+		
+		//MYSQL QUERRY
+		var sql =" insert into answer set ?";
+		db.query(sql, newA, function(err,result){
+			if(err){
+				console.log(err);
+				return;
+			}
+			console.log("Answer succesfully added ")
+			res.redirect("/question_forum/" + req.params.q_id);
+		});
+	});
+	
+	module.exports = router;
