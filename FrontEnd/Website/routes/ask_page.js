@@ -43,7 +43,8 @@ router.post("/askform" , (req,res) => {
 		console.log("Question possted ");
         
         //query to get all the question ids of all the question from the user_id that is asking the question
-		var sql3 ="select question.question_id from question JOIN user ON question.user_id = user.user_id WHERE user.user_id = ?";
+		var sql3 ="select question.question_id from question JOIN user ON question.user_id = user.user_id \
+		WHERE user.user_id = ?";
 		
 		//this is the user Id of the user askinng the question, that is taken out from the object newQ that was inserted in to the database
 		var userId= newQ.user_id;
