@@ -27,7 +27,7 @@ router.post("/askform" , (req,res) => {
 	var newQ = {
 		question_title : req.body.q_title,
 		question_body: req.body.q_body,
-		user_id: "24776",
+		user_id: "3",
 		datetime_asked : date.format(new Date(), 'YYYY-MM-DD h:m:s'),
 		
 	};
@@ -41,11 +41,24 @@ router.post("/askform" , (req,res) => {
 		
 		//debugging purpose
 		console.log("Question possted ");
-		console.log(newQ.question_id);
+        
+        //query to get all the question ids of all the question from the user_id that is asking the question
+		var sql3 ="select question.question_id from question JOIN user ON question.user_id = user.user_id WHERE user.user_id = ?";
 		
-		db.query("select * from question", function(err,qId){
-			var qId = qId[qId.length-1].question_id;
-			res.redirect("/question_forum/"+qId);
+		//this is the user Id of the user askinng the question, that is taken out from the object newQ that was inserted in to the database
+		var userId= newQ.user_id;
+
+		db.query(sql3,[userId], function(err,qId){
+
+			//variable of the value of the LAST question id from the array of question ids.
+
+			var qtId = qId[qId.length-1].question_id;
+
+			//debugging purpose to make sure the variable is an actual value;
+			console.log(qtId);
+
+			//redirecting to the forum page of the given question id value.
+			res.redirect("/question_forum/"+qtId);
 		})
 		
 	});
