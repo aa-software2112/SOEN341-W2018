@@ -4,6 +4,7 @@ var router = express.Router();
 var path = require('path');
 var util = require('util');
 var bodyParser = require("body-parser");
+var nodemailer = require('nodemailer');
 
 // Database connection
 const mysql = require('mysql');
