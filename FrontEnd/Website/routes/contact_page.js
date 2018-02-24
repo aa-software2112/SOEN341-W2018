@@ -23,6 +23,7 @@ router.get('/' , (req,res) => {
 });
 
 
+//email transporter, contains username and password of email sender
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -36,17 +37,19 @@ router.post('/', (req,res) => {
 	var fname = req.body.firstname;
 	var lname = req.body.lastname;
 	var country = req.body.country;
+	var subject = req.body.subject;
 	//console.log (" Thank you "+ fname + " "+ lname + " from "+ country + " for contacting us.");
 	console.log(req.body);
 
-
+	//contains information about email that will be sent
 	var mailOptions = {
 		from: 'soen341qaproject@gmail.com',
 		to: 'soen341qaproject@gmail.com',
-		subject: 'new email',
-		text: 'test'
+		subject: 'Email sent by user',
+		text: fname + ' ' + lname + ' from ' + country + ' sent: ' + subject
 	};
 
+	//sends the email
 	transporter.sendMail(mailOptions, function(error, info){
 		if (error) {
 			console.log(error);
