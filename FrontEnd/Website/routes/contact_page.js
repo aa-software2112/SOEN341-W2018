@@ -22,6 +22,15 @@ router.get('/' , (req,res) => {
 	res.render('contact.ejs');
 });
 
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'soen341qaproject@gmail.com',
+    pass: 'SOEN341W18'
+  }
+});
+
 /* Listens for user input from conctact us page*/
 router.post('/', (req,res) => {
 	var fname = req.body.firstname;
@@ -29,6 +38,24 @@ router.post('/', (req,res) => {
 	var country = req.body.country;
 	//console.log (" Thank you "+ fname + " "+ lname + " from "+ country + " for contacting us.");
 	console.log(req.body);
+
+
+	var mailOptions = {
+		from: 'soen341qaproject@gmail.com',
+		to: 'soen341qaproject@gmail.com',
+		subject: 'new email',
+		text: 'test'
+	};
+
+	transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Email sent: ' + info.response);
+		}
+	});
+
+
 	res.redirect("/contact");
 });
 
