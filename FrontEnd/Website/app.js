@@ -1,6 +1,6 @@
 /** 
 * ============================================================================
-*  Set up express, body parser, and ejs - Modules
+*  Set up express, body parser, cookies, and ejs - Modules
 * ============================================================================
 */
 
@@ -10,7 +10,9 @@ var util = require('util');
 var bodyParser = require("body-parser");
 var date = require('date-and-time');
 var sortBy = require('sort-by');
+var cookieSession = require('cookie-session');
 
+var test = "global";
 var homepage = require('./routes/homepage');
 var forum_page = require('./routes/forum_page');
 var about_page = require('./routes/about_page');
@@ -28,6 +30,14 @@ var app = express();
 *  Middleware
 * ============================================================================
 */
+
+// Cookies
+app.use(cookieSession({
+	keys: ['secret'],
+	maxAge: 6*60*60*1000
+	// Cookie stored on client-side for 6 hours, in milliseconds
+}));
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -48,6 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 * ============================================================================
 */
 
+
 app.use(['/', '/home'], homepage);
 app.use('/question_forum', forum_page);
 app.use('/about', about_page);
@@ -57,8 +68,14 @@ app.use('/sign_up', signup_page);
 app.use('/login', login_page);
 app.use('/ask', ask_page);
 app.use('/askform', ask_page);
-
 app.use('/user_profile', userprofile_page);
+
+
+/** 
+* ============================================================================
+*  Cookie Setup 
+* ============================================================================
+*/
 
 
 /** 
@@ -66,17 +83,21 @@ app.use('/user_profile', userprofile_page);
 *  Catches invalid URL requests 
 * ============================================================================
 */
+
+/*
 // Catch 404 and forward to err handler
 app.use(function(req, res, next) {
 	var err = new Error('Not found');
 	err.status = 404;
 	next(err);
 });
-
+*/
 /* error handlers 
 * development error handler
 * will print stacktrace
 */
+
+/*
 if (app.get('env') === 'development') {
 	app.use(function(err, req, res, next) {
 		res.status(err.status || 500);
@@ -86,10 +107,11 @@ if (app.get('env') === 'development') {
 		});
 	});
 }
-
+*/
 /* production error handler
 * no stacktraces leaked to user
 */
+/*
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.render('invalid_page', {
@@ -97,7 +119,7 @@ app.use(function(err, req, res, next) {
 		error: {}
 	});
 });
-
+*/
 /** 
 * ============================================================================
 *  Makes the server listen for req/res - http://localhost:3000

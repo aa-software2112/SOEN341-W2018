@@ -668,6 +668,11 @@ li a:hover, .dropdown:hover .dropbtn {
 		width: 100%;
 	}
 	
+	.signup-msg {
+		text-align: center;
+		
+	}
+	
 	.cancelbtn {
 	
 		color: white;

@@ -9,6 +9,9 @@ var bodyParser = require("body-parser");
 const mysql = require('mysql');
 var db = require('../database/database');
 
+// Login check support
+//var loginChecker = require('../public/scripts/login_check').loginChecker;
+
 /** <<<<<<<<<<<<<<< Login page >>>>>>>>>>>>>>
 * ============================================================================
 * Add comments here
@@ -19,6 +22,7 @@ var db = require('../database/database');
 
 //listens for login page request to load it
 router.get('/', (req,res) => {
+	console.log("login page!");
 	res.render('login_page.ejs');
 });
 
