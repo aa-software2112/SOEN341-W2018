@@ -24,21 +24,21 @@ var db = require('../database/database');
 router.get(['/', '/home'], (req, res) => {
 	
 	if(!req.query.tab || req.query.tab === 'newest') { 
-
-		var query_newest = "SELECT question.question_title, user.username AS asked_by, \
+		
+		var query_newest = "SELECT question.question_id, question.question_title, user.username AS asked_by, \
 		(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
 		(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
 		datetime_asked \
 		FROM question JOIN user ON question.user_id=user.user_id \
 		ORDER BY datetime_asked DESC \
 		LIMIT 10;";
-
+		
 		db.query(query_newest, function (err, result) {
 			if (err) {
 				res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 			} else {
 				var output = {
-
+					
 					/*
 					* ---------------------------------------------------------------------------
 					* > Object newest
@@ -54,6 +54,7 @@ router.get(['/', '/home'], (req, res) => {
 							
 							for (var i = 0; i < num_of_questions; i++) {
 								var questions = {
+									questionID: result[i].question_id,
 									userName: result[i].asked_by,
 									question: result[i].question_title,
 									numOfVotes: result[i].num_votes,
@@ -69,16 +70,16 @@ router.get(['/', '/home'], (req, res) => {
 				res.render('homepage_newest.ejs', {homepage: output});
 			};	
 		});
-
+		
 	} else if (req.query.tab === 'popular') {
-		var query_popular = "SELECT question.question_title, user.username AS asked_by,  \
+		var query_popular = "SELECT question.question_id, question.question_title, user.username AS asked_by,  \
 		(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
 		(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
 		datetime_asked \
 		FROM question JOIN user ON question.user_id=user.user_id \
 		ORDER BY num_votes DESC \
 		LIMIT 10;";
-	
+		
 		db.query(query_popular, function (err, result) {
 			if (err) {
 				res.status(500).json({"status_code": 500,"status_message": "internal server error"});
@@ -90,7 +91,7 @@ router.get(['/', '/home'], (req, res) => {
 					* username, question, # of votes, # of answers, # of views, date and time
 					* ---------------------------------------------------------------------------
 					*/
-				
+					
 					popular: {
 						popular_question_list:
 						(function() {
@@ -99,6 +100,7 @@ router.get(['/', '/home'], (req, res) => {
 							
 							for (var i = 0; i < num_of_questions; i++) {
 								var questions = {
+									questionID: result[i].question_id,
 									userName: result[i].asked_by,
 									question: result[i].question_title,
 									numOfVotes: result[i].num_votes,
