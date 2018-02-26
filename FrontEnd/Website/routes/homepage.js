@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 var date = require('date-and-time');
 var sortBy = require('sort-by');
 var url = require('url');
+var dateFormat = require('dateformat');
 
 // Database connection
 const mysql = require('mysql');
@@ -59,7 +60,7 @@ router.get(['/', '/home'], (req, res) => {
 									question: result[i].question_title,
 									numOfVotes: result[i].num_votes,
 									numOfAnswers: result[i].num_views,
-									date_ans: result[i].datetime_asked							
+									date_ans: dateFormat(result[i].datetime_asked)				
 								}
 								newestQuestionList.push(questions);
 							}						
@@ -105,7 +106,7 @@ router.get(['/', '/home'], (req, res) => {
 									question: result[i].question_title,
 									numOfVotes: result[i].num_votes,
 									numOfAnswers: result[i].num_views,
-									date_ans: result[i].datetime_asked							
+									date_ans: dateFormat(result[i].datetime_asked)								
 								}
 								popularQuestionList.push(questions);
 							}						
