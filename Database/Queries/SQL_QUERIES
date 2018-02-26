@@ -6,7 +6,7 @@
 	
 	/*ORDER BY num_views*/
 	
-	SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers,
+	SELECT question.question_id, question.question_title, user.username AS asked_by, answer.answer_body AS answers,
 	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
 	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
 	 datetime_asked
@@ -15,24 +15,23 @@
 	LIMIT 10;
 	/*ORDER BY num_votes*/
 	
-	SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers,
-	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
-	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
-	 datetime_asked
-	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id
-	ORDER BY num_votes DESC
-	LIMIT 10;
+	SELECT question.question_title, user.username AS asked_by,  \
+		(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
+		(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
+		datetime_asked \
+		FROM question JOIN user ON question.user_id=user.user_id \
+		ORDER BY num_votes DESC \
+		LIMIT 10;
 	
 	/*ORDER BY datetime_asked*/
 	
-	SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers,
-	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
-	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
-	 datetime_asked
-	FROM question JOIN user ON question.user_id=user.user_id JOIN answer ON question.user_id=answer.user_id
-	WHERE (answer.question_id is NOT NULL) OR (answer.question_id IS NULL)
-	ORDER BY datetime_asked DESC
-	LIMIT 10;
+	SELECT question.question_title, user.username AS asked_by, \
+		(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
+		(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
+		datetime_asked \
+		FROM question JOIN user ON question.user_id=user.user_id \
+		ORDER BY datetime_asked DESC \
+		LIMIT 10;
 	
 	--------------------------------------------------------------------
 	---2. Get_question_from_search(search_string, sort_by=[“newest”, “views”, “votes”])
@@ -115,7 +114,7 @@
 	
 	SELECT
 	question.question_title ,
-	question.question_ID,
+	question.question_id,
 	question.question_body,
 	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
 	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
@@ -130,7 +129,7 @@
 		
 	SELECT
 	question.question_title ,
-	question.question_ID,
+	question.question_id,
 	question.question_body,
 	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
 	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
@@ -144,7 +143,7 @@
 	
 	SELECT
 	question.question_title ,
-	question.question_ID,
+	question.question_id,
 	question.question_body,
 	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes,
 	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views,
