@@ -54,6 +54,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /** 
 * ============================================================================
+*  Cookie Setup 
+* ============================================================================
+*/
+
+// Sends cookie to locals for use in ejs file
+app.use(function(req, res, next) {
+	
+	console.log("cookiemiddleware");
+	
+	console.log("Cookie: " + util.inspect(req.session));
+	
+	if (req.session.logged == true)
+	{
+		res.locals.username = req.session.username;
+		res.locals.user_id = req.session.user_id;
+	}
+	
+	next();
+});
+
+
+/** 
+* ============================================================================
 *  Link to the path in our URL
 * ============================================================================
 */
@@ -70,12 +93,6 @@ app.use('/ask', ask_page);
 app.use('/askform', ask_page);
 app.use('/user_profile', userprofile_page);
 
-
-/** 
-* ============================================================================
-*  Cookie Setup 
-* ============================================================================
-*/
 
 
 /** 

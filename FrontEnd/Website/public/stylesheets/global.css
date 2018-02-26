@@ -705,6 +705,18 @@ li a:hover, .dropdown:hover .dropbtn {
 		border-radius: 10%;
 	}
 
+	#cookie-msg	{
+		
+		margin-top: 10px;
+		margin-bottom: 10px;
+		
+	}
+	
+	#login-msg {
+		margin-bottom: 10px;
+		max-width: 80%;
+	}
+	
 /* Contact page */
 
 #contact-form > input{
