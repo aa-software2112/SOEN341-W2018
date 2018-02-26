@@ -22,6 +22,7 @@ var db = require('../database/database');
 
 router.get(['/', '/home'], (req, res) => {
 	
+	console.log("in home!");
 	
 	var sql = "SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers, \
 	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
@@ -47,7 +48,76 @@ router.get(['/', '/home'], (req, res) => {
 			
 			console.log(result);
 			
-		const output = {
+		var output;
+			
+		if (result.length == 0)
+		{
+			
+			output = {
+				newest: {
+					newest_question_list:
+					(function() {
+						var newestQuestionList = [];
+						var num_of_questions = 10;
+						
+						for (var i = 0; i < num_of_questions; i++) {
+							var questions = {
+								userName: "test",
+								question: "test question",
+								numOfVotes: 1,
+								numOfAnswers: 1,
+								date_ans: "2018-25-02 13:14:15"						
+							}
+							newestQuestionList.push(questions);
+						}						
+						return newestQuestionList
+					})()
+					
+				},
+				popular: {
+					popular_question_list:
+					(function() {
+						popularQuestionList = [];
+						var num_of_questions = 10;
+						for (var i = 0; i < num_of_questions; i++)
+						popularQuestionList.push(
+							{
+								userName: (function() {
+									var text = "";
+									var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+									
+									for (var i = 0; i < 5; i++)
+									text += possible.charAt(Math.floor(Math.random() * possible.length));
+									
+									return text;
+								})(),
+								question: (function() {
+									var text = "";
+									var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+									
+									for (var i = 0; i < 200; i++)
+									text += possible.charAt(Math.floor(Math.random() * possible.length));
+									
+									return text;
+								})(),
+								numOfVotes: Math.floor(Math.random() * 100), 
+								numOfAnswers: Math.floor(Math.random() * 100),
+								numOfViews: Math.floor(Math.random() * 100),
+								date_ans: date.format(new Date(), 'DD/MM/YYYY'),
+								time_ans: date.format(new Date(), 'h:m A').toUpperCase()
+							}
+						);
+						popularQuestionList.sort(sortBy('-numOfVotes'));
+						return popularQuestionList
+					})()
+				}
+			}
+			
+		}
+		else
+		{
+			
+			output = {
 				/*
 				* ---------------------------------------------------------------------------
 				* > Object newest
@@ -119,6 +189,10 @@ router.get(['/', '/home'], (req, res) => {
 				}
 				
 			}
+			
+			
+		}
+			
 			res.render('homepage.ejs', {homepage: output});
 		};	
 		// Populate the homepage.ejs file with the output object.

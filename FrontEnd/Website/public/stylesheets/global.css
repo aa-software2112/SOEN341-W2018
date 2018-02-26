@@ -883,3 +883,10 @@ img.circular--square {
 	width: initial;
 	padding: 3px 2px !important;
 }
+
+/* Signup Confirmation Page */
+
+#confirm-info {
+	font-size: 1.5em;
+	
+}

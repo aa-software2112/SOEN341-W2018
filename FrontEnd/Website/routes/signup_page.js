@@ -23,6 +23,19 @@ router.get('/', (req,res) => {
 	res.render('sign_up.ejs');
 });
 
+router.get('/confirmation', (req, res) => {
+	
+	res.render('after_signup');
+	
+});
+
+router.get('/confirmation/:uname/:email', (req, res) => {
+	
+	console.log(req.params);
+	res.render('after_signup', {username: req.params.uname, email: req.params.email});
+	
+});
+
 /* logs info from user from signup page*/
 router.post('/', (req,res) => {
 	
@@ -75,10 +88,13 @@ router.post('/', (req,res) => {
 			db.query("insert into user set ? ", newUser, function(err,result){
 				if(err){
 					console.log(err);
-					return;
+					res.render("sign_up", {msg: "Database Error on Signup"});
 				}
-				console.log("User succesfully added!")
-				res.render("sign_up", {msg: "Sign-up successful!"});
+				else
+				{
+					console.log("User succesfully added!")
+					res.redirect("/sign_up/confirmation/" + newUser.username + "/" + newUser.email);
+				}
 			});
 		}
 		
