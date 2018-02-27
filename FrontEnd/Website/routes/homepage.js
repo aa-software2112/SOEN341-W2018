@@ -117,7 +117,7 @@ router.get(['/', '/home'], (req, res) => {
 				}
 				res.render('homepage_popular.ejs', {homepage: output});
 			};	
-			// Populate the homepage.ejs file with the output object.
+			
 		});
 	}
 	
