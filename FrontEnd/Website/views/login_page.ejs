@@ -1,60 +1,70 @@
 <!DOCTYPE html>
-<html >
-	
+<html>
 	<head>
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<link rel="stylesheet" type="text/css" href="global.css">
-	
+		<title>SOEN341 - Website</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/footer.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/contact-stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+		<script src="/scripts/cookie_check.js" type="text/javascript"></script>
 	</head>
 	
 	<body>
-
-	
-	<% include partials/header %>
+		<% include partials/header_only %>
 
 
-		<div class="content-container center-div">
-			<div class="alignment-container">
-			<form class="login_form" method="POST">
-			
-			 
-			  <div class="login_title_img_container">
+			<div class="content-container center-div">
+				<div class="alignment-container">
+				<form class="login_form" method="POST">
 				
-				<h1>Member Login</h1>
-				
-				<img src="login-avatar.png" alt="Avatar" class="avatar">
-			 
-			 </div>
+				 
+				  <div class="login_title_img_container">
+					
+					<h1>Member Login</h1>
+					
+					<img src="login-avatar.png" alt="Avatar" class="avatar">
+					
+					<h1 id="cookie-msg"></h1>
+					
+					<% if ( typeof msg !== "undefined") { %> 
+						<h1 class="center-div" id="login-msg">
+							<%= msg %>
+						
+						</h1>
+					
+					<% } %>
+					
+				 </div>
 
-			  <div class="login_body-container">
-			
-				<!-- Form to login existing user -->
-				<label><b>Email</b></label>
-				<input type="email" placeholder="Email" name="email" required>
+				  <div class="login_body-container">
+				
+					<!-- Form to login existing user -->
+					<label><b>Email</b></label>
+					<input type="email" placeholder="Email" name="email" required>
 
-				<label><b>Password</b></label>
-				<input type="password" placeholder="Password" name="password" pattern= ".{6,12}" required title="Password must be between 6 and 12 characters" required>
-				
-				<button type="submit" class="loginbtn" formaction="/login">LOGIN</button>
-				
-			  </div>
+					<label><b>Password</b></label>
+					<input type="password" placeholder="Password" name="password" pattern= ".{6,12}" required title="Password must be between 6 and 12 characters" required>
+					
+					<button id="login-btn" type="submit" class="loginbtn" formaction="/login">LOGIN</button>
+					
+				  </div>
 
-			  <div class="login_body-container">
-			  
-				<a href="home_page.html"><button type="button" class="cancelbtn" formaction="/landing">Cancel </button> </a>
+				  <div class="login_body-container">
+				  
+					<a href="home_page.html"><button type="button" class="cancelbtn" formaction="/landing">Cancel </button> </a>
+					
+					<a href="sign_up.html"><button type="button" class="sign_upbtn" formaction="sign_up.html">Sign up</button></a>
+				  
+				 </div>
 				
-				<a href="sign_up.html"><button type="button" class="sign_upbtn" formaction="sign_up.html">Sign up</button></a>
-			  
-			 </div>
-			
-			 
-			  
-			</form>
-			
+				 
+				  
+				</form>
+				
+				</div>
 			</div>
-		</div>
-		
-	<% include partials/footer %>
-		
+			
+		<% include partials/footer %>
+	</body>
+
+</html>
