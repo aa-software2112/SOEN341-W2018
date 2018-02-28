@@ -24,16 +24,17 @@
 							</div>
 							<div class="self-top" id="user-profile-metrics">
 								<p class="align-center" id="username">
-								aa-software2112
+								<%= username %>
 								</p>
 								<p class="align-center" id="fullname">
-								Anthony Andreoli
+								<%= fName.charAt(0).toUpperCase() + fName.slice(1) %> 
+								<%= lName.charAt(0).toUpperCase() + lName.slice(1) %>
 								</p>
 								<p class="align-center" id="date-of-birth">
-								04/16/1993
+								<%= dateOfBirth.split("T")[0] %>
 								</p>
 								<p class="align-center" id="country">
-								Canada
+								<%= country %>
 								</p>
 								<p class="align-center" id="questions-asked">
 								Asked 1 Question(s)

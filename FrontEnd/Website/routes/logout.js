@@ -9,7 +9,9 @@ var bodyParser = require("body-parser");
 const mysql = require('mysql');
 var db = require('../database/database');
 
-/** <<<<<<<<<<<<<<< User profile page >>>>>>>>>>>>>>
+//Logout of website, simply makes cookie session variable "logged" as false
+
+/** <<<<<<<<<<<<<<< Logout Button Response >>>>>>>>>>>>>>
 * ============================================================================
 * Add comments here
 *
@@ -17,14 +19,13 @@ var db = require('../database/database');
 * ============================================================================
 */
 
-var loginChecker = require('../public/scripts/login_check').loginChecker;
-
-// Redirects user to home IF they are not logged in
-// and attempt to access the user_profile link manually via URL.
-router.get('/', loginChecker('/home'), 
-	(req, res) => {
-		
-		res.render("user_profile.ejs");
+//listens for login page request to load it
+router.get('/', (req,res) => {
+	console.log("logout requested!");
+	
+	req.session.logged = false; // "Logout" the user
+	
+	res.redirect('/home');
 });
 
 module.exports = router;

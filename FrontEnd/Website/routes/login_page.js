@@ -50,6 +50,10 @@ router.post('/', (req,res) => {
 					req.session.logged = true;
 					req.session.username = result[0].username;
 					req.session.user_id = result[0].user_id;
+					req.session.country = result[0].country;
+					req.session.dateOfBirth = result[0].birth_date;
+					req.session.fName = result[0].first_name;
+					req.session.lName = result[0].last_name;
 					
 					res.redirect('/home');
 				}

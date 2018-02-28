@@ -22,6 +22,7 @@ var signup_page = require('./routes/signup_page');
 var login_page = require('./routes/login_page');
 var ask_page = require('./routes/ask_page');
 var userprofile_page = require('./routes/userprofile_page');
+var logout = require('./routes/logout');
 
 var app = express();
 
@@ -34,8 +35,8 @@ var app = express();
 // Cookies
 app.use(cookieSession({
 	keys: ['secret'],
-	maxAge: 6*60*60*1000
-	// Cookie stored on client-side for 6 hours, in milliseconds
+	maxAge: 365*24*60*60*1000
+	// Cookie stored on client-side for 1 year in milliseconds
 }));
 
 
@@ -62,13 +63,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
 	
 	console.log("cookiemiddleware");
-	
-	console.log("Cookie: " + util.inspect(req.session));
+	console.log(req.originalUrl);
+	console.log("Inbound Cookie: " + util.inspect(req.session) + "\n");
 	
 	if (req.session.logged == true)
 	{
 		res.locals.username = req.session.username;
 		res.locals.user_id = req.session.user_id;
+		res.locals.country = req.session.country;
+		res.locals.dateOfBirth = req.session.dateOfBirth;
+		res.locals.logged = req.session.logged;
+		res.locals.fName = req.session.fName;
+		res.locals.lName = req.session.lName;
+		console.log("Outbound cookie " + util.inspect(res.locals));
 	}
 	
 	next();
@@ -92,7 +99,7 @@ app.use('/login', login_page);
 app.use('/ask', ask_page);
 app.use('/askform', ask_page);
 app.use('/user_profile', userprofile_page);
-
+app.use('/logout', logout);
 
 
 /** 
@@ -101,20 +108,20 @@ app.use('/user_profile', userprofile_page);
 * ============================================================================
 */
 
-/*
+
 // Catch 404 and forward to err handler
 app.use(function(req, res, next) {
 	var err = new Error('Not found');
 	err.status = 404;
 	next(err);
 });
-*/
+
 /* error handlers 
 * development error handler
 * will print stacktrace
 */
 
-/*
+
 if (app.get('env') === 'development') {
 	app.use(function(err, req, res, next) {
 		res.status(err.status || 500);
@@ -124,11 +131,11 @@ if (app.get('env') === 'development') {
 		});
 	});
 }
-*/
+
 /* production error handler
 * no stacktraces leaked to user
 */
-/*
+
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.render('invalid_page', {
@@ -136,7 +143,7 @@ app.use(function(err, req, res, next) {
 		error: {}
 	});
 });
-*/
+
 /** 
 * ============================================================================
 *  Makes the server listen for req/res - http://localhost:3000

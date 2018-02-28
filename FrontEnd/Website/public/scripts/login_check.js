@@ -7,7 +7,7 @@ exports.loginChecker = function(redirect_to)
 		console.log("Logged in? " + (req.session.logged == 'true'));
 		
 		// When not logged on, redirect to the login page
-		if (req.session.logged == 'true')
+		if (req.session.logged == true)
 			next();
 		else
 		{
