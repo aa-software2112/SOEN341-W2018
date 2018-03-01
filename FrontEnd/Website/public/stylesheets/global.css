@@ -35,6 +35,12 @@ form {
 	display: block;
 }
 
+/* Should be used to facilitate similar background color across pages */
+.std-bg-color {
+	
+	background-color: rgb(234, 247, 250);
+	
+}
 
 .button { /* For consistent button format */
 	outline: none;
@@ -117,6 +123,12 @@ form {
 
 .flex-right {
 	justify-content: flex-end;
+}
+
+.center-horiz {
+	
+	justify-content: center;
+	
 }
 
 .center-vert {
@@ -949,5 +961,24 @@ img.circular--square {
 
 #confirm-info {
 	font-size: 1.5em;
+	
+}
+
+/* Not Logged In Message - For form prevention when not logged in */
+#not-logged {
+	
+	width: 90%;
+	height: auto;
+	min-height: 300px;
+}
+
+#not-logged-msg {
+	text-align: center;
+	
+}
+
+#login-text-link {
+	
+	font: inherit;
 	
 }
