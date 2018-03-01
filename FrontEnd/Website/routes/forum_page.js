@@ -38,7 +38,7 @@ router.get('/:q_id', (req, res) => {
 			return;
 		}
 		//debugging to show question object
-		console.log(result);
+		console.log("FORUM RESULT " + util.inspect(result));
 		
 		//second query getting answer table and also joined with user's table user_id (yes, this is a query inside a query)
 		var sql2 ="select answer.answer_body, answer.answer_id, answer.datetime_answered, \
@@ -60,7 +60,7 @@ router.get('/:q_id', (req, res) => {
 				// following code implemented using SQL2 query
 				user_asked: result[result.length-1].asked_by,
 				question_pts: 10,
-				datetime_asked: result[result.length-1].datetime_asked,
+				datetime_asked:(new Date(result[result.length-1].datetime_asked)).toISOString().split("T")[0],
 				
 				// for answers, we store all the answers related to the given question_id in an array, where we iterate through the ANSWER object that was posted to the database from SQL2 query
 				answers:      
@@ -73,12 +73,13 @@ router.get('/:q_id', (req, res) => {
 							answer: answer[i].answer_body,
 							user_answered: answer[i].answered_by,
 							answer_pts: Math.round(Math.random()*1000 + 1),
-							datetime_answered: answer[i].datetime_answered
+							datetime_answered: (new Date(answer[i].datetime_answered)).toISOString().split("T")[0]
 						});
 						
 						return arr
 					})()
 				};
+				console.log("outputQ "  + util.inspect(outputQ) + " " + (new Date(outputQ.datetime_asked)).toISOString().split("T")[0]);
 				res.render('forum_page.ejs', {forum: outputQ});
 				
 				
@@ -90,26 +91,27 @@ router.get('/:q_id', (req, res) => {
 		
 	});
 	
-	/*POST THE ANSWER ON THE ANSWER BOX, THERE IS A QUERRY INSIDE. AND YES THIS APP.POST IS INSIDE THE APP.GET FROM ABOVE*/
-	router.post("/answer_to/:q_id", function(req, res) {
-		//OBJECTED TO BE POSTED TO ANSWER TABLE
-		var newA = {
-			answer_body : req.body.answer_body,
-			user_id : '24776', //This can be changed to any user id that is in our local table, to be modified for log in implementation
-			question_id : req.params.q_id,
-			datetime_answered :  date.format(new Date(), 'YYYY-MM-DD h:m:s'), 
+/*POST THE ANSWER ON THE ANSWER BOX, THERE IS A QUERY INSIDE. AND YES THIS APP.POST IS INSIDE THE APP.GET FROM ABOVE*/
+router.post("/answer_to/:q_id/:user_answered", function(req, res) {
+	
+	//OBJECTED TO BE POSTED TO ANSWER TABLE
+	var newA = {
+		answer_body : req.body.answer_body,
+		user_id : req.params.user_answered, // Can also be accessed by req.session.user_id
+		question_id : req.params.q_id,
+		datetime_answered :  date.format(new Date(), 'YYYY-MM-DD h:m:s'), 
+	}
+	
+	//MYSQL QUERRY
+	var sql =" insert into answer set ?";
+	db.query(sql, newA, function(err,result){
+		if(err){
+			console.log(err);
+			return;
 		}
-		
-		//MYSQL QUERRY
-		var sql =" insert into answer set ?";
-		db.query(sql, newA, function(err,result){
-			if(err){
-				console.log(err);
-				return;
-			}
-			console.log("Answer succesfully added ")
-			res.redirect("/question_forum/" + req.params.q_id);
-		});
+		console.log("Answer succesfully added ")
+		res.redirect("/question_forum/" + req.params.q_id);
 	});
+});
 	
 	module.exports = router;
