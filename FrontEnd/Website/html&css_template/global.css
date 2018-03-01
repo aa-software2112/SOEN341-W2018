@@ -725,6 +725,10 @@ li a:hover, .dropdown:hover .dropbtn {
 		float: right;
 	}
 
+	.signup-msg {
+		text-align: center;
+	}
+	
 	img.avatar {
 		width: 15%;
 		border-radius: 10%;

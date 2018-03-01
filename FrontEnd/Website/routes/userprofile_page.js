@@ -30,8 +30,12 @@ var db = require('../database/database');
 * -> TO DO: The user_id should not be hard coded.
 * ---------------------------------------------------------------------------
 */
+var loginChecker = require('../public/scripts/login_check').loginChecker;
 
-router.get('/', (req, res) => {
+// Redirects user to home IF they are not logged in
+// and attempt to access the user_profile link manually via URL.
+router.get('/', loginChecker('/home'), 
+	(req, res) => {
 	
 	if(!req.query.tab || req.query.tab === 'questions') { 
 		

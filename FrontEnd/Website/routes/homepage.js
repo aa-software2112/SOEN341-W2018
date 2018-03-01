@@ -23,6 +23,8 @@ var db = require('../database/database');
 
 
 router.get(['/', '/home'], (req, res) => {
+
+	console.log("in home!");
 	
 	if(!req.query.tab || req.query.tab === 'newest') { 
 		

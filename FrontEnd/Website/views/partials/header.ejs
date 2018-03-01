@@ -9,56 +9,46 @@
     </head>
     <body>
 
-        <div class="header">
+        <div id="navbar" class="make-flex flex-horiz">
+		
+			<div id="nav-standard-div" class="make-flex flex-horiz">
+				<a href="/home">Home</a>
+				<a href="/question_forum/1">Questions</a>
+				<a href="/ask">Ask</a>
+				<a href="/about">About</a>
+				<a href="/contact">Contact Us</a>
+			</div>	
+			
+			
 
-            <div class="topnav">
-                <ul class="ul-topnavbar">
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/question_forum/12345">Questions</a></li>
-					<li><a href="/ask">Ask</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
-                    <li><a href="/user_profile">User Profile</a></li>
-                    <!-- Load icon library -->
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<!-- Load icon library -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-                    <div class="search-box-div">
-                        <!-- The form -->
+			<div id="nav-search-div" class="search-box-div">
+				<!-- The form -->
 
-                        <form class="search-box" action="/:" method="POST">
-                            <input type="text" placeholder="Search..." name="search"  pattern= ".{1,100}" 
-                            title="Search must be under 100 characters" required>
-                            <button type="submit" formaction="/search"><i class="fa fa-search"></i></button>
+				<form class="search-box" action="/:" method="POST">
+					<input type="text" placeholder="Search..." name="search"  pattern= ".{1,100}" 
+					title="Search must be under 100 characters" required>
+					<button type="submit" formaction="/search"><i class="fa fa-search"></i></button>
 
-                        </form>
-                    </div>
+				</form>
+			</div>
+			
+			
+			<div id="nav-user-div" class="make-flex flex-horiz">
+				<% if (typeof username === "undefined") { %>
+					
+		
+					<a class="login-btn" id="login-button" href="/login">Log in</a>
+					<a class="signup-btn" id="signup-button" href="/sign_up">Sign up</a>
+		
+				<% } else { %>
+			
+					<a href="/user_profile/"><%= username %></a>
+					<a class="login-btn" id="logout-button" href="/logout">Log out</a>
 
-                    <!-- Dropdown menu 
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Help ?</a>
-                        <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
-                    </li>
-                -->
-
-                    <div class="login-signup-div">
-                        <div class="login-div">
-                            <li class= "login-btn-li">
-                                <a class="login-btn" id="login-button" href="/login">Log in</a>
-                            </li>
-                        </div>
-
-                        <div class"signup-div">
-                            <li class= "signup-btn-li">
-                                <a class="signup-btn" id="signup-button" href="/sign_up">Sign up</a>
-                            </li>
-                        </div>
-
-                    </div>
-
-                </ul>
-            </div>
-        </div>
+				<% } %>
+			
+			</div>
+		</div>

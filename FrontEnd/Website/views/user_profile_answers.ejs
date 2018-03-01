@@ -23,19 +23,19 @@
 							
 						</div>
 						<div class="self-top" id="user-profile-metrics">
-                            <% var userProfile = userprofile.user_profile_info %>
-							<p class="align-center" id="username">
-								<%= userProfile.userName %>
-							</p>
-							<p class="align-center" id="fullname">
-								<%= userProfile.user_firstName %> <%= userProfile.user_lastName %>
-							</p>
-							<p class="align-center" id="date-of-birth">
-								<%= userProfile.user_birthDate %>
-							</p>
-							<p class="align-center" id="country">
-								<%= userProfile.user_country %>
-							</p>
+                            <p class="align-center" id="username">
+								<%= username %>
+                            </p>
+                            <p class="align-center" id="fullname">
+								<%= fName.charAt(0).toUpperCase() + fName.slice(1) %> 
+								<%= lName.charAt(0).toUpperCase() + lName.slice(1) %>
+                            </p>
+                            <p class="align-center" id="date-of-birth">
+								<%= dateOfBirth.split("T")[0] %>
+                            </p>
+                            <p class="align-center" id="country">
+								<%= country %>
+                            </p>
 							<p class="align-center" id="questions-asked">
 								Asked 1 Question(s)
 							</p>
