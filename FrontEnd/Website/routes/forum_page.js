@@ -28,7 +28,9 @@ router.get('/:q_id', (req, res) => {
 		return;
 	}
 	//query from question table joined with user's table user_id
-	var sql = "select question.question_title,question.question_body, question.datetime_asked, question.question_id, user.username AS asked_by FROM question JOIN user ON question.user_id = user.user_id WHERE question_id = ?"
+	var sql = "select question.question_title,question.question_body, question.datetime_asked, \
+	question.question_id, user.username AS asked_by FROM question JOIN user ON question.user_id = user.user_id \
+	WHERE question_id = ?"
 	
 	db.query(sql,[qId], function(err,result){
 		if(err){
@@ -39,7 +41,9 @@ router.get('/:q_id', (req, res) => {
 		console.log("FORUM RESULT " + util.inspect(result));
 		
 		//second query getting answer table and also joined with user's table user_id (yes, this is a query inside a query)
-		var sql2 ="select answer.answer_body, answer.answer_id, answer.datetime_answered, user.username AS answered_by FROM answer JOIN user ON answer.user_id = user.user_id WHERE answer.question_id = ?";
+		var sql2 ="select answer.answer_body, answer.answer_id, answer.datetime_answered, \
+		user.username AS answered_by FROM answer JOIN user ON answer.user_id = user.user_id \
+		WHERE answer.question_id = ?";
 		db.query(sql2,[qId], function(err,answer){
 			
 			//debugging
