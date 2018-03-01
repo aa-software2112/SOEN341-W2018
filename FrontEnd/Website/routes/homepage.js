@@ -24,7 +24,7 @@ router.get(['/', '/home'], (req, res) => {
 	
 	console.log("in home!");
 	
-	var sql = "SELECT question.question_title, user.username AS asked_by, answer.answer_body AS answers, \
+	var sql = "SELECT question.question_id, question.question_title, user.username AS asked_by, answer.answer_body AS answers, \
 	(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
 	(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
 	datetime_asked \
@@ -129,15 +129,20 @@ router.get(['/', '/home'], (req, res) => {
 					newest_question_list:
 					(function() {
 						var newestQuestionList = [];
-						var num_of_questions = 10;
+						var num_of_questions = result.length;
 						
 						for (var i = 0; i < num_of_questions; i++) {
+							
+							var d = (new Date(result[i].datetime_asked)).toISOString().split("T");
+							d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
+							
 							var questions = {
 								userName: result[i].asked_by,
 								question: result[i].question_title,
 								numOfVotes: result[i].num_votes,
 								numOfAnswers: result[i].num_views,
-								date_ans: result[i].datetime_asked							
+								q_id: result[i].question_id,
+								date_ans: d			
 							}
 							newestQuestionList.push(questions);
 						}						

@@ -60,12 +60,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 */
 
 // Sends cookie to locals for use in ejs file
+// Simply reference the object by whatever follows
+// res.locals. e.g. You can access the user_id from an ejs
+// file 
 app.use(function(req, res, next) {
-	
+
+/*
 	console.log("cookiemiddleware");
 	console.log(req.originalUrl);
 	console.log("Inbound Cookie: " + util.inspect(req.session) + "\n");
-	
+*/	
 	if (req.session.logged == true)
 	{
 		res.locals.username = req.session.username;
@@ -75,7 +79,7 @@ app.use(function(req, res, next) {
 		res.locals.logged = req.session.logged;
 		res.locals.fName = req.session.fName;
 		res.locals.lName = req.session.lName;
-		console.log("Outbound cookie " + util.inspect(res.locals));
+		//console.log("Outbound cookie " + util.inspect(res.locals));
 	}
 	
 	next();

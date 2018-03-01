@@ -23,13 +23,15 @@ router.get('/', (req, res) => {
 });
 
 //logs of questions from the ask_questions
-router.post("/askform" , (req,res) => {
+router.post("/askform/:user_id" , (req,res) => {
+	
+	console.log("Asked a question with user_id " + req.params.user_id);
+	
 	var newQ = {
 		question_title : req.body.q_title,
 		question_body: req.body.q_body,
-		user_id: "24776",
-		datetime_asked : date.format(new Date(), 'YYYY-MM-DD h:m:s'),
-		
+		user_id: req.params.user_id,
+		datetime_asked : date.format(new Date(), 'YYYY-MM-DD h:m:s')		
 	};
 	var sql2 =" insert into question set ?";
 	
@@ -40,12 +42,21 @@ router.post("/askform" , (req,res) => {
 		}
 		
 		//debugging purpose
-		console.log("Question possted ");
-		console.log(newQ.question_id);
+		console.log("Question posted ");
+		console.log(result); 
 		
-		db.query("select * from question", function(err,qId){
-			var qId = qId[qId.length-1].question_id;
-			res.redirect("/question_forum/"+qId);
+		db.query("select question_id from question where user_id = ?", [req.params.user_id], function(err, result){
+			
+			console.log("Reloaded question with result " + util.inspect(result) );
+			if (result.length == 0)
+			{
+				res.redirect('/home');
+			}
+			else
+			{
+				var qId = result[result.length-1].question_id;
+				res.redirect("/question_forum/"+qId);
+			}
 		})
 		
 	});
