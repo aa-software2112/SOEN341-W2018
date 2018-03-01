@@ -60,13 +60,6 @@ button:hover {
   display: table;
 }
 
-
-.signup-msg {
-	text-align: center;
-	
-}
-
-
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
   .cancelbtn, .signupbtn {

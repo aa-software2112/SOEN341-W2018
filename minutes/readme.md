@@ -1,11 +1,5 @@
 Meeting Times:
-
-Feb. 20, 2018: 17:00 - 20:00
-    Everyone present except Nizar, Ruochen, Saleh, Tom
     
-Feb. 16, 2018: 13:15 - 13:30
-    Everyone present except Anthony Andreoli who was sick
-
 Feb. 15, 2018：17:00 - 21:00
     Everyone present except Anthony Andreoli who was sick.
 

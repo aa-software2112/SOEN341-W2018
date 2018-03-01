@@ -74,20 +74,14 @@
 						
 				
 				</div>
-					
-				<% if (typeof logged !== "undefined" && logged == true) { %>
+			
 				<div id="submit-answer-div">
-					<form class="make-flex flex-vert" action=<%= "/question_forum/answer_to/" + String(forum.q_id) + "/" + String(user_id) %> method="post" id="answer-form">
+					<form class="make-flex flex-vert" action=<%= "/question_forum/answer_to/" + forum.q_id %> method="post" id="answer-form">
 						<textarea name="answer_body" class="text-input" id="answer-textarea" form="answer-form" required="required" placeholder="Enter your answer: " maxlength=1000></textarea>
 						<input id="submit-button" class="button self-right" type="submit" value="Answer!">
 					</form>
 				</div>
-				<% } else {%>
-				
-					<% include partials/notlogged %>
-				
-				<% } %>
-				
+			
 			</div>
 		</div>
 	</div>
