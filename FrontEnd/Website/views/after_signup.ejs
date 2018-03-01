@@ -1,0 +1,32 @@
+	
+	<% include partials/header %>
+
+
+		<div class="content-container center-div">
+			<div class="alignment-container">
+				<div class="alignment-container">
+				
+				<div class="signup_box make-flex flex-vert center-vert">
+				
+					<h3 id="confirm-title"> You have successfully signed-up! </h3>
+					<% if (email !== "undefined") { %>
+						
+						<p class="text-center" id="confirm-info">
+						<%= "Username: " + username %><br>
+						<%= "Email: " + email %>
+						
+						</p>
+					
+					<% } %>
+					
+					<a id="confirm-link" href="/login">Click here to Login</a>
+				
+				
+				</div>
+				
+				</div>
+			</div>
+		</div>
+		
+	<% include partials/footer %>
+		

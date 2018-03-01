@@ -316,8 +316,7 @@ form {
 	
 }
 
-
-/* Nav bar css -------------------------------------------------------------------*/
+/* Old Navbar CSS
 .header{
 	display:flex;
 	align-items: center;
@@ -335,7 +334,6 @@ form {
     padding: 0;
     overflow: hidden;
 	text-align: center;
-    /*background: linear-gradient(to bottom, #c0c0c0 0%, #e8e8e8 100%);*/
 }
 
 .ul-topnavbar > li > a{
@@ -387,44 +385,6 @@ li a:hover, .dropdown:hover .dropbtn {
     display: block;
 }
 
-.search-box-div{
-	display: flex;
-	min-width: 20%;
-	margin-left: auto;
-	margin-right: auto
-}
-
-.search-box input[type=text] {
-		padding: 10px;
-	    font-size: 17px;
-	    border: 1px solid grey;
-	    width: 80%;
-	    background: #f1f1f1;
-	}
-
-.search-box button {
-	    width: 20%;
-	    padding: 10px;
-	    background: #000000;
-	    color: white;
-	    font-size: 17px;
-			float : right;
-	    border: 1px solid grey;
-	    border-left: none;
-	    cursor: pointer;
-	}
-
-	.search-box button:hover {
-	    background: #3399FF;
-	}
-
-	.search-box::after {
-	    content: "";
-	    clear: both;
-	    display: table;
-	}
-}
-
 .login-btn-li{
 	color: black;
 }
@@ -472,6 +432,95 @@ li a:hover, .dropdown:hover .dropbtn {
 .date-result-p {
 	
 }
+
+
+*/
+
+#navbar {
+	
+	min-height: 55px;
+	background-color: black;
+	padding-left: 20px;
+	padding-right: 50px;
+	
+}
+
+#navbar a {
+	font: white;
+}
+
+#navbar div {
+	align-items: center;
+}
+
+#navbar, #nav-standard-div, #nav-user-div{
+	justify-content: space-between;
+	
+}
+
+#nav-search-div {
+	
+	justify-content: center;
+	
+}
+
+#nav-standard-div {
+	width: 40%;
+	max-width: 500px;
+}
+
+#nav-search-div {
+	width: 40%;
+	
+}
+
+#nav-user-div{
+	width: auto;
+	min-width: 250px;
+}
+
+.search-box {
+	
+	width: 90%;
+	
+}
+
+.search-box-div{
+	display: flex;
+	min-width: 20%;
+}
+
+.search-box input[type=text] {
+		padding: 10px;
+	    font-size: 17px;
+	    border: 1px solid grey;
+	    width: 80%;
+	    background: #f1f1f1;
+	}
+
+.search-box button {
+	    width: 20%;
+	    padding: 10px;
+	    background: #000000;
+	    color: white;
+	    font-size: 17px;
+			float : right;
+	    border: 1px solid grey;
+	    border-left: none;
+	    cursor: pointer;
+	}
+
+	.search-box button:hover {
+	    background: #3399FF;
+	}
+
+	.search-box::after {
+	    content: "";
+	    clear: both;
+	    display: table;
+	}
+}
+
 
 /* =====================================================================================================
     HOME PAGE 
@@ -668,6 +717,11 @@ li a:hover, .dropdown:hover .dropbtn {
 		width: 100%;
 	}
 	
+	.signup-msg {
+		text-align: center;
+		
+	}
+	
 	.cancelbtn {
 	
 		color: white;
@@ -700,6 +754,18 @@ li a:hover, .dropdown:hover .dropbtn {
 		border-radius: 10%;
 	}
 
+	#cookie-msg	{
+		
+		margin-top: 10px;
+		margin-bottom: 10px;
+		
+	}
+	
+	#login-msg {
+		margin-bottom: 10px;
+		max-width: 80%;
+	}
+	
 /* Contact page */
 
 #contact-form > input{
@@ -877,4 +943,11 @@ img.circular--square {
 .signup_select {
 	width: initial;
 	padding: 3px 2px !important;
+}
+
+/* Signup Confirmation Page */
+
+#confirm-info {
+	font-size: 1.5em;
+	
 }
