@@ -42,10 +42,10 @@ router.get(['/', '/home'], (req, res) => {
 				{
 					output = {
 						newest: {
-							newest_question_list:
+							necdwest_question_list:
 							(function() {
 								var newestQuestionList = [];
-								var num_of_questions = 10;
+								var num_of_questions = result.length;
 								
 								for (var i = 0; i < num_of_questions; i++) {
 									
@@ -76,11 +76,12 @@ router.get(['/', '/home'], (req, res) => {
 							newest_question_list:
 							(function() {
 								var newestQuestionList = [];
-								var num_of_questions = 10;
+								var num_of_questions = result.length;
 								
 								for (var i = 0; i < num_of_questions; i++) {
 									
-									var d = (new Date(result[i].datetime_asked)).toISOString().split("T");
+									var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
+									var d = (new Date(result[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
 									d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
 									
 									var questions = {
@@ -124,7 +125,7 @@ router.get(['/', '/home'], (req, res) => {
 							popular_question_list:
 							(function() {
 								var popularQuestionList = [];
-								var num_of_questions = 10;
+								var num_of_questions = result.length;
 								
 								for (var i = 0; i < num_of_questions; i++) {
 									var questions = {
@@ -155,11 +156,12 @@ router.get(['/', '/home'], (req, res) => {
 							popular_question_list:
 							(function() {
 								var popularQuestionList = [];
-								var num_of_questions = 10;
+								var num_of_questions = result.length;
 								
 								for (var i = 0; i < num_of_questions; i++) {
-									
-									var d = (new Date(result[i].datetime_asked)).toISOString().split("T");
+
+									var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
+									var d = (new Date(result[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
 									d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
 									
 									var questions = {

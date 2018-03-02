@@ -89,7 +89,8 @@ router.get('/', loginChecker('/home'),
 								
 								for (var i = 0; i < num_of_questions; i++) {
 									
-									var d = (new Date(result[i].datetime_asked)).toISOString().split("T");
+									var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
+									var d = (new Date(result[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
 									d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
 									
 									var questions = {
@@ -171,7 +172,8 @@ router.get('/', loginChecker('/home'),
 								
 								for (var i = 0; i < num_of_answers; i++) {
 									
-									var d = (new Date(result[i].datetime_answered)).toISOString().split("T");
+									var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
+									var d = (new Date(result[i].datetime_answered  - timezoneOffset)).toISOString().split("T");
 									d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
 									
 									var answers = {
