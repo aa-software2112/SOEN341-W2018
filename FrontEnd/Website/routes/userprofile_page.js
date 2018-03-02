@@ -36,80 +36,101 @@ var loginChecker = require('../public/scripts/login_check').loginChecker;
 router.get('/', loginChecker('/home'), 
 (req, res) => {
 	
-	console.log("USER ID " + req.session.user_id);
+
 	
 	if(!req.query.tab || req.query.tab === 'questions') { 
+
+		var output;
 		
 		var query_user_questions = "SELECT question.question_title, question.question_id, question.question_body,\
 		(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
-		(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=24776) AS num_answers, datetime_asked \
+		(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=?) AS num_answers, datetime_asked \
 		FROM question \
 		WHERE question.user_id = ? \
 		ORDER BY datetime_asked DESC;"
 		
-		db.query(query_user_questions, [req.session.user_id],function (err, result) {
+		db.query(query_user_questions, [req.session.user_id, req.session.user_id],function (err, result) {
 			if (err) {
 				res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 			} else {
-				var output;
-				if (result.length == 0) 
-				{
-					output = {
-						user_questions: {
-							user_question_list:
-							(function() {
-								var userQuestionList = [];
-								var num_of_questions =  result.length;
-								
-								for (var i = 0; i < num_of_questions; i++) {
-									
-									var questions = {
-										questionID: ' ',
-										questionTitle: ' ',
-										questionBody: ' ',
-										numOfVotes: ' ',
-										numOfAnswers: ' ',
-										date_ans: ' '				
-									}
-									userQuestionList.push(questions);
-								}			
-								
-								return userQuestionList
-							})()
-						}			
-					}
-				} else {
-					output = {
+				
+				var query_user_answers = "	SELECT question.question_title AS question_title, question.question_id AS question_id, \
+				answer.answer_id, answer.answer_body, datetime_answered, \
+				(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=?) AS num_answers, datetime_answered \
+				FROM answer JOIN question ON question.question_id=answer.question_id \
+				WHERE answer.user_id = ? \
+				ORDER BY datetime_answered DESC;"
+				
+				db.query(query_user_answers, [req.session.user_id, req.session.user_id],function (err, result1) {
+					if (err) {
+						res.status(500).json({"status_code": 500,"status_message": "internal server error"});
+					} else {
 						
-						user_questions: {
-							user_question_list:
-							(function() {
-								var userQuestionList = [];
-								var num_of_questions = result.length;
+						if (result.length == 0 && result1.length == 0)  
+						{
+							output = {
 								
-								for (var i = 0; i < num_of_questions; i++) {
-									
-									var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
-									var d = (new Date(result[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
-									d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
-									
-									var questions = {
-										questionID: result[i].question_id,
-										questionTitle: result[i].question_title,
-										questionBody: result[i].question_body,
-										numOfVotes: result[i].num_votes,
-										numOfAnswers: result[i].num_views,
-										date_ans: d				
-									}
-									userQuestionList.push(questions);
+								user_questions: {
+									user_question_list:
+									(function() {
+										var userQuestionList = [];
+										var num_of_questions =  result.length;
+										
+										for (var i = 0; i < num_of_questions; i++) {
+											
+											var questions = {
+												questionID: ' ',
+												questionTitle: ' ',
+												questionBody: ' ',
+												numOfVotes: ' ',
+												numOfAnswers: ' ',
+												date_ans: ' '				
+											}
+											userQuestionList.push(questions);
+										}			
+										
+										return userQuestionList
+									})()
 								}			
+							}
+						} else {
+							output = {
+								user_activity: {
+									numberOfQuestions: result.length,
+									numberOfAnswers: result1.length
+								},
 								
-								return userQuestionList
-							})()
-						}									
-					}
-				}
-				res.render('user_profile_questions.ejs', {userprofile: output});
+								user_questions: {
+									user_question_list:
+									(function() {
+										var userQuestionList = [];
+										var num_of_questions = result.length;
+										
+										for (var i = 0; i < num_of_questions; i++) {
+											
+											var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
+											var d = (new Date(result[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
+											d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
+											
+											var questions = {
+												questionID: result[i].question_id,
+												questionTitle: result[i].question_title,
+												questionBody: result[i].question_body,
+												numOfVotes: result[i].num_votes,
+												numOfAnswers: result[i].num_views,
+												date_ans: d				
+											}
+											userQuestionList.push(questions);
+										}			
+										
+										return userQuestionList
+									})()
+								}									
+							}
+						}
+						res.render('user_profile_questions.ejs', {userprofile: output});
+					};
+				});
 			};	
 		});
 		
@@ -122,6 +143,8 @@ router.get('/', loginChecker('/home'),
 		* ---------------------------------------------------------------------------
 		*/
 	} else if (req.query.tab === 'answers') {
+
+		var output;
 		
 		var query_user_answers = "	SELECT question.question_title AS question_title, question.question_id AS question_id, \
 		answer.answer_id, answer.answer_body, datetime_answered, \
@@ -134,10 +157,23 @@ router.get('/', loginChecker('/home'),
 			if (err) {
 				res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 			} else {
-				var output;
-				if (result.length == 0) 
+
+				var query_user_questions = "SELECT question.question_title, question.question_id, question.question_body,\
+				(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
+				(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=?) AS num_answers, datetime_asked \
+				FROM question \
+				WHERE question.user_id = ? \
+				ORDER BY datetime_asked DESC;"
+
+				db.query(query_user_questions, [req.session.user_id, req.session.user_id],function (err, result1) {
+					if (err) {
+						res.status(500).json({"status_code": 500,"status_message": "internal server error"});
+					} else {
+			
+				if (result.length == 0 && result1.length == 0) 
 				{
 					output = {
+												
 						user_answers: {
 							user_answer_list:
 							(function() {
@@ -164,6 +200,11 @@ router.get('/', loginChecker('/home'),
 				} else {
 					output = {
 						
+						user_activity: {
+							numberOfQuestions: result1.length,
+							numberOfAnswers: result.length
+						},
+
 						user_answers: {
 							user_answer_list:
 							(function() {
@@ -193,6 +234,8 @@ router.get('/', loginChecker('/home'),
 					}
 				}
 				res.render('user_profile_answers.ejs', {userprofile: output});
+			};
+		});
 			};	
 		});
 	}

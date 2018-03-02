@@ -37,10 +37,10 @@
                                 <%= country %>
                             </p>
 							<p class="align-center" id="questions-asked">
-								Asked 1 Question(s)
+								Asked <%= userprofile.user_activity.numberOfQuestions %> Question(s)
 							</p>
 							<p class="align-center" id="questions-answered">
-								Answered 0 Question(s)
+								Answered <%= userprofile.user_activity.numberOfAnswers %> Question(s)
 							</p>
 							<!-- <p class="align-center" id="redirect-questions">
 								<a href="/user_profile">View Your Questions</a>
