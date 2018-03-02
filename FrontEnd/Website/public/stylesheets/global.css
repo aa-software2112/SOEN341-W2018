@@ -1,10 +1,19 @@
+/* Custom fonts */
+
+@font-face {
+	
+	font-family: karma;
+	src: url('fonts/Karma-Medium.ttf');
+	
+}
+
 /* global css properties */
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font: 16px Arial;/* global font defaults */
+	font: 16px karma;/* global font defaults */
 }
 
 html, body {
@@ -38,7 +47,19 @@ form {
 /* Should be used to facilitate similar background color across pages */
 .std-bg-color {
 	
-	background-color: rgb(234, 247, 250);
+	background-color: rgba(255,218,171, 0.10);
+	
+}
+
+.std-input-font {
+	
+	font-family: karma;
+	
+}
+
+.hover-text {
+	
+	
 	
 }
 
@@ -52,6 +73,7 @@ form {
 	padding: 5px;
 	box-shadow: none;
 	transition: box-shadow 0.05s;
+	font-family: "Times New Roman";
 }
 
 .button:hover { /* Generic button hovering effect */
@@ -64,12 +86,11 @@ form {
 	outline: none;
 	border:none;
 	border: 1px solid rgb(100, 100, 100);
-	border-radius: 4px;
 	padding: 15px 20px;
-	font-family: Verdana;
-	line-height: 1.25em;
-	font-size: 1.20em;
-	overflow: hidden;
+	line-height: 1.15em;
+	font-size: 1.15em;
+	overflow-y: auto;
+	height: 150px;
 }
 
 .text-input:hover {
@@ -91,13 +112,11 @@ form {
 
 .body-container {
 	
-	background-color: white;
 	min-height:100%;
 }
 
 .content-container {
 	
-	background-color: white;
 	padding-bottom: 30px;
 	max-width:1024px;
 	height:100%;
@@ -145,27 +164,105 @@ form {
 
 /* question/answer forum css */
 
-#question-container {
+#question-container, .answer-container {
 	width: 100%;
 }
 
+#question-votes, .answer-votes {
+	padding: 10px;
+	width: 50px;
+	height: 125px;
+	justify-content: space-between;
+}
+
+#q-upvote,
+.upvote {
+	
+	color: green;
+	
+}
+
+#q-downvote,
+.downvote {
+	
+	color: red;
+	
+}
+
+#q-upvote:hover,
+#q-downvote:hover,
+.upvote:hover,
+.downvote:hover {
+	
+	cursor: pointer;
+	
+}
+
+.vote {
+	
+	text-align: center;
+	margin: 0px;
+}
+
+.post-entry-sep {
+	
+	margin-top: 15px;
+	border-bottom: 1px solid rgba(26,94,118,0.50);
+	
+}
+
+#question,
+.answer {
+	flex: 1;
+	padding: 15px 15px 15px 25px;
+	/*background-color: rgb(234, 247, 250); *//* light blue */
+}
+
+
 #question-title {
 	font-size: 1.50em;
+	font-style: italic;
 }
 
-#question {
-	border-radius: 3px;
-	padding: 15px 15px 25px 25px;
-	background-color: rgb(234, 247, 250); /* light blue */
-}
 
 #question-body {
-	margin: 30px 15px 0px 25px;
+	margin: 15px 15px 0px 25px;
 	font-size: 0.90em;
 }
 
-#user-asked-div {
-	min-width: 150px;
+#user-asked-div
+{
+	align-self: flex-end;
+}
+
+#user-asked-info, .user-answer-info {
+	
+	font-size: 0.75em;
+	
+}
+
+.user-answer-div {
+	
+	align-self: flex-start;
+}
+
+.user-answer-info {
+	margin-bottom: 0px;
+	
+}
+
+.answer-body {
+	
+	margin:	15px 15px 0px 15px;
+	font-size: 0.90em;
+	letter-spacing: 0.25px;
+	
+}
+
+
+#user-asked-info {
+	
+	margin: 0px;
 }
 
 #answers-container {
@@ -174,11 +271,6 @@ form {
 	margin-top: 30px;
 }
 
-#user-asked-info {
-	width: 100%;
-	padding-bottom: 10px;
-	border-bottom: 1px solid rgba(100, 100, 100, 0.30);
-}
 
 #answer-logo {
 	font-size: 1.30em;
@@ -231,15 +323,6 @@ form {
 
 .answer-p {
 	font-size: 0.95em;
-}
-
-.user-metrics-question
-{
-	padding-bottom: 10px;
-	border-bottom: 1px solid rgba(100, 100, 100, 0.30);
-	margin-top: 10px;
-	min-width: 125px;
-	font-size: 0.90em;
 }
 
 .user-metrics-answer
@@ -450,15 +533,37 @@ li a:hover, .dropdown:hover .dropbtn {
 
 #navbar {
 	
+	position: relative;
 	min-height: 55px;
-	background-color: black;
+	background-color: #1a5e76;
 	padding-left: 20px;
 	padding-right: 50px;
 	
 }
 
-#navbar a {
-	font: white;
+.parent-link {
+	min-width: 100px;
+	color: #ffdaab;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: color 0.2s, border-bottom 0.2s;
+}
+
+.parent-link span {
+	
+	position: absolute;
+	display: flex;
+	top: 50%;
+	transform: translate(0, -50%);
+	
+}
+
+.parent-link:hover {
+	color: white;
+	text-decoration: none;
+	border-bottom: 3px solid #ffdaab;
 }
 
 #navbar div {
@@ -477,7 +582,6 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 #nav-standard-div {
-	width: 40%;
 	max-width: 500px;
 }
 
@@ -488,7 +592,7 @@ li a:hover, .dropdown:hover .dropbtn {
 
 #nav-user-div{
 	width: auto;
-	min-width: 250px;
+	min-width: 200px;
 }
 
 .search-box {
@@ -823,13 +927,10 @@ li a:hover, .dropdown:hover .dropbtn {
 	padding: 10px;
 	display:block;
 	width: 100%;
-	height: 2em;
 }
 
 #question-body-form{
 	display:block;
-	width: 90%;
-	height: 300px;
 }
 
 #submit-ask {
@@ -839,6 +940,8 @@ li a:hover, .dropdown:hover .dropbtn {
 
 .ask-form-p {
 	margin: 10px 0 10px 0;
+	font-family: karmaLight;
+	font-family: "Times New Roman";
 }
 /* About us page/ About us */
 
