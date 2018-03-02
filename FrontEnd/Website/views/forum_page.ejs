@@ -16,10 +16,17 @@
     <% include partials/header %>
 	
 	<div class="body-container">
-		<div class="content-container center-div">
+		<div class="content-container center-div">	
 			<div class="alignment-container">
 				<div class="make-flex flex-horiz" id="question-container">
-					<div class="qa-shadow" id="question">
+				
+					<div class="make-flex flex-vert" id="question-votes">
+						<p class="upvote vote" id=<%= ( typeof logged !== "undefined" && logged) ? "q-upvote-"+String(forum.q_id) + "-" + String(user_id) : "q-upvote-null"  %>> &#10004; </p>
+						<p class="downvote vote" id=<%= ( typeof logged !== "undefined" && logged) ? "q-upvote-"+String(forum.q_id) + "-" + String(user_id) : "q-downvote-null"  %>> &#10006; </p>
+						<p class="vote" id="q-votevalue"> -1 </p>
+					</div>
+					
+					<div class="make-flex flex-vert" id="question">
 						<h2 id="question-title">
 							<%= forum.title %>
 						</h2>
@@ -27,53 +34,49 @@
 						<p id="question-body">
 							<%= forum.body %>
 						</p>
-						<br>
-
-						<div class="summary-question-tags">
-                                        		<a class="btn btn-primary" style="background-color: #20a7bc; border: #20a7bc; color: white; margin-right: 5px;" id="likeQuestion" role="button">Like</a><span id="likeCounter">0</span>
-                                        		<a class="btn btn-primary" id="dislikeQuestion" role="button" style="background-color: #20a7bc; border: #20a7bc; color: white;">Dislike</a>
-                                        		<span id="dislikeCounter">0</span>
-                                        		<!--<a class="btn btn-primary" href="#" role="button">Tag</a>-->
-                                    		</div>
+						
+						<div id="user-asked-div">
+							<p id="user-asked-info">
+								<%= forum.user_asked %> | <%= forum.question_pts %> | <%= forum.datetime_asked %>
+							</p>
+						</div>
 					</div>
-					
-					<div class="make-flex" id="user-asked-div">
-						<p class="align-center user-metrics-question center-div" id="user-asked-info">
-						<%= forum.user_asked %></br><%= forum.question_pts %></br><%= forum.datetime_asked %>
-						</p>
-					</div>
-					
 				</div>
 				
-				<div id="answer-logo">
-					<p>Answers [<%= forum.answers.length %>] </p>
-				</div>
+				<p class="post-entry-sep"> </p>
 				
-				<div class="make-flex flex-vert" id="answers-container">
-				
-					<% for (var ans_idx = 0; ans_idx<forum.answers.length; ans_idx++) { %>
+				<% for (var ans_idx = 0; ans_idx<forum.answers.length; ans_idx++) { %>
 						
 						<% var answers = forum.answers %>
-						<div class="answers make-flex flex-horiz flex-right">
-							<div class="make-flex flex-vert qa-shadow answer-div">
-								<p class="answer-p">
-									<%= answers[ans_idx].answer %>
-								</p>
-								<p class="user-metrics-answer self-right">  
-									<%= answers[ans_idx].user_answered %> | <%= answers[ans_idx].answer_pts %> | <%= answers[ans_idx].datetime_answered %> 
-								</p>
-								<div class="summary-question-tags">
-                                       					 <a class="btn btn-primary" href="#" role="button">Like</a>
-                                        				<a class="btn btn-primary" href="#" role="button">Dislike</a>
-                                        				<!--<a class="btn btn-primary" href="#" role="button">Tag</a>-->
-                                				</div>
-							</div>
+				<div class="make-flex flex-horiz answer-container">
+				
+					<div class="make-flex flex-vert answer-votes">
+						<p class="vote upvote" id=<%= ( typeof logged !== "undefined" && logged) ? "a-upvote-"+String(answers[ans_idx].answer_id) + "-" + String(user_id) : "a-upvote-null"  %>> &#10004; </p>
+						<p class="vote downvote" id=<%= ( typeof logged !== "undefined" && logged) ? "a-downvote-"+String(answers[ans_idx].answer_id) + "-" + String(user_id) : "a-downvote-null"  %>> &#10006; </p>
+						<p class="vote vote-value" id=""> -1 </p>
+					</div>
+					
+					<div class="make-flex flex-vert answer">
+						<div class="user-answer-div">
+							<p class="user-answer-info">
+								<%= answers[ans_idx].user_answered %> | <%= answers[ans_idx].answer_pts %> | <%= answers[ans_idx].datetime_answered %> 
+							</p>
 						</div>
 						
-					<% } %>
+						<p class="answer-body">
+							<%= answers[ans_idx].answer %>
+						</p>
 						
-				
+						
+					</div>
 				</div>
+				
+				<p class="post-entry-sep"> </p>
+
+				
+				
+				<% } %>
+						
 					
 				<% if (typeof logged !== "undefined" && logged == true) { %>
 				<div id="submit-answer-div">
