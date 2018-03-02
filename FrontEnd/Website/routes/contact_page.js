@@ -46,7 +46,7 @@ router.post('/', (req,res) => {
 		from: 'soen341qaproject@gmail.com',
 		to: 'soen341qaproject@gmail.com',
 		subject: 'Email sent by user',
-		text: fname + ' ' + lname + ' from ' + country + ' sent: ' + subject
+		html: '<div style="margin: auto; background-color: #eaf7fa; width: 75%;"><h1 style="text-align: center;">From: ' + fname + ' ' + lname + '</h1><p style="text-align: center;">Message: ' + subject + '</p></div>'
 	};
 
 	//sends the email
