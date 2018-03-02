@@ -70,6 +70,7 @@ router.get('/:q_id', (req, res) => {
 					for (var i = 0; i<num_answers; i++)
 					arr.push(
 						{
+							answer_id: answer[i].answer_id,
 							answer: answer[i].answer_body,
 							user_answered: answer[i].answered_by,
 							answer_pts: Math.round(Math.random()*1000 + 1),
