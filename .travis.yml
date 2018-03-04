@@ -6,5 +6,5 @@ scirpt: gulp travis
 servises: mysql
 =======
   "stable"
-scirpt: gulp travis
+scirpt: test
 >>>>>>> 346f46746d12788e5c8e2c3eac0e50fb601e712d
