@@ -59,7 +59,7 @@ router.get('/:q_id', (req, res) => {
 				
 				// following code implemented using SQL2 query
 				user_asked: result[result.length-1].asked_by,
-				question_pts: 10,
+				question_pts: null,
 				datetime_asked:(new Date(result[result.length-1].datetime_asked)).toISOString().split("T")[0],
 				
 				// for answers, we store all the answers related to the given question_id in an array, where we iterate through the ANSWER object that was posted to the database from SQL2 query
@@ -73,24 +73,44 @@ router.get('/:q_id', (req, res) => {
 							answer_id: answer[i].answer_id,
 							answer: answer[i].answer_body,
 							user_answered: answer[i].answered_by,
-							answer_pts: Math.round(Math.random()*1000 + 1),
+							answer_pts: null,
 							datetime_answered: (new Date(answer[i].datetime_answered)).toISOString().split("T")[0]
 						});
 						
 						return arr
 					})()
 				};
-				console.log("outputQ "  + util.inspect(outputQ) + " " + (new Date(outputQ.datetime_asked)).toISOString().split("T")[0]);
-				res.render('forum_page.ejs', {forum: outputQ});
 				
+				// Get the question points
+				//Query takes the sum of the total positive score, and total negative score for the question_id from the score_question table.
+				var sql_totalScore = "SELECT SUM(CASE WHEN score= '1' THEN 1 ELSE 0 END) AS positiveScore, Sum(CASE WHEN score = '-1' THEN 1 ELSE 0 END) AS negativeScore FROM score_question WHERE question_id = ?";
 				
+				db.query(sql_totalScore, [qId], function(err, result_q1)
+				{
+					if (err)
+					{
+						console.log("Select Sum query failed " + err);
+						return;
+					}
+					
+					//The totalScore of the question_id is the substraction between the positive score and the negative score.
+					var totalScore = 0;
+					
+					if (result_q1[0].positiveScore != null)
+						totalScore += result_q1[0].positiveScore;
+					
+					if (result_q1[0].negativeScore != null)
+						totalScore -= result_q1[0].negativeScore;
+
+					outputQ.question_pts = totalScore;
 				
-			});
-			
-			
+					console.log("outputQ "  + util.inspect(outputQ) + " " + (new Date(outputQ.datetime_asked)).toISOString().split("T")[0]);
+					res.render('forum_page.ejs', {forum: outputQ});
+					
+				});
 		});
-		
 	});
+});
 	
 /*POST THE ANSWER ON THE ANSWER BOX, THERE IS A QUERY INSIDE. AND YES THIS APP.POST IS INSIDE THE APP.GET FROM ABOVE*/
 router.post("/answer_to/:q_id/:user_answered", function(req, res) {
