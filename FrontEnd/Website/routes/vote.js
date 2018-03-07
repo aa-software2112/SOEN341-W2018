@@ -27,13 +27,15 @@ var db = require('../database/database');
 */
 router.post("/answer-vote", function(req, res) {
 	
+	console.log(req.body);
+	
 	var user_id = req.body.user_id;
 	var answer_id = req.body.answer_id;
 
 	//Query takes the sum of the total positive score, and total negative score for the answer_id from the score_answer table.
-	var sql_totalScore = "SELECT SUM(CASE WHEN score= '-1' THEN 1 ELSE 0 END) AS positiveScore, Sum(CASE WHEN score = '-1' THEN 1 ELSE 0 END) AS negativeScore FROM score_answer WHERE answer_id = ?";
+	var sql_totalScore = "SELECT SUM(CASE WHEN score= '1' THEN 1 ELSE 0 END) AS positiveScore, Sum(CASE WHEN score = '-1' THEN 1 ELSE 0 END) AS negativeScore FROM score_answer WHERE answer_id = ?";
 	
-	db.query(sql_totalScore, [answer_id], function(err, result)
+	db.query(sql_totalScore, [answer_id], function(err, result_q1)
 	{
 		if (err)
 		{
@@ -41,26 +43,40 @@ router.post("/answer-vote", function(req, res) {
 			return;
 		}
 		
+		console.log("Query 1 " + util.inspect(result_q1));
+		
 		//The totalScore of the answer_id is the substraction between the positive score and the negative score.
-		var totalScore = result.positiveScore - result.negativeScore;
-
+		var totalScore = 0;
+		
+		if (result_q1[0].positiveScore != null)
+			totalScore += result_q1[0].positiveScore;
+		
+		if (result_q1[0].negativeScore != null)
+			totalScore -= result_q1[0].negativeScore;
+		
 		// This Query checks if user has already voted previously
 		var sql_scoreExist = "SELECT score FROM score_answer WHERE user_id = ? AND answer_id = ?";
 		
-		db.query(sql_scoreExist, [user_id, answer_id], function(err, result)
+		db.query(sql_scoreExist, [user_id, answer_id], function(err, result_q2)
 		{
 			if (err)
 			{
 				console.log("select score query failed " + err);
 				return;
 			}
-			var result = result[0]; // stores the score user has voted previously or stores NULL
-
+			
+			console.log("Query 2 " + util.inspect(result_q2));
+			
 			// if already voted
-			if (result.length > 0 && result == 1 || result == -1)
+			if (result_q2.length > 0 )
 			{
-				console.log("already voted this answer");
-				res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
+				result_q2 = result_q2[0];
+				
+				if (result_q2.score == 1 || result_q2.score == -1)
+				{
+					console.log("already voted this answer, sending "  + totalScore);
+					res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
+				}
 			}
 		
 			else
@@ -68,13 +84,13 @@ router.post("/answer-vote", function(req, res) {
 				//Array to fill in sql query below
 				var newScoreAnswer = {
 					
-					score : Number(req.body.vote), //score is taken from button input ex: click button like gives 1, click button dislike gives -1
+					score : req.body.vote, //score is taken from button input ex: click button like gives 1, click button dislike gives -1
 					user_id : Number(req.body.user_id), //taken from user session
 					answer_id : Number(req.body.answer_id), //taken answer to which the button is found
 					datetime_scored_answer : date.format(new Date(), 'YYYY-MM-DD h:m:s'),
 				};
 					
-				newTotalScore= totalScore + newScoreAnswer.score; //the new totalScore is found by adding (+1 or -1) from the new score voted to the previous total score
+				newTotalScore= totalScore + Number(newScoreAnswer.score); //the new totalScore is found by adding (+1 or -1) from the new score voted to the previous total score
 
 				// This Query inserts the new score (or vote) into the database and res.send the new total score
 				var sql_insertNewScore = "INSERT INTO score_answer SET ?";
@@ -87,7 +103,8 @@ router.post("/answer-vote", function(req, res) {
 					}
 					else
 					{
-						console.log("User succesfully voted!")
+						console.log("User succesfully voted!");
+						console.log(newScoreAnswer);
 						res.send(String(newTotalScore)); // sends the new total vote for answer_id 
 					}
 				});
@@ -113,9 +130,9 @@ router.post("/question-vote", function(req, res) {
 	var question_id = req.body.question_id;
 
 	//Query takes the sum of the total positive score, and total negative score for the question_id from the score_question table.
-	var sql_totalScore = "SELECT SUM(CASE WHEN score= '-1' THEN 1 ELSE 0 END) AS positiveScore, Sum(CASE WHEN score = '-1' THEN 1 ELSE 0 END) AS negativeScore FROM score_question WHERE question_id = ?";
+	var sql_totalScore = "SELECT SUM(CASE WHEN score= '1' THEN 1 ELSE 0 END) AS positiveScore, Sum(CASE WHEN score = '-1' THEN 1 ELSE 0 END) AS negativeScore FROM score_question WHERE question_id = ?";
 	
-	db.query(sql_totalScore, [question_id], function(err, result)
+	db.query(sql_totalScore, [question_id], function(err, result_q1)
 	{
 		if (err)
 		{
@@ -124,39 +141,48 @@ router.post("/question-vote", function(req, res) {
 		}
 		
 		//The totalScore of the question_id is the substraction between the positive score and the negative score.
-		var totalScore = result.positiveScore - result.negativeScore;
+		var totalScore = 0;
+		
+		if (result_q1[0].positiveScore != null)
+			totalScore += result_q1[0].positiveScore;
+		
+		if (result_q1[0].negativeScore != null)
+			totalScore -= result_q1[0].negativeScore;
 
 		// This Query checks if user has already voted previously
 		var sql_scoreExist = "SELECT score FROM score_question WHERE user_id = ? AND question_id = ?";
 		
-		db.query(sql_scoreExist, [user_id, question_id], function(err, result)
+		db.query(sql_scoreExist, [user_id, question_id], function(err, result_q2)
 		{
 			if (err)
 			{
 				console.log("select score query failed " + err);
 				return;
 			}
-			var result = result[0]; // stores the score user has voted previously or stores NULL
-
+			
 			// if already voted
-			if (result.length > 0 && result == 1 || result == -1)
+			if (result_q2.length > 0 )
 			{
-				console.log("already voted this question");
-				res.send(String(totalScore)); //since alread voted, sends total vote for question_id 
+				result_q2 = result_q2[0];
+				
+				if (result_q2.score == 1 || result_q2.score == -1)
+				{
+					console.log("already voted this answer sending "  + totalScore);
+					res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
+				}
 			}
-		
 			else
 			{
 				//Array to fill in sql query below
 				var newScoreQuestion = {
 					
-					score : Number(req.body.vote), //score is taken from button input ex: click button like gives 1, click button dislike gives -1
+					score : req.body.vote, //score is taken from button input ex: click button like gives 1, click button dislike gives -1
 					user_id : Number(req.body.user_id), //taken from user session
 					question_id : Number(req.body.question_id), //taken question to which the button is found
 					datetime_scored_question : date.format(new Date(), 'YYYY-MM-DD h:m:s'),
 				};
 					
-				newTotalScore= totalScore + newScoreQuestion.score; //the new totalScore is found by adding (+1 or -1) from the new score voted to the previous total score
+				newTotalScore= totalScore + Number(newScoreQuestion.score); //the new totalScore is found by adding (+1 or -1) from the new score voted to the previous total score
 
 				// This Query inserts the new score (or vote) into the database and res.send the new total score
 				var sql_insertNewScore = "INSERT INTO score_question SET ?";
@@ -169,7 +195,8 @@ router.post("/question-vote", function(req, res) {
 					}
 					else
 					{
-						console.log("User succesfully voted!")
+						console.log("User succesfully voted!");
+						
 						res.send(String(newTotalScore)); // sends the new total vote for question_id 
 					}
 				});
