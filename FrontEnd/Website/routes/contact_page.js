@@ -59,6 +59,22 @@ router.post('/', (req,res) => {
 	});
 
 
+	mailOptions = {
+		from: 'soen341qaproject@gmail.com',
+		to: req.session.email,
+		subject: 'Confirmation',
+		html: '<div style="margin: auto; background-color: #eaf7fa; width: 75%;"><h1 style="text-align: center;">Confirmation from: ' + fname + ' ' + lname + '</h1><p style="text-align: center;">Message: ' + subject + '</p></div>'
+	};
+	
+	transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Email sent: ' + info.response);
+		}
+	});
+
+
 	res.redirect("/contact");
 });
 
