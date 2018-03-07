@@ -54,6 +54,7 @@ router.post('/', (req,res) => {
 					req.session.dateOfBirth = result[0].birth_date;
 					req.session.fName = result[0].first_name;
 					req.session.lName = result[0].last_name;
+					req.session.email = result[0].email;
 					
 					res.redirect('/home');
 				}
