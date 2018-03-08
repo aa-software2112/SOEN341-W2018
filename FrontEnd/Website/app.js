@@ -23,6 +23,7 @@ var login_page = require('./routes/login_page');
 var ask_page = require('./routes/ask_page');
 var userprofile_page = require('./routes/userprofile_page');
 var logout = require('./routes/logout');
+var vote = require('./routes/vote');
 
 var app = express();
 
@@ -104,7 +105,7 @@ app.use('/ask', ask_page);
 app.use('/askform', ask_page);
 app.use('/user_profile', userprofile_page);
 app.use('/logout', logout);
-
+app.use('/vote', vote);
 
 /** 
 * ============================================================================
