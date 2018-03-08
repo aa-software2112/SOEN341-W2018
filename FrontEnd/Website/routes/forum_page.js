@@ -28,7 +28,7 @@ router.get('/:q_id', (req, res) => {
 		return;
 	}
 	//query from question table joined with user's table user_id
-	var sql = "select question.question_title,question.question_body, question.datetime_asked, \
+	var sql = "select question.question_title,question.question_body, question.datetime_asked, user.user_id, \
 	question.question_id, user.username AS asked_by FROM question JOIN user ON question.user_id = user.user_id \
 	WHERE question_id = ?"
 	
@@ -41,7 +41,7 @@ router.get('/:q_id', (req, res) => {
 		console.log("FORUM RESULT " + util.inspect(result));
 		
 		//second query getting answer table and also joined with user's table user_id (yes, this is a query inside a query)
-		var sql2 ="select answer.answer_body, answer.answer_id, answer.datetime_answered, \
+		var sql2 ="select answer.answer_body, answer.answer_id, answer.datetime_answered, user.user_id, \
 		user.username AS answered_by FROM answer JOIN user ON answer.user_id = user.user_id \
 		WHERE answer.question_id = ?";
 		db.query(sql2,[qId], function(err,answer){
@@ -58,6 +58,7 @@ router.get('/:q_id', (req, res) => {
 				body : result[result.length-1].question_body,
 				
 				// following code implemented using SQL2 query
+				userID: result[result.length-1].user_id,
 				user_asked: result[result.length-1].asked_by,
 				question_pts: 10,
 				datetime_asked:(new Date(result[result.length-1].datetime_asked)).toISOString().split("T")[0],
@@ -72,6 +73,7 @@ router.get('/:q_id', (req, res) => {
 						{
 							answer_id: answer[i].answer_id,
 							answer: answer[i].answer_body,
+							userID: answer[i].user_id,
 							user_answered: answer[i].answered_by,
 							answer_pts: Math.round(Math.random()*1000 + 1),
 							datetime_answered: (new Date(answer[i].datetime_answered)).toISOString().split("T")[0]
