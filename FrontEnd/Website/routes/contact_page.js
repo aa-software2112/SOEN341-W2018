@@ -41,41 +41,61 @@ router.post('/', (req,res) => {
 	//console.log (" Thank you "+ fname + " "+ lname + " from "+ country + " for contacting us.");
 	console.log(req.body);
 
-	//contains information about email that will be sent
-	var mailOptions = {
-		from: 'soen341qaproject@gmail.com',
-		to: 'soen341qaproject@gmail.com',
-		subject: 'Email sent by user',
-		html: '<div style="margin: auto; background-color: #eaf7fa; width: 75%;"><h1 style="text-align: center;">From: ' + fname + ' ' + lname + '</h1><p style="text-align: center;">Message: ' + subject + '</p></div>'
-	};
 
-	//sends the email
-	transporter.sendMail(mailOptions, function(error, info){
-		if (error) {
-			console.log(error);
-		} else {
-			console.log('Email sent: ' + info.response);
-		}
-	});
+    res.render('email', {fname: req.body.firstname, lName: req.body.lastname}, function(err, html){ 
+    if (err) {
+        console.log('error rendering email template:', err) 
+        return
+    } else {
 
+    	//contains information about email that will be sent
+        var mailOptions = {
+            from: 'soen341qaproject@gmail.com',
+            to : 'soen341qaproject@gmail.com',
+            subject: 'Thank You For Contacting Us',
+            generateTextFromHtml : true, 
+            html: html 
+        };
 
-	mailOptions = {
-		from: 'soen341qaproject@gmail.com',
-		to: req.session.email,
-		subject: 'Confirmation',
-		html: '<div style="margin: auto; background-color: #eaf7fa; width: 75%;"><h1 style="text-align: center;">Confirmation from: ' + fname + ' ' + lname + '</h1><p style="text-align: center;">Message: ' + subject + '</p></div>'
-	};
-	
-	transporter.sendMail(mailOptions, function(error, info){
-		if (error) {
-			console.log(error);
-		} else {
-			console.log('Email sent: ' + info.response);
-		}
-	});
+		//sends the email
+        transporter.sendMail(mailOptions, function(error, response){
+            if(error) {
+                console.log(error);
+                res.send('Mail Error! Try again')
+            } else {
+                console.log(response);
+
+                res.send("Mail succesfully sent!")
+            }
+        });
 
 
-	res.redirect("/contact");
+        mailOptions = {
+            from: 'soen341qaproject@gmail.com',
+            to : req.session.email,
+            subject: 'Thank You For Contacting Us',
+            generateTextFromHtml : true,
+            html: html 
+        };
+
+        
+        transporter.sendMail(mailOptions, function(error, response){
+            if(error) {
+                console.log(error);
+                res.send('Mail Error! Try again')
+            } else {
+                console.log(response);
+
+                res.send("Mail succesfully sent!")
+            }
+        }); */
+
+
+      } 
+    }); 
+
+    res.redirect("/contact");
 });
+
 
 module.exports = router;
