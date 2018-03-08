@@ -42,7 +42,7 @@ router.post('/', (req,res) => {
 	console.log(req.body);
 
 
-    res.render('email', {fname: req.body.firstname, lName: req.body.lastname}, function(err, html){ 
+    res.render('email_user', {fname: req.body.firstname, lName: req.body.lastname, message: req.body.subject}, function(err, html){ 
     if (err) {
         console.log('error rendering email template:', err) 
         return
@@ -88,7 +88,7 @@ router.post('/', (req,res) => {
 
                 res.send("Mail succesfully sent!")
             }
-        }); */
+        }); 
 
 
       } 
