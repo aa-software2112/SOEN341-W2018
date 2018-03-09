@@ -1,6 +1,0 @@
-If you want to create tryout testing file, so it doesn't mess with the original version.
-1. create a new folder.
-2. with the command line, cd to the folder
-3. npm init
-4. npm install --save-dav mocha chai
-5. go to package.json and modify the line "test": mocha || true"
