@@ -135,7 +135,7 @@ router.get(['/','/:u_id'],
 									output = {
 										
 										user_profile_info: {
-											userName: result_userInfo[0].username,
+	 										userName: result_userInfo[0].username,
 											user_firstName: result_userInfo[0].first_name,
 											user_lastName: result_userInfo[0].last_name,
 											user_birthDate: result_userInfo[0].birth_date,

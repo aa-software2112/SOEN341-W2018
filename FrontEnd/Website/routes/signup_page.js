@@ -39,7 +39,6 @@ router.get('/confirmation/:uname/:email', (req, res) => {
 /* logs info from user from signup page*/
 router.post('/', (req,res) => {
 	
-	
 	// Query check if user already exists
 	var check_exists = "SELECT " + 
 	"SUM(CASE WHEN email = ? then 1 else 0 end) email_count, " + 
