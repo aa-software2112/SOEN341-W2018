@@ -9,6 +9,7 @@ describe("sign up", function () {
 			.expect(200, done);
 	});
 
+/*
 		// Checks to ensure that form data is being sent over the server
 	it("POST data - Sign Up page", function(done) {
 		request(app).post("/sign_up")
@@ -16,4 +17,5 @@ describe("sign up", function () {
 					year: "1905", month: "10", day: "12", gender: "other" })
 			.expect(200, done);
 	});
+	*/
 });
