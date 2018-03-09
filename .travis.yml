@@ -2,4 +2,4 @@ language: node_js
 sudo: required
 node_js:
   "stable"
-script: ./frontend/website/test
+script: ./FrontEnd/Website/test
