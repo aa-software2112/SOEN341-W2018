@@ -42,6 +42,8 @@ router.post('/', (req,res) => {
 	console.log(req.body);
 
 
+	// Uses the ejs rendering engine to render the email 
+    // Pass in variables that will be used in email
     res.render('email_user', {fname: req.body.firstname, lName: req.body.lastname, message: req.body.subject}, function(err, html){ 
     if (err) {
         console.log('error rendering email template:', err) 
@@ -73,7 +75,8 @@ router.post('/', (req,res) => {
     }); 
 
 
-
+    // Uses the ejs rendering engine to render the email 
+    // Pass in variables that will be used in email
     res.render('email_website', {fname: req.body.firstname, lName: req.body.lastname, country: req.body.country, message: req.body.subject}, function(err, html){ 
     if (err) {
         console.log('error rendering email template:', err) 
