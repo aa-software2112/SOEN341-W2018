@@ -1,4 +1,4 @@
 language: node_js
 node_js:
   "stable"
-scirpt: /frontend/webiste/test
+scirpt: frontend/webiste/test
