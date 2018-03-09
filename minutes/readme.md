@@ -1,5 +1,11 @@
 Meeting Times:
 
+Mar. 2, 2018: 13:15 - 13:30
+    Everyone present
+
+Mar. 2, 2018: 10:00 - 1:00
+    Everyone present
+
 Feb. 20, 2018: 17:00 - 20:00
     Everyone present except Nizar, Ruochen, Saleh, Tom
     

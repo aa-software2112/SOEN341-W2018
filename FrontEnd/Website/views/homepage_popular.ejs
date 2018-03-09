@@ -45,6 +45,7 @@
                         <h5 class="card-title">Popular Questions</h5>
                         <% for (var popular_q_list = 0; popular_q_list<homepage.popular.popular_question_list.length; popular_q_list++) { %>
                             <% var questions = homepage.popular.popular_question_list %>
+
                             <div class="q-container make-flex flex-horiz center-div">
 								
 								<div class="q-left-bar">
@@ -58,7 +59,7 @@
 										
 										<span class="ans-span">&#9887 <span class="span-val"><%= questions[popular_q_list].numOfAnswers %></span></span>
 										<br>
-										<a class="user-a" href="#"> <%= questions[popular_q_list].userName %> </a>
+										<a class="user-a" href=<%= "/user_profile/" + String(questions[popular_q_list].userID) %>> <%= questions[popular_q_list].userName %> </a>
 										<br>
 										<span class="date-span">  <%= questions[popular_q_list].date_ans.split(" - ")[0] %> </span>
 									</div>

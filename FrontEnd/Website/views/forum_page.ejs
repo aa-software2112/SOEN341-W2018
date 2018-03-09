@@ -23,7 +23,7 @@
 					<div class="make-flex flex-vert" id="question-votes">
 						<p class="qup upvote vote" id=<%= ( typeof logged !== "undefined" && logged) ? "q-upvote-"+String(forum.q_id) + "-" + String(user_id) : "q-upvote-null"  %>> &#10004; </p>
 						<p class="qdown downvote vote" id=<%= ( typeof logged !== "undefined" && logged) ? "q-upvote-"+String(forum.q_id) + "-" + String(user_id) : "q-downvote-null"  %>> &#10006; </p>
-						<p class="vote" id="q-votevalue"> -1 </p>
+						<p class="vote" id="q-votevalue"> <%= forum.question_pts %> </p>
 					</div>
 					
 					<div class="make-flex flex-vert" id="question">
@@ -37,7 +37,7 @@
 						
 						<div id="user-asked-div">
 							<p id="user-asked-info">
-								<%= forum.user_asked %> | <%= forum.question_pts %> | <%= forum.datetime_asked %>
+								<a href=<%= "/user_profile/" + String(forum.userID) %>> <%= forum.user_asked %> </a> | <%= forum.question_pts %> | <%= forum.datetime_asked %>
 							</p>
 						</div>
 					</div>
@@ -53,13 +53,13 @@
 					<div class="make-flex flex-vert answer-votes">
 						<p class="ans-upvote vote upvote" id=<%= ( typeof logged !== "undefined" && logged) ? "ans-upvote-"+String(answers[ans_idx].answer_id) + "-" + String(user_id) : "ans-upvote-null-" + String(answers[ans_idx].answer_id)  %>> &#10004; </p>
 						<p class="ans-downvote vote downvote" id=<%= ( typeof logged !== "undefined" && logged) ? "ans-downvote-"+String(answers[ans_idx].answer_id) + "-" + String(user_id) : "ans-downvote-null-" + String(answers[ans_idx].answer_id)  %>> &#10006; </p>
-						<p class="vote vote-value" id=<%= ( typeof logged !== "undefined" && logged) ? "ans-count-"+String(answers[ans_idx].answer_id) : "ans-count-null-" + String(answers[ans_idx].answer_id) %>> -1 </p>
+						<p class="vote vote-value" id=<%= ( typeof logged !== "undefined" && logged) ? "ans-count-"+String(answers[ans_idx].answer_id) : "ans-count-null-" + String(answers[ans_idx].answer_id) %>> <%= answers[ans_idx].answer_pts %> </p>
 					</div>
 					
 					<div class="make-flex flex-vert answer">
 						<div class="user-answer-div">
 							<p class="user-answer-info">
-								<%= answers[ans_idx].user_answered %> | <%= answers[ans_idx].answer_pts %> | <%= answers[ans_idx].datetime_answered %> 
+								<a href=<%= "/user_profile/" + String(answers[ans_idx].userID) %>> <%= answers[ans_idx].user_answered %> </a> | <%= answers[ans_idx].answer_pts %> | <%= answers[ans_idx].datetime_answered %> 
 							</p>
 						</div>
 						

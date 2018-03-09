@@ -68,10 +68,7 @@
 								
 								
 								</div>
-							
-								
-							
-								<!--
+					
                                 <div ><span class="badge badge-primary badge-pill">  </span><br>votes</div>
                                 <div ><span class="badge badge-primary badge-pill"> </span><br> answer</div>
                                 
@@ -79,14 +76,13 @@
                                     <h6 class="">
                                         <a href=<%= "/question_forum/" + String(questions[newest_q_list].questionID) %>> <%= questions[newest_q_list].questionTitle %> </a>
                                     </h6>
-                                    
+                                
                                     <div class="">
-                                        <a href="#"> <%= questions[newest_q_list].userName %> </a>
-                                        <div> <%= questions[newest_q_list].date_ans %> </div>
-                                    </div>
+                                        <a href=<%= "/user_profile/" + String(questions[newest_q_list].userID) %>> <%= questions[newest_q_list].userName %> </a>
+                                    <div> <%= questions[newest_q_list].date_ans %> </div>
+                                    
                                 </div>
 								
-								-->
                             </div>
                             <% } %>
                         </div>
