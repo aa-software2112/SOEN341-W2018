@@ -25,7 +25,7 @@ router.get(['/', '/home'], (req, res) => {
 	
 	if(!req.query.tab || req.query.tab === 'newest') { 
 		
-		var query_newest = "SELECT question.question_id, question.question_title, user.username AS asked_by, \
+		var query_newest = "SELECT question.question_id, question.question_title, user.username AS asked_by, user.user_id, \
 		(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
 		(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
 		datetime_asked \
@@ -37,6 +37,7 @@ router.get(['/', '/home'], (req, res) => {
 			if (err) {
 				res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 			} else {
+				
 				var output;
 				if (result.length == 0) 
 				{
@@ -79,13 +80,14 @@ router.get(['/', '/home'], (req, res) => {
 								var num_of_questions = result.length;
 								
 								for (var i = 0; i < num_of_questions; i++) {
-									
+																		
 									var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
 									var d = (new Date(result[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
 									d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
 									
 									var questions = {
 										questionID: result[i].question_id,
+										userID: result[i].user_id,
 										userName: result[i].asked_by,
 										questionTitle: result[i].question_title,
 										numOfVotes: result[i].num_votes,
@@ -104,7 +106,7 @@ router.get(['/', '/home'], (req, res) => {
 		});
 		
 	} else if (req.query.tab === 'popular') {
-		var query_popular = "SELECT question.question_id, question.question_title, user.username AS asked_by,  \
+		var query_popular = "SELECT question.question_id, question.question_title, user.username AS asked_by, user.user_id, \
 		(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
 		(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
 		datetime_asked \
@@ -166,6 +168,7 @@ router.get(['/', '/home'], (req, res) => {
 									
 									var questions = {
 										questionID: result[i].question_id,
+										userID: result[i].user_id,
 										userName: result[i].asked_by,
 										questionTitle: result[i].question_title,
 										numOfVotes: result[i].num_votes,
