@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
     <link rel="stylesheet" type="text/css" href="/stylesheets/footer.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
-    
     
 </head>
 
@@ -19,75 +17,68 @@
     
     <div class="body-container">
         <div class="content-container center-div">
-            <div class="card text-center">
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs questions-tab">
-                        <form>
-                            <li class="nav-item">
-                                <a href="?tab=newest" class="nav-link active tab-link" onclick="openTab(event, 'Newest')"> Newest </a>
-                            </li>
-                        </form>
-                        <form>
-                            <li class="nav-item">
-                                <a href="?tab=popular" class="nav-link active tab-link" onclick="openTab(event, 'Popular')"> Popular </a>
-                            </li>
-                        </form>
-                        
-                        
-                        <!--
-                            <li class="nav-item">
-                                <button class="nav-link tab-link" onclick="openTab(event, 'Featured')">Featured</button>
-                            </li>
-                        -->
-                    </ul>
-                </div>
-                
                 
                 <!-- ////////////////////////////// Popular ////////////////////////////// -->
                 
                 <div class="questions-all">
+				
+				
+				
+					<div class="card-header make-flex flex-horiz">
+						<form class="tab first-tab">
+							<a href="?tab=newest" class="nav-link active tab-link" onclick="openTab(event, 'Newest')"> Newest</a>
+						</form >
+						
+						<form class="tab">
+							<a href="?tab=popular" class="nav-link active tab-link" onclick="openTab(event, 'Popular')"> Popular </a>
+						</form>
+							
+							
+							<!--
+								<li class="nav-item">
+									<button class="nav-link tab-link" onclick="openTab(event, 'Featured')">Featured</button>
+								</li>
+							-->
+					</div>
+				
                     <div class="card-body" id="Popular">
                         <h5 class="card-title">Popular Questions</h5>
                         <% for (var popular_q_list = 0; popular_q_list<homepage.popular.popular_question_list.length; popular_q_list++) { %>
                             <% var questions = homepage.popular.popular_question_list %>
-                            <div class="row summary">
-                                <div class="col-xl summary-vote"><span class="badge badge-primary badge-pill"> <%= questions[popular_q_list].numOfVotes %> </span><br>votes</div>
-                                <div class="col-xl summary-answer"><span class="badge badge-primary badge-pill"><%= questions[popular_q_list].numOfAnswers %></span><br> answer</div>
-                                <!-- <div class="col-xl summary-view"><span class="badge badge-primary badge-pill"> <%= questions[popular_q_list].numOfViews %> </span><br> view </div> -->
-                                
-                                <div class="col-xl-9 summary=question">
-                                    <h6 class="summary-question-hyperlink">
-                                        <a href=<%= "/question_forum/" + String(questions[popular_q_list].questionID) %>>  <%= questions[popular_q_list].questionTitle %> </a>
-                                    </h6>
-                                    <!-- <div class="summary-question-tags">
-                                        <a class="btn btn-primary" href="#" role="button">Tag</a>
-                                        <a class="btn btn-primary" href="#" role="button">Tag</a>
-                                        <a class="btn btn-primary" href="#" role="button">Tag</a>
-                                    </div> -->
-                                    <div class="summary-question-user">
-                                        <a href=<%= "/user_profile/" + String(questions[popular_q_list].userID) %>> <%= questions[popular_q_list].userName %> </a>
-                                        <div> <%= questions[popular_q_list].date_ans %> </div>
-                                    </div>
-                                </div>
+
+                            <div class="q-container make-flex flex-horiz center-div">
+								
+								<div class="q-left-bar">
+								
+								</div>
+								<div class="q-right make-flex flex-horiz">
+									
+									<div class="sub-score">
+									
+										<span class="vote-span">&#9733 <span class="span-val"><%= questions[popular_q_list].numOfVotes %> </span></span>
+										
+										<span class="ans-span">&#9887 <span class="span-val"><%= questions[popular_q_list].numOfAnswers %></span></span>
+										<br>
+										<a class="user-a" href=<%= "/user_profile/" + String(questions[popular_q_list].userID) %>> <%= questions[popular_q_list].userName %> </a>
+										<br>
+										<span class="date-span">  <%= questions[popular_q_list].date_ans.split(" - ")[0] %> </span>
+									</div>
+								
+								
+									<a class="q-title q-link" href=<%= "/question_forum/" + String(questions[popular_q_list].questionID) %> >  <%= questions[popular_q_list].questionTitle %> </a>
+								
+								</div>
+							
                             </div>
                             <% } %>
                         </div>
                     </div>                  
                 </div>
             </div>
-        </div>
-    </div>
-    
-    
-</div>
-
+		
 <% include partials/footer %>
 
 </body>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
 <script src="script.js"></script>
 

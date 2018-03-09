@@ -7,6 +7,13 @@
 	
 }
 
+@font-face {
+	
+	font-family: questrial;
+	src: url('fonts/Questrial-Regular.ttf');
+	
+}
+
 /* global css properties */
 
 * {
@@ -113,6 +120,7 @@ form {
 
 .body-container {
 	
+	margin-top: 40px;
 	min-height:100%;
 }
 
@@ -162,6 +170,195 @@ form {
 .self-left {
 	align-self: flex-start;
 }
+
+/* Homepage */
+
+.tab-link:link, .tab-link:visited {
+	
+	color: #ffdaab;
+	
+}
+
+.card-title {
+	
+	text-align: center;
+	margin-bottom: 10px;
+	font-size: 2em;
+	
+}
+
+.card-header {
+	
+	border-bottom: 1px solid rgba(100,100,100,0.5);
+	box-shadow: 0px 0px 10px 1px rgba(100,100,100,0.1) inset;
+	background-color: 	rgba(128,0,32, 0.85);
+	justify-content: center;
+	margin-bottom: 30px;
+	
+	
+}
+
+.card-header form{
+	
+	
+	min-width: 100px;
+	height: 35px;
+}
+
+.first-tab {
+	
+	margin-right: 30px;
+	
+}
+
+
+
+.tab-link:hover {
+		
+	color: white;
+	
+}
+
+.tab-link {
+	
+	display: block;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	padding-top: 7px;
+	transition: color 0.2s;
+	
+}
+
+.tab-link:link {
+	
+	text-decoration: none;
+	
+}
+
+.q-container {
+	
+	height: auto;
+	min-height: 100px;
+	margin-bottom: 15px;
+	max-width: 720px;
+	box-shadow: 0px 0px 50px 3px rgba(100,100,100,0.1) inset;
+	border-radius: 5px;
+	border: 1px solid rgba(100,100,100,0.2);
+	transition: box-shadow 0.2s, border 0.2s;
+}
+
+.q-container:hover{
+	
+	border: 1px solid rgba(36,129,161, 0.2);
+	box-shadow: 0px 0px 50px 3px rgba(36,129,161, 0.2) inset; 
+	
+}
+
+.q-container:hover > .q-right > .q-link{
+	
+	left: 10px;
+	
+}
+
+.q-left-bar {
+	/*
+	flex: 1;
+	background-color: black;
+	height: auto;
+	max-width: 5px;
+	*/
+}
+
+.q-right {
+	
+	position: relative;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+	flex: 1;
+	
+}
+
+.questions-all {
+	
+	height: auto;
+	
+	border: 1px solid rgba(100,100,100,0.5);
+}
+
+.vote-span {
+	
+	color: rgb(255,215,0);	
+	
+}
+
+.sub-score {
+	width: 150px;
+	padding-right: 20px;
+}
+
+.ans-span {
+	
+	margin-left: 5px;
+	color: rgb(50,205,50);
+	
+}
+
+.q-title {
+	
+	font-family: questrial;
+	position: relative;
+	left: 0px;
+	padding-top: 10px;
+	margin: 2px 0px 0px 0px;
+	flex: 1;
+	transition: left 0.2s;
+}
+
+
+
+.q-link {
+	
+	font-size: 1.0em;
+}
+
+.q-link:link {
+	
+	text-decoration: none;
+	
+}
+
+.bottom-meta {
+	
+	margin-right: 40px;
+	
+}
+
+.user-a {
+	
+	color: 	rgb(36,129,161);
+	
+}
+
+.q-link {
+	
+	color: rgb(62,29,12);
+	
+}
+
+.user-a:link {
+	
+	text-decoration: none;
+	
+}
+
+.span-val {
+	
+	color: black;
+	
+}
+
 
 /* question/answer forum css */
 
@@ -539,6 +736,7 @@ li a:hover, .dropdown:hover .dropbtn {
 	background-color: #1a5e76;
 	padding-left: 20px;
 	padding-right: 50px;
+	box-shadow: 0px 1px 10px 1px rgba(100,100,100,0.5);
 	
 }
 
@@ -707,8 +905,7 @@ HOME PAGE
 /* ------------ Content Margins ------------*/
 
 .card {
-	margin: 40px auto;
-	box-shadow: 0px 10px 28px -4px rgba(234,247,250,1); 
+    box-shadow: 0px 10px 28px -4px rgba(234,247,250,1); 
 }
 .questions-all {
 	margin: 40px 50px;
@@ -775,6 +972,8 @@ HOME PAGE
 
 /* ------------ Questions tab ------------*/
 
+/*
+
 .questions-tab {
 	overflow: hidden;
 }
@@ -782,7 +981,7 @@ HOME PAGE
 .questions-all > div:not(:first-child) {
 	display: none;
 }
-
+*/
 
 /*------------------------------------
 ----------Login temporary css ---------

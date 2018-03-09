@@ -114,19 +114,21 @@ app.use('/vote', vote);
 * ============================================================================
 */
 
-
+/*
 // Catch 404 and forward to err handler
 app.use(function(req, res, next) {
 	var err = new Error('Not found');
 	err.status = 404;
 	next(err);
 });
+*/
 
 /* error handlers 
 * development error handler
 * will print stacktrace
 */
 
+/*
 
 if (app.get('env') === 'development') {
 	app.use(function(err, req, res, next) {
@@ -137,11 +139,13 @@ if (app.get('env') === 'development') {
 		});
 	});
 }
+*/
 
 /* production error handler
 * no stacktraces leaked to user
 */
 
+/*
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.render('invalid_page', {
@@ -149,6 +153,7 @@ app.use(function(err, req, res, next) {
 		error: {}
 	});
 });
+*/
 
 /** 
 * ============================================================================
