@@ -1,5 +1,8 @@
 Meeting Times:
 
+Mar. 9, 2018: 10:00 - 13:00
+    Everyone present
+
 Mar. 2, 2018: 13:15 - 13:30
     Everyone present
 
