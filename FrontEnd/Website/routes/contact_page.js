@@ -41,25 +41,74 @@ router.post('/', (req,res) => {
 	//console.log (" Thank you "+ fname + " "+ lname + " from "+ country + " for contacting us.");
 	console.log(req.body);
 
-	//contains information about email that will be sent
-	var mailOptions = {
-		from: 'soen341qaproject@gmail.com',
-		to: 'soen341qaproject@gmail.com',
-		subject: 'Email sent by user',
-		html: '<div style="margin: auto; background-color: #eaf7fa; width: 75%;"><h1 style="text-align: center;">From: ' + fname + ' ' + lname + '</h1><p style="text-align: center;">Message: ' + subject + '</p></div>'
-	};
 
-	//sends the email
-	transporter.sendMail(mailOptions, function(error, info){
-		if (error) {
-			console.log(error);
-		} else {
-			console.log('Email sent: ' + info.response);
-		}
-	});
+	// Uses the ejs rendering engine to render the email 
+    // Pass in variables that will be used in email
+    res.render('email_user', {fname: req.body.firstname, lName: req.body.lastname, message: req.body.subject}, function(err, html){ 
+    if (err) {
+        console.log('error rendering email template:', err) 
+        return
+    } else {
+
+    	//contains information about email that will be sent
+        var mailOptions = {
+            from: 'soen341qaproject@gmail.com',
+            to : req.body.email,
+            subject: 'Thank You For Contacting Us',
+            generateTextFromHtml : true, 
+            html: html 
+        };
+
+		//sends the email
+        transporter.sendMail(mailOptions, function(error, response){
+            if(error) {
+                console.log(error);
+                res.send('Mail Error! Try again')
+            } else {
+                console.log(response);
+
+                res.send("Mail succesfully sent!")
+            }
+        });
+
+      } 
+    }); 
 
 
-	res.redirect("/contact");
+    // Uses the ejs rendering engine to render the email 
+    // Pass in variables that will be used in email
+    res.render('email_website', {fname: req.body.firstname, lName: req.body.lastname, country: req.body.country, message: req.body.subject}, function(err, html){ 
+    if (err) {
+        console.log('error rendering email template:', err) 
+        return
+    } else {
+
+    	//contains information about email that will be sent
+        var mailOptions = {
+            from: 'soen341qaproject@gmail.com',
+            to : 'soen341qaproject@gmail.com',
+            subject: 'A user has contacted you!',
+            generateTextFromHtml : true, 
+            html: html 
+        };
+
+		//sends the email
+        transporter.sendMail(mailOptions, function(error, response){
+            if(error) {
+                console.log(error);
+                res.send('Mail Error! Try again')
+            } else {
+                console.log(response);
+
+                res.send("Mail succesfully sent!")
+            }
+        });
+
+      } 
+    }); 
+
+    res.redirect("/contact");
 });
+
 
 module.exports = router;
