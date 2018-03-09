@@ -80,6 +80,7 @@ app.use(function(req, res, next) {
 		res.locals.logged = req.session.logged;
 		res.locals.fName = req.session.fName;
 		res.locals.lName = req.session.lName;
+		res.locals.email = req.session.email;
 		//console.log("Outbound cookie " + util.inspect(res.locals));
 	}
 	
