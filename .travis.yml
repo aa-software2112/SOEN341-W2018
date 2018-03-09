@@ -3,5 +3,5 @@ sudo: required
 node_js:
   "stable"
 script:
-  -npm ./FrontEnd/Website/test.about.test.js
+  -npm ./FrontEnd/Website/test/about.test.js
   
