@@ -51,7 +51,7 @@ router.post('/', (req,res) => {
     	//contains information about email that will be sent
         var mailOptions = {
             from: 'soen341qaproject@gmail.com',
-            to : req.session.email,
+            to : req.body.email,
             subject: 'Thank You For Contacting Us',
             generateTextFromHtml : true, 
             html: html 
@@ -74,7 +74,7 @@ router.post('/', (req,res) => {
 
 
 
-    res.render('email_website', {fname: req.body.firstname, lName: req.body.lastname, message: req.body.subject}, function(err, html){ 
+    res.render('email_website', {fname: req.body.firstname, lName: req.body.lastname, country: req.body.country, message: req.body.subject}, function(err, html){ 
     if (err) {
         console.log('error rendering email template:', err) 
         return
