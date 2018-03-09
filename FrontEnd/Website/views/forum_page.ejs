@@ -37,7 +37,7 @@
 						
 						<div id="user-asked-div">
 							<p id="user-asked-info">
-								<%= forum.user_asked %> | <%= forum.question_pts %> | <%= forum.datetime_asked %>
+								<a href=<%= "/user_profile/" + String(forum.userID) %>> <%= forum.user_asked %> </a> | <%= forum.question_pts %> | <%= forum.datetime_asked %>
 							</p>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 					<div class="make-flex flex-vert answer">
 						<div class="user-answer-div">
 							<p class="user-answer-info">
-								<%= answers[ans_idx].user_answered %> | <%= answers[ans_idx].answer_pts %> | <%= answers[ans_idx].datetime_answered %> 
+								<a href=<%= "/user_profile/" + String(answers[ans_idx].userID) %>> <%= answers[ans_idx].user_answered %> </a> | <%= answers[ans_idx].answer_pts %> | <%= answers[ans_idx].datetime_answered %> 
 							</p>
 						</div>
 						
