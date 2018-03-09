@@ -4,7 +4,7 @@
   "description": "website created for soen341",
   "main": "app.js",
   "scripts": {
-    "test": "mocha || true"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
