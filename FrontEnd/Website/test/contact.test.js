@@ -12,7 +12,7 @@ describe("Contact Page", function () {
 	// Checks to ensure that form data is being sent over the server (302 response)
 	it("POST data - Contact page form", function(done) {
 		request(app).post("/contact")
-			//.send({firstname: "testFirst", lastname: "testLast", country: "Canada", subject: "testMessage" })
+			.send({firstname: "testFirst", lastname: "testLast", country: "Canada", subject: "testMessage" })
 			.expect(302, done);
 	});
 });
