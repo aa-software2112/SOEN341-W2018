@@ -1187,9 +1187,8 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 #about-body {
-	max-width: 900px;
-	margin: 40px auto;
-	font-family: Verdana;
+	text-align: center;
+	align-self: center;
 	line-height: 1.5em;
 	font-size: 1.2em;
 	padding: 10px;
@@ -1198,33 +1197,121 @@ li a:hover, .dropdown:hover .dropbtn {
 
 /* About us page / meet the team*/
 
+
+#main-photo-container {
+	
+	
+}
+
+#team-wrapper {
+	
+	margin: auto;
+	max-width: 1280px;
+}
+
 #team {
-	border-radius: 8px;
-	padding: 10px 15px 10px 30px;
-
+	display: flex; 
+	justify-content: center;
+	padding-top: 15px;
 }
 
-img.circular--square {
-  width:  176px;
-  height: 180px;
-  display: block
-  background-size: contain;
-  background-repeat: no-repeat;;
-  border-radius: 50%;
+
+#anthony {
+	 background-image: url("../about_team_img/Anthony.png");
+	background-position: 0% 25%;
 }
-.column {
-    float: left;
-    width: 50%;
-    margin-bottom: 50px;
-    padding: 10px 100px;
-    text-align: center;
+
+#tom {
+background-image: url("../about_team_img/Tom.jpg");
+background-position: 0% 15%;
+	
 }
+
+#nizar {
+	
+	background-image: url("../about_team_img/Nizar.jpg");
+background-position: 20% 15%;
+	
+}
+
+#abishand {
+	
+	background-image: url("../about_team_img/Abishand.JPG");
+	background-position: 20% 60%;
+}
+
+#jason {
+	background-image: url("../about_team_img/Jason.jpg");
+	background-position: 20% 60%;
+}
+
+#alex {
+	background-image: url("../about_team_img/Alex.jpg");
+	background-position: 20% 15%;
+}
+
+.circular--square {
+	box-shadow: 0px 0px 70px 1px rgba(0, 0, 0, 0.65) inset;
+border:none;
+outline: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+	min-height: 350px;
+	transition: box-shadow 0.2s;
+}
+
+
 
 #team-text {
 	font-size: 1.4em;
 	color: rgb(0, 0, 0);
 }
 
+.team-div {
+	
+	padding: 5px 50px 5px 50px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.teammate-div:hover > .circular--square{
+	box-shadow: 0px 0px 70px 1px rgba(0, 0, 0, 0.30) inset;
+
+}
+
+.teammate-div:hover{
+	
+	box-shadow: 0px 0px 15px 5px rgba(100,100,100,0.75);
+	
+}
+
+.dev-link {
+	
+	text-decoration: none;
+	
+}
+
+.dev-link:visited, .dev-link:link{
+	
+	color: inherit;
+	
+}
+
+.teammate-div {
+	
+	margin: 30px;
+	width: 400px;
+	height: 400px;
+	box-shadow: 0px 0px 5px 2px rgba(100,100,100,0.5);
+	transition: box-shadow 0.2s;
+}
+
+.teammate-div img {
+	
+	
+	
+}
 
 
 /* Signup Page CSS */
