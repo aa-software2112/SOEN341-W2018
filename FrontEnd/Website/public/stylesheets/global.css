@@ -51,6 +51,13 @@ form {
 	display: block;
 }
 
+textarea:focus, input:focus {
+	
+	outline: none;
+	box-sizing: border-box;
+	
+}
+
 /* Should be used to facilitate similar background color across pages */
 .std-bg-color {
 	
@@ -131,7 +138,7 @@ form {
 }
 
 .alignment-container {
-	padding-top: 50px;
+	/*padding-top: 50px;*/
 	padding-left: 40px;
 	padding-right: 40px;
 }
@@ -1123,24 +1130,53 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 #question-title-form{
-	padding: 10px;
+	
+	padding: 7px;
+	padding-top: 10px;
 	display:block;
 	width: 100%;
 }
 
+.text-input-shadow-border {
+	border: 1px solid rgba(100, 100, 100, 0.50);
+	box-shadow: 0px 0px 5px 1px rgba(100, 100, 100, 0.20) inset;
+	
+}
+
+#ask-form-div-container {
+	padding: 30px 10px 30px 10px;
+	transition: box-shadow 1s;
+}
+
+#ask-form-div-container:hover {
+	
+	box-shadow: 0px 0px 20px 5px rgba(100,100,100,0.35);
+	
+}
+
 #question-body-form{
+	min-height: 300px;
 	display:block;
 }
 
 #submit-ask {
 	margin-top: 15px;
 	width: 100px;
+	background-color: rgba(128,0,32, 0.85);
+	color: #ffdaab;
+}
+
+#ask-title-div {
+	
+	margin-bottom: 30px;
+	height: 50px;	
+	
 }
 
 .ask-form-p {
-	margin: 10px 0 10px 0;
+	justify-content: center;
+	min-width: 120px;
 	font-family: karmaLight;
-	font-family: "Times New Roman";
 }
 /* About us page/ About us */
 

@@ -1,17 +1,23 @@
-<% include partials/header %>
+<% include partials/header%>
 
 		<% if (typeof logged !== "undefined" && logged == true) { %>
 			<div class="body-container">
 				<div class="content-container center-div">
 					<div class="alignment-container">
 					
-						<div class="make-flex flex-vert">
+						<div id="ask-form-div-container" class="make-flex flex-vert">
 							<form class="make-flex flex-vert center-div" id="ask-form" method="post" action=<%="/ask/askform/" + String(user_id)%>>
-								<p class="ask-form-p">Question Title</p>
-								<input class="std-input-font" id="question-title-form" placeholder=“Title” name="q_title" type="text" required>
-
+								
+								<div class="make-flex flex-horiz" id="ask-title-div">
+									<p  class="make-flex flex-vert ask-form-p">
+										<span>Question Title</span>
+									</p>
+									<input class="text-input-shadow-border std-input-font" id="question-title-form" placeholder="Write a title that clearly identifies what you are asking." name="q_title" type="text" required>
+								</div>
+								<!--
 								<p class="ask-form-p">Question Body</p>
-								<textarea class="std-input-font center-div text-input" place holder=“Enter your questions” id="question-body-form" name="q_body" required></textarea>
+								-->
+								<textarea class="text-input-shadow-border std-input-font center-div " placeholder="The question itself should be direct and descriptive" id="question-body-form" name="q_body" required></textarea>
 								<input class="button self-right" id="submit-ask" type="submit" value="Ask!">
 							</form>
 						</div>
