@@ -19,16 +19,77 @@ var db = require('../database/database');
 // This handles favorite choices
 router.post("/favorite", function(req, res) {
 	
-	console.log("Favorite!");
-	console.log(req.body);
-	
-	
-	
 	// Send "+" if the favorite save was valid,
 	// Send "-" if the favorite save was invalid
-	res.send("+");
+	//res.send("+");
+
+	sql_favorite
+	// This Query checks if user has already voted previously
+	var sql_favoriteExist = "SELECT favorite_answer_id FROM question WHERE question_id = ?";
+		
+	db.query(sql_favoriteExist, [req.body.q_id], function(err, result_qfav)
+		{
+			if (err)
+			{
+				console.log("select favorite_answer_id query failed " + err);
+				return;
+			}
+			
+			console.log("favorite_answer_id" + util.inspect(result_qfav));
 	
+			var result_qfav1 = result_qfav[0];
+
+			if(result_qfav1 != NULL && result_qfav1 == req.body.fav_ans_id)
+			{
+				console.log("already favorited this answer, the favorite_answer_id was" + result_qfav1);
+				res.send(String("+")); // Send "+" if the favorite save was valid,
+			}
+
+			else if( result_qfav1 != NULL && result_qfav1 != req.body.fav_ans_id)
+			{
+
+			var sql_updateFavoriteAnswerID = "UPDATE question SET favorite_answer_id = ? WHERE question_id = ?";
+
+			// Add score to database, table score_answer
+			db.query(sql_updateFavoriteAnswerID, [req.body.fav_ans_id, req.body.q_id], function(err,result){
+				if(err){
+					console.log("update favorite_answer_id query failed " + err);
+					return;
+				}
+				else
+				{
+					console.log("User succesfully update favorite_answer_id!");
+					console.log(result);
+					res.send("+"); // Send "+" if the favorite save was valid,
+				}
+			});
+		}
+			
+		else 
+			{
+
+				// This Query inserts the new score (or vote) into the database and res.send the new total score
+				var sql_insertNewFavoriteAnswerID = "INSERT INTO question SET favorite_answer_id = ? WHERE question_id = ?";
+
+				// Add score to database, table score_answer
+				db.query(sql_insertNewFavoriteAnswerID, [req.body.fav_ans_id, req.body.q_id], function(err,result){
+					if(err){
+						console.log("insert score query failed " + err);
+						return;
+					}
+					else
+					{
+						console.log("questioner succesfully favorited!");
+						console.log(result);
+						res.send("+"); // Send "+" if the favorite save was valid,
+					}
+				});
+				
+			}	
+		});
+
 });
+	
 
 
 // This handles votes for answers ONLY
