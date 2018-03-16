@@ -994,11 +994,25 @@ li a:hover, .dropdown:hover .dropbtn {
 --------------------------------------*/
 
 
-	
-	.login_form{
-		background-color: #eaf7fa;
-		border: 3px solid #f1f1f1;
+	.label-div p {
+			justify-content: center;
+			align-items: flex-end;
+			min-width: 120px;
+			font-family: karmaLight;
+			padding-right: 15px;
+			
+		
 	}
+
+
+	.form-input{
+		
+		padding: 7px;
+		padding-top: 10px;
+		display:block;
+		width: 400px;
+	}
+
 	
 	.login_body-container {
 		padding: 16px;
@@ -1015,6 +1029,7 @@ li a:hover, .dropdown:hover .dropbtn {
 		margin: 24px 0 12px 0;
 	}
 	
+	/*
 	input[type=email], input[type=password] {
 		width: 100%;
 		padding: 12px 20px;
@@ -1023,7 +1038,7 @@ li a:hover, .dropdown:hover .dropbtn {
 		border: 1px solid #ccc;
 		box-sizing: border-box;
 	}
-
+	*/
 
 	button:hover {
 		opacity: 0.8;
@@ -1178,6 +1193,13 @@ li a:hover, .dropdown:hover .dropbtn {
 	min-width: 120px;
 	font-family: karmaLight;
 }
+
+.label-div {
+	
+	margin-bottom: 15px; 
+	
+}
+
 /* About us page/ About us */
 
 #about {
