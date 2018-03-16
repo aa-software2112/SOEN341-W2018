@@ -103,7 +103,7 @@ router.post("/answer-vote", function(req, res) {
 				*/
 
 				// This Query inserts the new score (or vote) into the database and res.send the new total score
-				var sql_insertNewScore = "INSERT INTO score_answer SET score = ?, datetime_scored_answer = ? where user_id = ?";
+				var sql_insertNewScore = "UPDATE INTO score_answer SET score = ?, datetime_scored_answer = ? WHERE user_id = ?";
 
 				// Add score to database, table score_answer
 				db.query(sql_insertNewScore, [score, datetime_scored_answer, user_id], function(err,result){
