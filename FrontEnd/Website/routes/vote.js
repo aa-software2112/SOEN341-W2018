@@ -16,6 +16,20 @@ var db = require('../database/database');
 * ============================================================================
 */
 
+// This handles favorite choices
+router.post("/favorite", function(req, res) {
+	
+	console.log("Favorite!");
+	console.log(req.body);
+	
+	
+	
+	// Send "+" if the favorite save was valid,
+	// Send "-" if the favorite save was invalid
+	res.send("+");
+	
+});
+
 
 // This handles votes for answers ONLY
 // see post below for question handler
