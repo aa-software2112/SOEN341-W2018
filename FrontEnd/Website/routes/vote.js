@@ -106,7 +106,7 @@ router.post("/answer-vote", function(req, res) {
 				var sql_insertNewScore = "INSERT INTO score_answer SET score = ?, datetime_scored_answer = ? where user_id = ?";
 
 				// Add score to database, table score_answer
-				db.query(sql_insertNewScore, [score, datetime_scored_answer, user_id], updateScoreAnswer, function(err,result){
+				db.query(sql_insertNewScore, [score, datetime_scored_answer, user_id], function(err,result){
 					if(err){
 						console.log("update score query failed " + err);
 						return;
