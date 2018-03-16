@@ -1,5 +1,5 @@
 function checkLogin(){
-				return checkPassword();
+				return (checkPassword() && checkEmail);
 			}
 
 
@@ -35,3 +35,22 @@ function checkLogin(){
 
 
 			}
+
+
+
+			function checkEmail(){
+				var domEmail = document.getElementById("signup_email");
+				 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  				 var emailReturn = re.test(domEmail.value);
+
+  				 if(emailReturn)
+					return true;
+				else{
+					alert("Email is not in correct format.");
+					return false;
+				} 				 
+
+			}		
+
+
+
