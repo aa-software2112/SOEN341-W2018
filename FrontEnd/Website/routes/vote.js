@@ -67,18 +67,60 @@ router.post("/answer-vote", function(req, res) {
 			
 			console.log("Query 2 " + util.inspect(result_q2));
 			
+			var score = Number(req.body.vote);
+
 			// if already voted
 			if (result_q2.length > 0 )
 			{
 				result_q2 = result_q2[0];
-				
+				/*
 				if (result_q2.score == 1 || result_q2.score == -1)
 				{
 					console.log("already voted this answer, sending "  + totalScore);
 					res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
 				}
+				*/
+				
+				if (result_q2.score == 1 && score ==1 || result_q2.score == -1 && score == -1)
+				{
+					console.log("already voted this answer, sending "  + totalScore);
+					res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
+				}
+
+				else if (result_q2.score == 1 && score ==-1 || result_q2.score == -1 && score == 1)
+				{
+
+				//Values to fill in sql query below
+					var score = req.body.vote; //score is taken from button input ex: click button like gives 1, click button dislike gives -1
+					var user_id = Number(req.body.user_id); //taken from user session
+					var datetime_scored_answer = date.format(new Date(), 'YYYY-MM-DD h:m:s');
+				
+					
+				newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote.
+
+				/*Hardcoded query can use to test in database
+				UPDATE score_answer SET score = '1', datetime_scored_answer = '2018-02-09 23:59:59' WHERE user_id = 7;
+				*/
+
+				// This Query inserts the new score (or vote) into the database and res.send the new total score
+				var sql_insertNewScore = "INSERT INTO score_answer SET score = ?, datetime_scored_answer = ? where user_id = ?";
+
+				// Add score to database, table score_answer
+				db.query(sql_insertNewScore, [score, datetime_scored_answer, user_id], updateScoreAnswer, function(err,result){
+					if(err){
+						console.log("update score query failed " + err);
+						return;
+					}
+					else
+					{
+						console.log("User succesfully update vote!");
+						console.log(updateScoreAnswer);
+						res.send(String(newTotalScore)); // sends the new total vote for answer_id 
+					}
+				});
+
+				}
 			}
-		
 			else
 			{
 				//Array to fill in sql query below
