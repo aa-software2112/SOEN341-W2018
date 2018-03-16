@@ -1,37 +1,33 @@
-
-
 <% include partials/header %>
 
 <div class="user-div" id="user-stats-div">
 	<div class="center-div" id="view-title">
 		<p class="align-center">
-		Searched for: <%= item %> 
+			Searched for: 
 		</p>
 	</div>
-
+	
 	<!-- Loops over all question titles -->
-	<% for (var i = 0; i < 10; i++) { %>
-		<div class="make-flex flex-vert" id="view-results">
-									
+	
+	
+	<div class="make-flex flex-vert" id="view-results">
+		<% for (var search_q_index = 0; search_q_index<search_page.search_question.search_question_list.length; search_q_index++) { %>
+			<% var questions_list = search_page.search_question.search_question_list %>
+			
 			<div class="make-flex flex-vert  view-result">
 				<p class="view-result-p">
-				<a href="/question_forum/666">
-				Jesus! You were going to kill that guy!
-				Of course, Im a Terminator.
-				Listen to me very carefully, ok?
-				You just cant go around killing people!
-				Why?
-				Cause you cant!
-				Why?
-				</a>
+					<a href=<%= "/question_forum/" + String(questions_list[search_q_index].questionID) %> > 
+						<%= questions_list[search_q_index].questionList %>
+					</a>
 				</p>
 				<p class="self-right date-result-p">
-				Username - 2/4/2018
+					<%= questions_list[search_q_index].userName %> - <%= questions_list[search_q_index].date_ask %>
 				</p>
 			</div>
+			<% } %>
 		</div>
-	<% };%>
-</div>
-
-
-<% include partials/footer %>
+		
+	</div>
+	
+	
+	<% include partials/footer %>
