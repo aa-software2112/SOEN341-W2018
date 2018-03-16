@@ -6,12 +6,14 @@ window.addEventListener("load", function() {
 	var inputs = document.getElementsByTagName("INPUT");
 	
 	console.log(typeof inputs);
+	console.log(inputs);
 	
 	for (var i = 0; i<inputs.length; i++)
 	{
 		
+		
 		// Make sure navbar doesn't get affected
-		if (inputs[i].type === "text" && inputs[i].name !== "search")
+		if ( inputs[i].name !== "search" && (inputs[i].type === "text" || inputs[i].type === "password" || inputs[i].type === "email"))
 		{
 			console.log(inputs[i]);
 		

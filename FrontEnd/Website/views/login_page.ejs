@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="/stylesheets/contact-stylesheet.css">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
 		<script src="/scripts/cookie_check.js" type="text/javascript"></script>
+		<script src="/scripts/input-script.js" type="text/javascript"></script>
 	</head>
 	
 	<body>
@@ -19,7 +20,7 @@
 					 
 					  <div class="login_title_img_container">
 						
-						<h1>Member Login</h1>
+						<h3>Member Login</h3>
 						
 						<!--<img src="login-avatar.png" alt="Avatar" class="avatar">
 						-->
@@ -38,6 +39,7 @@
 					  <div class="login_body-container">
 					
 						<!-- Form to login existing user -->
+						
 						<div class="label-div make-flex flex-horiz">
 							<p class="ask-form-p make-flex flex-vert">
 								<span>Email</span>
@@ -53,16 +55,20 @@
 							</p>							
 							<input class="std-input-font text-input-shadow-border form-input" type="password" placeholder="Password" name="password" pattern= ".{6,12}" required title="Password must be between 6 and 12 characters" required>
 						</div>
-						<button id="login-btn" type="submit" class="loginbtn" formaction="/login">LOGIN</button>
 						
-					  </div>
+						<div class="login-buttons make-flex flex-vert">
+							<button id="login-btn" type="submit" class="loginbtn button" formaction="/login">Login</button>
+							<a href="sign_up"><button type="button" class="loginbtn button" formaction="sign_up.html">Sign up</button></a>
+						</div>
+						
+					</div>
 
 					  <div class="login_body-container">
 					  
+						<!--
 						<a href="home_page.html"><button type="button" class="cancelbtn" formaction="/landing">Cancel </button> </a>
+						-->
 						
-						<a href="sign_up.html"><button type="button" class="sign_upbtn" formaction="sign_up.html">Sign up</button></a>
-					  
 					 </div>
 					
 					 

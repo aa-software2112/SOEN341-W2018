@@ -38,7 +38,8 @@ h2 {
 
 h3 {
 	font-size: 2.5em;
-	margin: 20px auto 10px;
+	/*margin: 20px auto 10px;*/
+	margin: 0px auto 10px;
     text-align: center;
 }
 
@@ -1003,6 +1004,12 @@ li a:hover, .dropdown:hover .dropbtn {
 			
 		
 	}
+	
+	.label-div {
+		
+		justify-content: center;
+		height: 50px;
+	}
 
 
 	.form-input{
@@ -1015,7 +1022,6 @@ li a:hover, .dropdown:hover .dropbtn {
 
 	
 	.login_body-container {
-		padding: 16px;
 		margin: 2%
 	}
 	.login_container {
@@ -1101,6 +1107,21 @@ li a:hover, .dropdown:hover .dropbtn {
 	#login-msg {
 		margin-bottom: 10px;
 		max-width: 80%;
+	}
+	
+	.login-buttons {
+		
+		align-items: flex-end;
+		
+	}
+	
+	.loginbtn {
+		
+		width: 125px;
+		height: 50px;
+		background-color: rgba(128,0,32, 0.85);
+		color: #ffdaab;
+		
 	}
 	
 /* Contact page */
