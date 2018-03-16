@@ -40,7 +40,7 @@ app.use(cookieSession({
 	// Cookie stored on client-side for 1 year in milliseconds
 }));
 
-
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Views engine setup
