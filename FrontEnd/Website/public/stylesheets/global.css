@@ -390,14 +390,19 @@ form {
 #q-downvote:hover,
 .upvote:hover,
 .downvote:hover, 
-.star:hover {
+.vote:hover {
 	
 	cursor: pointer;
 	
 }
 
-.star {
+.favorite-placeholder {
 	
+	
+	
+}
+
+.star {
 	-webkit-text-stroke-width: 0.5px;
 	-webkit-text-stroke-color: black;
 	color: yellow;
@@ -406,6 +411,13 @@ form {
 .null-star {
 	
 	display: none;
+	
+}
+
+.star-not-chosen {
+	-webkit-text-stroke-width: 0.5px;
+	-webkit-text-stroke-color: black;
+	color: gray;
 	
 }
 
