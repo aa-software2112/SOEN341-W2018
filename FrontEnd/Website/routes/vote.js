@@ -114,7 +114,7 @@ router.post("/answer-vote", function(req, res) {
 					else
 					{
 						console.log("User succesfully update vote!");
-						console.log(updateScoreAnswer);
+						console.log(result);
 						res.send(String(newTotalScore)); // sends the new total vote for answer_id 
 					}
 				});
