@@ -389,9 +389,23 @@ form {
 #q-upvote:hover,
 #q-downvote:hover,
 .upvote:hover,
-.downvote:hover {
+.downvote:hover, 
+.star:hover {
 	
 	cursor: pointer;
+	
+}
+
+.star {
+	
+	-webkit-text-stroke-width: 0.5px;
+	-webkit-text-stroke-color: black;
+	color: yellow;
+}
+
+.null-star {
+	
+	display: none;
 	
 }
 
