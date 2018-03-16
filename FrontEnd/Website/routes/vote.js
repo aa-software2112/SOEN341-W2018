@@ -23,7 +23,7 @@ router.post("/favorite", function(req, res) {
 	// Send "-" if the favorite save was invalid
 	//res.send("+");
 
-	sql_favorite
+	
 	// This Query checks if user has already voted previously
 	var sql_favoriteExist = "SELECT favorite_answer_id FROM question WHERE question_id = ?";
 		
@@ -37,15 +37,20 @@ router.post("/favorite", function(req, res) {
 			
 			console.log("favorite_answer_id" + util.inspect(result_qfav));
 	
-			var result_qfav1 = result_qfav[0];
+			var result_qfav1 = result_qfav.favorite_answer_id;
 
-			if(result_qfav1 != NULL && result_qfav1 == req.body.fav_ans_id)
+
+			//If statement to check if there is already a value in the favorite_answer_id column
+			if(result_qfav1 != null && result_qfav1 == req.body.fav_ans_id)
 			{
 				console.log("already favorited this answer, the favorite_answer_id was" + result_qfav1);
 				res.send(String("+")); // Send "+" if the favorite save was valid,
 			}
 
-			else if( result_qfav1 != NULL && result_qfav1 != req.body.fav_ans_id)
+
+			//Query if we want to allow the questioner to favorite another answer
+
+			/*else if( result_qfav1 != null && result_qfav1 != req.body.fav_ans_id)
 			{
 
 			var sql_updateFavoriteAnswerID = "UPDATE question SET favorite_answer_id = ? WHERE question_id = ?";
@@ -63,13 +68,13 @@ router.post("/favorite", function(req, res) {
 					res.send("+"); // Send "+" if the favorite save was valid,
 				}
 			});
-		}
+		}*/
 			
 		else 
 			{
 
-				// This Query inserts the new score (or vote) into the database and res.send the new total score
-				var sql_insertNewFavoriteAnswerID = "INSERT INTO question SET favorite_answer_id = ? WHERE question_id = ?";
+				// This Query inserts the new favorite answer Id into the table
+				var sql_insertNewFavoriteAnswerID = "UPDATE question SET favorite_answer_id = ? WHERE question_id = ?";
 
 				// Add score to database, table score_answer
 				db.query(sql_insertNewFavoriteAnswerID, [req.body.fav_ans_id, req.body.q_id], function(err,result){
