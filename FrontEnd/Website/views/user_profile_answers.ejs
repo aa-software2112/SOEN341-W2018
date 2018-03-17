@@ -18,12 +18,19 @@
 				
 				<div id="user-area-div" class="make-flex flex-row flex-left">
 					<div class="user-div" id="user-profile-div">
-						<div class="image center-div" id="logo-div">
-							
-							
-						</div>
+
+						<% var userProfile = userprofile.user_profile_info %>
+
+                        <% if(userProfile.user_gender == "M") { %>
+                        <div class="image center-div" id="male_profile"></div>      
+                        <% } else if(userProfile.user_gender == "F") { %>
+                        <div class="image center-div" id="female_profile"></div>        
+                        <% } else if(userProfile.user_gender == "O") { %>
+                        <div class="image center-div" id="other_profile"></div>     
+                        <% } %>
+
 						<div class="self-top" id="user-profile-metrics">
-                            <% var userProfile = userprofile.user_profile_info %>
+                          
 								<p class="align-center" id="username">
 									<%= userProfile.userName %>
 								</p>
