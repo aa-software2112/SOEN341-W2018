@@ -153,13 +153,6 @@ router.post("/answer-vote", function(req, res) {
 			if (result_q2.length > 0 )
 			{
 				result_q2 = result_q2[0];
-				/*
-				if (result_q2.score == 1 || result_q2.score == -1)
-				{
-					console.log("already voted this answer, sending "  + totalScore);
-					res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
-				}
-				*/
 				
 				if (result_q2.score == 1 && score ==1 || result_q2.score == -1 && score == -1)
 				{
@@ -176,13 +169,9 @@ router.post("/answer-vote", function(req, res) {
 					var datetime_scored_answer = date.format(new Date(), 'YYYY-MM-DD h:m:s');
 				
 					
-				newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote.
+				newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote. Allows for toggling between upvote & downvote
 
-				/*Hardcoded query can use to test in database
-				UPDATE score_answer SET score = '1', datetime_scored_answer = '2018-02-09 23:59:59' WHERE user_id = 7;
-				*/
-
-				// This Query inserts the new score (or vote) into the database and res.send the new total score
+				//Query updates the new score (or vote) into the database
 				var sql_insertNewScore = "UPDATE score_answer SET score = ?, datetime_scored_answer = ? WHERE user_id = ?";
 
 				// Add score to database, table score_answer
@@ -281,24 +270,18 @@ router.post("/question-vote", function(req, res) {
 				console.log("select score query failed " + err);
 				return;
 			}
-			
+
+			var score = Number(req.body.vote);
+
 			// if already voted
 			if (result_q2.length > 0 )
 			{
 				result_q2 = result_q2[0];
 				
-				/*
-				if (result_q2.score == 1 || result_q2.score == -1)
-				{
-					console.log("already voted this answer sending "  + totalScore);
-					res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
-				}
-				*/
-				
 				if (result_q2.score == 1 && score ==1 || result_q2.score == -1 && score == -1)
 				{
-					console.log("already voted this answer, sending "  + totalScore);
-					res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
+					console.log("already voted this question, sending "  + totalScore);
+					res.send(String(totalScore)); //since alread voted, sends total vote for question_id 
 				}
 
 				else if (result_q2.score == 1 && score ==-1 || result_q2.score == -1 && score == 1)
@@ -310,16 +293,12 @@ router.post("/question-vote", function(req, res) {
 					var datetime_scored_question = date.format(new Date(), 'YYYY-MM-DD h:m:s');
 				
 					
-				newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote.
-
-				/*Hardcoded query can use to test in database
-				UPDATE score_answer SET score = '1', datetime_scored_answer = '2018-02-09 23:59:59' WHERE user_id = 7;
-				*/
+				newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote
 
 				// This Query inserts the new score (or vote) into the database and res.send the new total score
 				var sql_insertNewScore = "UPDATE score_question SET score = ?, datetime_scored_question = ? WHERE user_id = ?";
 
-				// Add score to database, table score_answer
+				// Add score to database, table score_question
 				db.query(sql_insertNewScore, [score, datetime_scored_question, user_id], function(err,result){
 					if(err){
 						console.log("update score query failed " + err);
@@ -329,7 +308,7 @@ router.post("/question-vote", function(req, res) {
 					{
 						console.log("User succesfully update vote!");
 						console.log(result);
-						res.send(String(newTotalScore)); // sends the new total vote for answer_id 
+						res.send(String(newTotalScore)); // sends the new total vote for question_id 
 					}
 				});
 
