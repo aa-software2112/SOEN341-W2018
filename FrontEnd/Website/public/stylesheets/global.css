@@ -556,6 +556,27 @@ form {
 	background-size: cover;
 }
 
+#male_profile {
+	height: 200px;
+	width: 200px;
+	background-image: url("/male_user.png");
+	background-size: cover;
+}
+
+#female_profile {
+	height: 200px;
+	width: 200px;
+	background-image: url("/female_user.png");
+	background-size: cover;
+}
+
+#other_profile {
+	height: 200px;
+	width: 200px;
+	background-image: url("/spring-patterns_02.jpg");
+	background-size: cover;
+}
+
 #user-profile-metrics {
 	width: 100%;
 }
