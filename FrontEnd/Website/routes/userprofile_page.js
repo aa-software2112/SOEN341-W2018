@@ -138,9 +138,15 @@ router.get(['/','/:u_id'],
 	 										userName: result_userInfo[0].username,
 											user_firstName: result_userInfo[0].first_name,
 											user_lastName: result_userInfo[0].last_name,
-											user_birthDate: result_userInfo[0].birth_date,
+											user_birthDate: dateFormat(result_userInfo[0].birth_date, "fullDate"),
 											user_country: result_userInfo[0].country								
 										},
+
+										user_activity: {
+											numberOfQuestions: result.length,
+											numberOfAnswers: result1.length
+										},
+
 										user_questions: {
 											user_question_list:
 											(function() {
@@ -244,9 +250,15 @@ router.get(['/','/:u_id'],
 											userName: result_userInfo[0].username,
 											user_firstName: result_userInfo[0].first_name,
 											user_lastName: result_userInfo[0].last_name,
-											user_birthDate: result_userInfo[0].birth_date,
+											user_birthDate: dateFormat(result_userInfo[0].birth_date, "fullDate"),
 											user_country: result_userInfo[0].country								
 										},
+
+										user_activity: {
+											numberOfQuestions: result.length,
+											numberOfAnswers: result1.length
+										},
+
 										user_answers: {
 											user_answer_list:
 											(function() {
