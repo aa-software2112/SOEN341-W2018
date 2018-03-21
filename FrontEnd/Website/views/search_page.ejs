@@ -3,7 +3,7 @@
 <div class="user-div" id="user-stats-div">
 	<div class="center-div" id="view-title">
 		<p class="align-center">
-			Searched for: 
+			<%= search_page.message.msg %>
 		</p>
 	</div>
 	
@@ -21,7 +21,10 @@
 					</a>
 				</p>
 				<p class="self-right date-result-p">
-					<%= questions_list[search_q_index].userName %> - <%= questions_list[search_q_index].date_ask %>
+					<a href=<%= "/user_profile/" + String(questions_list[search_q_index].userID) %>>
+						<%= questions_list[search_q_index].userName %>
+					</a> 
+					- <%= questions_list[search_q_index].date_ask %>
 				</p>
 			</div>
 			<% } %>
