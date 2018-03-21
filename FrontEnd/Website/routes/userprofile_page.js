@@ -60,7 +60,7 @@ var query_user_answers = "	SELECT question.question_title AS question_title, que
 " ORDER BY datetime_answered DESC;"
 
 // Return an array of the user personal information. Index 0 will be use. 
-var query_user = "SELECT user.username, user.first_name, user.last_name, user.birth_date, user.country " +
+var query_user = "SELECT user.username, user.first_name, user.last_name, user.birth_date, user.country, user.gender " +
 " FROM user WHERE user.user_id=?;"
 
 var loginChecker = require('../public/scripts/login_check').loginChecker;
@@ -138,8 +138,9 @@ router.get(['/','/:u_id'],
 	 										userName: result_userInfo[0].username,
 											user_firstName: result_userInfo[0].first_name,
 											user_lastName: result_userInfo[0].last_name,
-											user_birthDate: dateFormat(result_userInfo[0].birth_date, "fullDate"),
-											user_country: result_userInfo[0].country								
+											user_birthDate: result_userInfo[0].birth_date,
+											user_country: result_userInfo[0].country,
+											user_gender: result_userInfo[0].gender								
 										},
 
 										user_activity: {
@@ -181,7 +182,8 @@ router.get(['/','/:u_id'],
 											user_firstName: result_userInfo[0].first_name,
 											user_lastName: result_userInfo[0].last_name,
 											user_birthDate: dateFormat(result_userInfo[0].birth_date, "fullDate"),
-											user_country: result_userInfo[0].country								
+											user_country: result_userInfo[0].country,
+											user_gender: result_userInfo[0].gender								
 										},
 										user_activity: {
 											numberOfQuestions: result.length,
@@ -250,8 +252,9 @@ router.get(['/','/:u_id'],
 											userName: result_userInfo[0].username,
 											user_firstName: result_userInfo[0].first_name,
 											user_lastName: result_userInfo[0].last_name,
-											user_birthDate: dateFormat(result_userInfo[0].birth_date, "fullDate"),
-											user_country: result_userInfo[0].country								
+											user_birthDate: result_userInfo[0].birth_date,
+											user_country: result_userInfo[0].country,
+											user_gender: result_userInfo[0].gender								
 										},
 
 										user_activity: {
@@ -290,7 +293,8 @@ router.get(['/','/:u_id'],
 											user_firstName: result_userInfo[0].first_name,
 											user_lastName: result_userInfo[0].last_name,
 											user_birthDate: dateFormat(result_userInfo[0].birth_date, "fullDate"),
-											user_country: result_userInfo[0].country								
+											user_country: result_userInfo[0].country,
+											user_gender: result_userInfo[0].gender								
 										},
 										user_activity: {
 											numberOfQuestions: result1.length,
