@@ -1192,6 +1192,7 @@ li a:hover, .dropdown:hover .dropbtn {
 
 #question-body-form{
 	min-height: 300px;
+	width: 100%;
 	display:block;
 }
 
@@ -1217,6 +1218,7 @@ li a:hover, .dropdown:hover .dropbtn {
 
 .label-div {
 	
+	position: relative;
 	margin-bottom: 15px; 
 	
 }
@@ -1407,13 +1409,67 @@ outline: none;
 	border-radius: 4px;
 }
 
+.signup-name {
+	
+	width: 300px;
+	
+}
+
+.pw-msg-div {
+	
+	position: relative;
+	
+}
+
+#pw-msg {
+	
+	padding-left: 15px;
+	padding-top: 5px;
+	text-align: left;
+	position: absolute;
+	width: 250px;
+	height: 100%;
+	font-size: 0.8em;
+	
+}
+
+.label-div .gender-select {
+	
+	min-width: 50px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	
+	
+}
+
+.gender-select {
+	
+	display: flex;
+	
+}
+
+.gender-input {
+	
+	display: block;
+	
+}
+
+.gender-input-selector {
+	
+	width: 15px;
+	height: 15px;
+	
+}
+
+.btn-right {
+	
+	align-self: flex-end;
+	
+}
 
 .signup_box {
-	margin-top: 60px;
-	padding-top: 30px;
 	padding-bottom: 40px;
-	background-color: #eaf7fa; 
-	box-shadow: 0px 0px 2px 1px rgba(100, 100, 100, 0.30);
 }
 
 .signup_labels {
@@ -1423,7 +1479,10 @@ outline: none;
 .signup_select {
 	width: initial;
 	padding: 3px 2px !important;
+	margin-right: 5px;
 }
+
+
 
 /* Signup Confirmation Page */
 
