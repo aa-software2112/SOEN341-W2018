@@ -142,6 +142,12 @@ router.get(['/','/:u_id'],
 											user_country: result_userInfo[0].country,
 											user_gender: result_userInfo[0].gender								
 										},
+
+										user_activity: {
+											numberOfQuestions: result.length,
+											numberOfAnswers: result1.length
+										},
+
 										user_questions: {
 											user_question_list:
 											(function() {
@@ -250,6 +256,12 @@ router.get(['/','/:u_id'],
 											user_country: result_userInfo[0].country,
 											user_gender: result_userInfo[0].gender								
 										},
+
+										user_activity: {
+											numberOfQuestions: result.length,
+											numberOfAnswers: result1.length
+										},
+
 										user_answers: {
 											user_answer_list:
 											(function() {
