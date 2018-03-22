@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SOEN341 - Website</title>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/footer.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/contact-stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+    </head>
+    <body>
+
+        <div id="navbar" class="make-flex flex-horiz">
+		
+			<div id="nav-standard-div" class="make-flex flex-horiz">
+				<a class="parent-link" href="/home"><span>Home</span></a>
+				<a class="parent-link" href="/question_forum/1"><span>Questions</span></a>
+				<a class="parent-link" href="/ask"><span>Ask</span></a>
+				<a class="parent-link" href="/about"><span>About</span></a>
+				<a class="parent-link" href="/contact"><span>Contact Us</span></a>
+			</div>	
+			
+			
+
+			<!-- Load icon library -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+			<div id="nav-search-div" class="search-box-div">
+				<!-- The form -->
+
+				<form class="search-box" method="get" action= "/search/search_on/">
+					<input type="text" placeholder="Search..." name="search"  pattern= ".{1,100}" 
+					title="Search must be under 100 characters" required>
+					<button type="submit"><i class="fa fa-search"></i></button>
+
+				</form>
+			</div>
+			
+			
+			<div id="nav-user-div" class="make-flex flex-horiz">
+					<a class="login-btn parent-link" id="login-button" href="/login"><span>Log in</span></a>
+					<a class="signup-btn parent-link" id="signup-button" href="/sign_up"><span>Sign up</span></a>	
+			</div>
+		</div>
