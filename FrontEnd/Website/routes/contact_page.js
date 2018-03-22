@@ -12,7 +12,7 @@ var db = require('../database/database');
 
 /** <<<<<<<<<<<<<<< Contact page >>>>>>>>>>>>>>
 * ============================================================================
-* Listens to conctact us page request and loads it
+* Listens to contact us page request and loads it
 *
 *
 * ============================================================================

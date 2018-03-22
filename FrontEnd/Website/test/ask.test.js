@@ -8,12 +8,12 @@ describe("Ask Page", function () {
 			.expect(200, done);
 	});
 
-/*
+
 	// Checks to ensure that the Ask form data is being sent across the server (302 response)
-	it("POST data - Ask page (Expected Fail)", function(done) {
-		request(app).post("/ask/askform/2")
+	it("POST data - Ask page", function(done) {
+		request(app).post("/ask/askform/1")
 			.send({q_title: "TestTitle", q_body: "TestBody"})
 			.expect(302, done);
 	});
-	*/
+	
 });

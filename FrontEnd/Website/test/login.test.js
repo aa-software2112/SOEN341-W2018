@@ -13,6 +13,6 @@ describe("Login Page", function () {
 	it("Post data - Login page", function(done) {
 		request(app).post("/login")
 		.send({email: "test@test.ca", password: "Test12"})
-		.expect(200, done);
+		.expect(302, done);
 	});
 });
