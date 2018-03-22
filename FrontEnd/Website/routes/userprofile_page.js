@@ -15,6 +15,8 @@ var bodyParser = require("body-parser");
 var url = require('url');
 var dateFormat = require('dateformat');
 
+var user = require('../app/Controllers/user');
+
 // Database connection
 const mysql = require('mysql');
 var db = require('../database/database');
@@ -346,7 +348,8 @@ router.get(['/','/:u_id'],
 	});
 });
 
-router.get('/delete_question/:q_id', (req, res) => {
+router.get('/delete_question/:q_id', (res, req) => {
+
 	var qId = req.params.q_id;
 
 	db.query("DELETE question, answer FROM question INNER JOIN answer ON question.question_id = answer.question_id WHERE question_id = ? ", [qId], function (err, rows) {
@@ -358,6 +361,7 @@ router.get('/delete_question/:q_id', (req, res) => {
 			res.redirect('/user_profile_questions.ejs');
 		};
 	});
+
 });
 
 router.get('/delete_answer/:a_id', (req, res) => {
@@ -373,7 +377,6 @@ router.get('/delete_answer/:a_id', (req, res) => {
 		};
 	});
 });
-
 
 
 module.exports = router;

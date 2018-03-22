@@ -43,7 +43,7 @@ router.get(['/', '/home'], (req, res) => {
 				{
 					output = {
 						newest: {
-							necdwest_question_list:
+							newest_question_list:
 							(function() {
 								var newestQuestionList = [];
 								var num_of_questions = result.length;
