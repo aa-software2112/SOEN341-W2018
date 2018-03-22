@@ -14,6 +14,7 @@ var util = require('util');
 var bodyParser = require("body-parser");
 var url = require('url');
 var dateFormat = require('dateformat');
+var user = require('../app/Controllers/user');
 
 // Database connection
 const mysql = require('mysql');
@@ -341,5 +342,24 @@ router.get(['/','/:u_id'],
 		
 	});
 });
+
+router.get('/delete_question/:q_id', (req, res) => {
+	var qId = req.params.q_id;
+
+	db.query("DELETE FROM question WHERE question_id = ? ", [qId], function (err, rows) {
+	
+		if (err) {
+			res.status(500).json({"status_code": 500,"status_message": "internal server error"});
+			console.log("Error deleting : %s ", err );
+		} else {
+			res.redirect('/user_profile_questions.ejs');
+		};
+	});
+});
+
+router.get('/delete_answer/:a_id', user.delete_question);
+
+
+
 
 module.exports = router;
