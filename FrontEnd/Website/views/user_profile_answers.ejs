@@ -92,7 +92,7 @@
                                                     <p class="view-result-p">
                                                         From question: <a href="/question_forum/<%= answer[user_ans_list].questionID %>"> <%= answer[user_ans_list].questionTitle %> </a>
                                                         
-                                                        <blockquote><a href="/question_forum/<%= answer[user_ans_list].answerID %>">
+                                                        <blockquote><a href="/question_forum/<%= answer[user_ans_list].questionID %>">
                                                             <%= answer[user_ans_list].answerBody %>
                                                         </a></blockquote>
                                                         
@@ -100,107 +100,26 @@
                                                     <p class="self-right date-result-p">
                                                         <%= answer[user_ans_list].date_ans %>
                                                         
-                                                        <form method="get" action= <%= "/user_profile/delete_answer/" + String(answer[user_ans_list].answerID) %>>
-                                                            <button type="submit"><i></i>Delete</button>
-                                                        </form>
-                                                    </p>
+                                                        <% if (typeof logged !== "undefined" && logged == true && user_id === userProfile.userID) { %>
+                                                            <form method="get" action= <%= "/user_profile/delete_answer/" + String(answer[user_ans_list].answerID) %>>
+                                                                <button type="submit"><i></i>Delete</button>
+                                                            </form>                                                          
+                                                            <% } %>
+                                                        </p>
+                                                    </div>
+                                                    <% } %>	
+                                                    
+                                                    
+                                                    
                                                 </div>
-                                                <% } %>	
-                                                
-                                                <!-- <div class="make-flex flex-vert  view-result">
-                                                    <p class="view-result-p">
-                                                        <a href="user_profile.html">
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                        </a>
-                                                    </p>
-                                                    <p class="self-right date-result-p">
-                                                        Posted: 31/01/2018
-                                                    </p>
-                                                </div>
-                                                <div class="make-flex flex-vert  view-result">
-                                                    <p class="view-result-p">
-                                                        <a href="user_profile.html">
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                        </a>
-                                                    </p>
-                                                    <p class="self-right date-result-p">
-                                                        Posted: 31/01/2018
-                                                    </p>
-                                                </div>
-                                                <div class="make-flex flex-vert  view-result">
-                                                    <p class="view-result-p">
-                                                        <a href="user_profile.html">
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                        </a>
-                                                    </p>
-                                                    <p class="self-right date-result-p">
-                                                        Posted: 31/01/2018
-                                                    </p>
-                                                </div>
-                                                <div class="make-flex flex-vert  view-result">
-                                                    <p class="view-result-p">
-                                                        <a href="user_profile.html">
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                        </a>
-                                                    </p>
-                                                    <p class="self-right date-result-p">
-                                                        Posted: 31/01/2018
-                                                    </p>
-                                                </div>
-                                                <div class="make-flex flex-vert  view-result">
-                                                    <p class="view-result-p">
-                                                        <a href="user_profile.html">
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                        </a>
-                                                    </p>
-                                                    <p class="self-right date-result-p">
-                                                        Posted: 31/01/2018
-                                                    </p>
-                                                </div>
-                                                <div class="make-flex flex-vert  view-result">
-                                                    <p class="view-result-p">
-                                                        <a href="user_profile.html">
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                            This is polymorphism in Java.
-                                                        </a>
-                                                    </p>
-                                                    <p class="self-right date-result-p">
-                                                        Posted: 31/01/2018
-                                                    </p>
-                                                </div> -->
-                                                
-                                            </div>
+                                            </div>	
                                         </div>	
-                                    </div>	
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            
+                            <% include partials/footer %>
+                        </body>
+                        </html>
                         
-                        <% include partials/footer %>
-                    </body>
-                    </html>
-                    
-                    
+                        

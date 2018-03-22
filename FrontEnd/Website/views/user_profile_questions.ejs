@@ -96,11 +96,11 @@
 										<p class="self-right date-result-p">
 											<%= questions[user_q_list].date_ans %>
 											
-											<form method="get" action= <%= "/user_profile/delete_question/" + String(questions[user_q_list].questionID) %>>
-					
-												<button type="submit"><i></i>Delete</button>
-							
-											</form>
+											<% if (typeof logged !== "undefined" && logged == true && user_id === userProfile.userID) { %>
+												<form method="get" action= <%= "/user_profile/delete_question/" + String(questions[user_q_list].questionID) %>>
+													<button type="submit"><i></i>Delete</button>
+												</form>                                                          
+												<% } %>
 										</p>
 										<!-- <div>
 											<div><%= questions[user_q_list].numOfVotes %> </span><br>votes</div>
