@@ -22,7 +22,7 @@ var db = require('../database/database');
 
 //listens for login page request to load it
 router.get('/', (req,res) => {
-	console.log("login page!");
+	//console.log("login page!");
 	res.render('login_page.ejs');
 });
 
