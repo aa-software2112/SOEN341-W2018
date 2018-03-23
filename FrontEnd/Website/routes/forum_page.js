@@ -1,6 +1,5 @@
   var express = require("express");
   var router = express.Router();
-
   var path = require("path");
   var util = require("util");
   var bodyParser = require("body-parser");
@@ -53,38 +52,38 @@
 
           //debugging to show total votes of answers
           console.log("Total answers votes "+ util.inspect( totalAns));
-
-                    //This function compares the answer and score_answer tables. If there is a row with same answer_if on both table
-                    //It takes its sum of votes as positiveScore or negativeScore and also the answer id, and stores them in an array commonAnsId.
-                    function IntersectArrays(answer, totalAns) {
-                      var sortedA = answer.concat().sort();
-                      var sortedB = totalAns.concat().sort();
-                      var commonAnsId =[];
-                      var aI = 0;
-                      var bI = 0;
-
-                      while (aI < answer.length && bI < totalAns.length) {
-                        if (sortedA[aI].answer_id === sortedB[bI].answer_id) {
-                          commonAnsId.push(
-                          {
-                            answer_id: sortedB[bI].answer_id,
-                            positiveScore: sortedB[bI].positiveScore,
-                            negativeScore: sortedB[bI].negativeScore
-                          });
-                          aI++;
-                          bI++;
-                        } else if (sortedA[aI].answer_id < sortedB[bI].answer_id) {
-                          aI++;
-                        } else if (sortedA[aI].answer_id > sortedB[bI].answer_id){
-                          bI++;
-                        } else {
-                          res.redirect("/question_forum/" + req.params.q_id);
-                        }
-                      }
-                      return commonAnsId;
-                    }
-                    var firstInter = IntersectArrays(answer, totalAns);
-                    console.log("Intersetction " + util.inspect(firstInter));
+          
+          //This function compares the answer and score_answer tables. If there is a row with same answer_if on both table
+          //It takes its sum of votes as positiveScore or negativeScore and also the answer id, and stores them in an array commonAnsId.
+          function IntersectArrays(answer, totalAns) {
+          var sortedA = answer.concat().sort();
+          var sortedB = totalAns.concat().sort();
+          var commonAnsId =[];
+          var aI = 0;
+          var bI = 0;
+            
+          while (aI < answer.length && bI < totalAns.length) {
+          if (sortedA[aI].answer_id === sortedB[bI].answer_id) {
+            commonAnsId.push(
+            {
+              answer_id: sortedB[bI].answer_id,
+              positiveScore: sortedB[bI].positiveScore,
+              negativeScore: sortedB[bI].negativeScore
+              });
+              aI++;
+              bI++;
+              } else if (sortedA[aI].answer_id < sortedB[bI].answer_id) {
+                aI++;
+              } else if (sortedA[aI].answer_id > sortedB[bI].answer_id){
+                bI++;
+              } else {
+                res.redirect("/question_forum/" + req.params.q_id);
+              }
+             }
+         return commonAnsId;
+         }
+         var firstInter = IntersectArrays(answer, totalAns);
+         console.log("Intersetction " + util.inspect(firstInter));
 
           //debugging to show list of answers
           console.log("List of answers "+util.inspect(answer));
@@ -97,6 +96,8 @@
               title : result[result.length-1].question_title,
               body : result[result.length-1].question_body,
               userID: result[result.length-1].user_id,
+              favorite_answer_id: result[result.length-1].favorite_answer_id,
+
               // following code implemented using SQL2 query
               user_asked: result[result.length-1].asked_by,
               question_pts: null,

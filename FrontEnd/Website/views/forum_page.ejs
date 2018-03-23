@@ -53,6 +53,43 @@
 					<div class="make-flex flex-vert answer-votes">
 						<p class="ans-upvote vote upvote" id=<%= ( typeof logged !== "undefined" && logged) ? "ans-upvote-"+String(answers[ans_idx].answer_id) + "-" + String(user_id) : "ans-upvote-null-" + String(answers[ans_idx].answer_id)  %>> &#10004; </p>
 						<p class="ans-downvote vote downvote" id=<%= ( typeof logged !== "undefined" && logged) ? "ans-downvote-"+String(answers[ans_idx].answer_id) + "-" + String(user_id) : "ans-downvote-null-" + String(answers[ans_idx].answer_id)  %>> &#10006; </p>
+						
+						
+						<% if (typeof logged === "undefined" ) { %>
+						
+							<p class="vote favorite-placeholder null-star" id=<%= "fav-noclick-" + String(answers[ans_idx].answer_id)%>> &#9733; </p>
+						
+						 
+						<% } else if (logged) { %>
+							
+							
+							<% if (typeof forum.favorite_answer_id !== "undefined" && forum.favorite_answer_id != null) { %>
+							
+								<% if (forum.favorite_answer_id == answers[ans_idx].answer_id) { %>
+								
+									<p class="vote favorite-placeholder star" id=<%= "fav-noclick-" + String(answers[ans_idx].answer_id)%>> &#9733; </p>
+						
+								<% } else { %>
+								
+									<p class="vote favorite-placeholder null-star" id=<%= "fav-noclick-" + String(answers[ans_idx].answer_id)%>> &#9733; </p>
+						
+								<% } %>
+								
+							<% } else { %>
+							
+								<% if (user_id == forum.userID) { %>
+								
+									<p class="vote favorite-placeholder star-not-chosen" id=<%= "fav-"+String(answers[ans_idx].answer_id) + "-" + String(forum.q_id) %>> &#9733; </p>
+							
+								<% } %>
+									 
+									
+								
+							<% } %>
+							
+						<% } %>
+						
+						
 						<p class="vote vote-value" id=<%= ( typeof logged !== "undefined" && logged) ? "ans-count-"+String(answers[ans_idx].answer_id) : "ans-count-null-" + String(answers[ans_idx].answer_id) %>> <%= answers[ans_idx].answer_pts %> </p>
 					</div>
 					

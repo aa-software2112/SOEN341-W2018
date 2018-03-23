@@ -72,7 +72,87 @@ function vote_listeners()
 	} // Upvotes & Downvotes
 	
 	
+	// Add event listeners to star buttons
+	var stars = document.getElementsByClassName("favorite-placeholder");
+	
+	for(var i = 0; i<stars.length; i++)
+	{
+		// Only apply event listeners to stars if the user has not yet voted
+		if (stars[i].id.split("-")[1] === "noclick")
+			break;
+		
+		stars[i].addEventListener("click", function(e) {
+
+			console.log("Click on " + e.srcElement.id +  " star");
+			
+			var fav = e.srcElement.id.split("-");
+			
+			pick_favorite(fav[1], fav[2]);
+		
+			
+		});
+		
+		
+		
+	}
+	
 }
+
+function pick_favorite(fav_ans_id, q_id)
+{
+	// Send data to server side
+	// Start the XMLHttpRequest
+	var xml = new XMLHttpRequest();
+	var method = "POST";
+	var url;
+
+	url = "/vote/favorite";
+	
+	xml.open(method, url, true);
+	xml.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	
+	// Set the outbound values 
+	var urlout = new URLSearchParams();
+	
+	// The outbound message
+	urlout.append('q_id', q_id);
+	urlout.append('fav_ans_id', fav_ans_id);
+	
+	// Send the message
+	xml.send(urlout);
+	
+	console.log("Sent " + urlout + " !");
+	
+	// Wait for response
+	xml.onreadystatechange = function()
+	{
+		if (this.readyState == 4 && this.status == 200)
+		{
+			favorite_response(this, fav_ans_id, q_id);
+		}
+	};
+		
+
+	
+}
+
+function favorite_response(r, fav_ans_id, q_id)
+{
+	console.log("Favorite response " + r.response);
+	
+	// + means the favorite was saved
+	// - means the favorite was not saved
+	if (r.response === "+")
+	{
+
+		var star = document.getElementById( "fav-" + String(fav_ans_id) + "-" + q_id );
+		star.classList.remove("star-not-chosen");
+		star.classList.add("star");
+	}	
+	
+	
+}
+
 
 // Vote type should either be "q" for question or "a" for answer
 // user_id is the user who votes

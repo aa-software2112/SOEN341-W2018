@@ -25,6 +25,7 @@ router.get("/", function(req,res) {
 	//Show that you are at login page
 	console.log("login page!");
 	res.render("login_page.ejs");
+
 });
 
 // logs info from user from login page

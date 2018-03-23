@@ -16,6 +16,86 @@ var db = require('../database/database');
 * ============================================================================
 */
 
+// This handles favorite choices
+router.post("/favorite", function(req, res) {
+	
+	// Send "+" if the favorite save was valid,
+	// Send "-" if the favorite save was invalid
+	//res.send("+");
+
+	
+	// This Query checks if user has already voted previously
+	var sql_favoriteExist = "SELECT favorite_answer_id FROM question WHERE question_id = ?";
+		
+	db.query(sql_favoriteExist, [req.body.q_id], function(err, result_qfav)
+		{
+			if (err)
+			{
+				console.log("select favorite_answer_id query failed " + err);
+				return;
+			}
+			
+			console.log("favorite_answer_id" + util.inspect(result_qfav));
+	
+			var result_qfav1 = result_qfav.favorite_answer_id;
+
+
+			//If statement to check if there is already a value in the favorite_answer_id column
+			if(result_qfav1 != null && result_qfav1 == req.body.fav_ans_id)
+			{
+				console.log("already favorited this answer, the favorite_answer_id was" + result_qfav1);
+				res.send(String("+")); // Send "+" if the favorite save was valid,
+			}
+
+
+			//Query if we want to allow the questioner to favorite another answer
+
+			/*else if( result_qfav1 != null && result_qfav1 != req.body.fav_ans_id)
+			{
+
+			var sql_updateFavoriteAnswerID = "UPDATE question SET favorite_answer_id = ? WHERE question_id = ?";
+
+			// Add score to database, table score_answer
+			db.query(sql_updateFavoriteAnswerID, [req.body.fav_ans_id, req.body.q_id], function(err,result){
+				if(err){
+					console.log("update favorite_answer_id query failed " + err);
+					return;
+				}
+				else
+				{
+					console.log("User succesfully update favorite_answer_id!");
+					console.log(result);
+					res.send("+"); // Send "+" if the favorite save was valid,
+				}
+			});
+		}*/
+			
+		else 
+			{
+
+				// This Query inserts the new favorite answer Id into the table
+				var sql_insertNewFavoriteAnswerID = "UPDATE question SET favorite_answer_id = ? WHERE question_id = ?";
+
+				// Add score to database, table score_answer
+				db.query(sql_insertNewFavoriteAnswerID, [req.body.fav_ans_id, req.body.q_id], function(err,result){
+					if(err){
+						console.log("insert score query failed " + err);
+						return;
+					}
+					else
+					{
+						console.log("questioner succesfully favorited!");
+						console.log(result);
+						res.send("+"); // Send "+" if the favorite save was valid,
+					}
+				});
+				
+			}	
+		});
+
+});
+	
+
 
 // This handles votes for answers ONLY
 // see post below for question handler
@@ -67,18 +147,49 @@ router.post("/answer-vote", function(req, res) {
 			
 			console.log("Query 2 " + util.inspect(result_q2));
 			
+			var score = Number(req.body.vote);
+
 			// if already voted
 			if (result_q2.length > 0 )
 			{
 				result_q2 = result_q2[0];
 				
-				if (result_q2.score == 1 || result_q2.score == -1)
+				if (result_q2.score == 1 && score ==1 || result_q2.score == -1 && score == -1)
 				{
 					console.log("already voted this answer, sending "  + totalScore);
 					res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
 				}
+
+				else if (result_q2.score == 1 && score ==-1 || result_q2.score == -1 && score == 1)
+				{
+
+				//Values to fill in sql query below
+					var score = req.body.vote; //score is taken from button input ex: click button like gives 1, click button dislike gives -1
+					var user_id = Number(req.body.user_id); //taken from user session
+					var datetime_scored_answer = date.format(new Date(), 'YYYY-MM-DD h:m:s');
+				
+					
+				newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote. Allows for toggling between upvote & downvote
+
+				//Query updates the new score (or vote) into the database
+				var sql_insertNewScore = "UPDATE score_answer SET score = ?, datetime_scored_answer = ? WHERE user_id = ?";
+
+				// Add score to database, table score_answer
+				db.query(sql_insertNewScore, [score, datetime_scored_answer, user_id], function(err,result){
+					if(err){
+						console.log("update score query failed " + err);
+						return;
+					}
+					else
+					{
+						console.log("User succesfully update vote!");
+						console.log(result);
+						res.send(String(newTotalScore)); // sends the new total vote for answer_id 
+					}
+				});
+
+				}
 			}
-		
 			else
 			{
 				//Array to fill in sql query below
@@ -159,17 +270,50 @@ router.post("/question-vote", function(req, res) {
 				console.log("select score query failed " + err);
 				return;
 			}
-			
+
+			var score = Number(req.body.vote);
+
 			// if already voted
 			if (result_q2.length > 0 )
 			{
 				result_q2 = result_q2[0];
 				
-				if (result_q2.score == 1 || result_q2.score == -1)
+				if (result_q2.score == 1 && score ==1 || result_q2.score == -1 && score == -1)
 				{
-					console.log("already voted this answer sending "  + totalScore);
-					res.send(String(totalScore)); //since alread voted, sends total vote for answer_id 
+					console.log("already voted this question, sending "  + totalScore);
+					res.send(String(totalScore)); //since alread voted, sends total vote for question_id 
 				}
+
+				else if (result_q2.score == 1 && score ==-1 || result_q2.score == -1 && score == 1)
+				{
+
+				//Values to fill in sql query below
+					var score = req.body.vote; //score is taken from button input ex: click button like gives 1, click button dislike gives -1
+					var user_id = Number(req.body.user_id); //taken from user session
+					var datetime_scored_question = date.format(new Date(), 'YYYY-MM-DD h:m:s');
+				
+					
+				newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote
+
+				// This Query inserts the new score (or vote) into the database and res.send the new total score
+				var sql_insertNewScore = "UPDATE score_question SET score = ?, datetime_scored_question = ? WHERE user_id = ?";
+
+				// Add score to database, table score_question
+				db.query(sql_insertNewScore, [score, datetime_scored_question, user_id], function(err,result){
+					if(err){
+						console.log("update score query failed " + err);
+						return;
+					}
+					else
+					{
+						console.log("User succesfully update vote!");
+						console.log(result);
+						res.send(String(newTotalScore)); // sends the new total vote for question_id 
+					}
+				});
+
+				}
+			
 			}
 			else
 			{
