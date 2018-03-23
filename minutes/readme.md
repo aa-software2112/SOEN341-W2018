@@ -1,5 +1,14 @@
 Meeting Times:
 
+Mar. 16, 2018: 13:15 - 13:30
+    Everyone present except Tom (At an interview)
+
+Mar. 16, 2018: 10:00 - 13:00
+    Everyone present except Tom (At an interview)
+
+Mar. 9, 2018: 13:15 - 13:30
+    Everyone present
+
 Mar. 9, 2018: 10:00 - 13:00
     Everyone present
 

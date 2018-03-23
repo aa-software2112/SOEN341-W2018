@@ -18,10 +18,15 @@
 					
 					<div id="user-area-div" class="make-flex flex-row flex-left">
 						<div class="user-div" id="user-profile-div">
-							<div class="image center-div" id="logo-div">
+
+							<% if(gender == M) { %>
+							<div class="image center-div" id="male_profile"></div>
+							<% } else if(gender == "F") { %>
+							<div class="image center-div" id="female_profile"></div>
+							<% } else if(gender == "O") { %>
+							<div class="image center-div" id="other_profile"></div>
+							<% } %>
 							
-							
-							</div>
 							<div class="self-top" id="user-profile-metrics">
 								<p class="align-center" id="username">
 								<%= username %>

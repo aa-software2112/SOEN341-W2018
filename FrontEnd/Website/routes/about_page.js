@@ -1,13 +1,13 @@
-var express = require('express')
+var express = require("express")
 var router = express.Router();
 
-var path = require('path');
-var util = require('util');
+var path = require("path");
+var util = require("util");
 var bodyParser = require("body-parser");
 
 // Database connection
-const mysql = require('mysql');
-var db = require('../database/database');
+const mysql = require("mysql");
+var db = require("../database/database");
 
 /** <<<<<<<<<<<<<<< About page >>>>>>>>>>>>>>
 * ============================================================================
@@ -15,7 +15,7 @@ var db = require('../database/database');
 * ============================================================================
 */
 
-router.get('/', (req, res) => {
+router.get('/', function(req, res) {
 	res.render('about.ejs');
 });
 

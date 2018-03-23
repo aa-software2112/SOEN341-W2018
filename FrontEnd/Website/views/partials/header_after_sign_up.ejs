@@ -3,8 +3,8 @@
     <head>
         <title>SOEN341 - Website</title>
         <link rel="stylesheet" type="text/css" href="/stylesheets/footer.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/contact-stylesheet.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
-		<script src="/scripts/input-script.js" type="text/javascript"></script>
     </head>
     <body>
 
@@ -36,18 +36,7 @@
 			
 			
 			<div id="nav-user-div" class="make-flex flex-horiz">
-				<% if (typeof username === "undefined") { %>
-					
-		
 					<a class="login-btn parent-link" id="login-button" href="/login"><span>Log in</span></a>
-					<a class="signup-btn parent-link" id="signup-button" href="/sign_up"><span>Sign up</span></a>
-		
-				<% } else { %>
-			
-					<a class="parent-link" href="/user_profile/"><span><%= username %></span></a>
-					<a class="login-btn parent-link" id="logout-button" href="/logout"><span>Log out</span></a>
-
-				<% } %>
-			
+					<a class="signup-btn parent-link" id="signup-button" href="/sign_up"><span>Sign up</span></a>	
 			</div>
 		</div>

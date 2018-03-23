@@ -8,6 +8,7 @@
 			<!--<p class="align-center">Swing by for a cup of coffee, or leave us a message:</p>
 			-->
 		  <div class="row">
+
 			
 			  <form class="make-flex flex-vert div-shadow-effect" id="contact-form" method="post" action="/contact" >
 
@@ -18,7 +19,7 @@
 						<p class="make-flex flex-vert">
 							<span>First Name</span>
 						</p>
-						<input class="signup-name std-input-font text-input-shadow-border form-input" type="text" id="fname" name="firstname"  value="<%= fName %>" required>
+						<input class="signup-name std-input-font text-input-shadow-border form-input" type="text" id="fname" name="firstname"  value="<%= fname %>" required>
 				
 				</div>
 				
@@ -280,6 +281,9 @@
 				
 				<textarea id="contact-body" class="text-input-shadow-border std-input-font"  name="subject" placeholder="Your message to us..." style="height:170px" required></textarea>
 				<input class="button loginbtn self-right" type="submit" formaction="/contact" value="Submit">
+
+
+	
 			  </form>
 			  
 			</div>

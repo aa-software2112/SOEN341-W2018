@@ -3,4 +3,6 @@ sudo: required
 node_js:
   "stable"
 script: cd FrontEnd/Website && npm test
-  
+services:
+  mysql
+before_install:

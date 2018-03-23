@@ -397,9 +397,35 @@ textarea:focus, input:focus {
 #q-upvote:hover,
 #q-downvote:hover,
 .upvote:hover,
-.downvote:hover {
+.downvote:hover, 
+.vote:hover {
 	
 	cursor: pointer;
+	
+}
+
+.favorite-placeholder {
+	
+	
+	
+}
+
+.star {
+	-webkit-text-stroke-width: 0.5px;
+	-webkit-text-stroke-color: black;
+	color: yellow;
+}
+
+.null-star {
+	
+	display: none;
+	
+}
+
+.star-not-chosen {
+	-webkit-text-stroke-width: 0.5px;
+	-webkit-text-stroke-color: black;
+	color: gray;
 	
 }
 
@@ -559,6 +585,27 @@ textarea:focus, input:focus {
 }
 
 #logo-div {
+	height: 200px;
+	width: 200px;
+	background-image: url("/spring-patterns_02.jpg");
+	background-size: cover;
+}
+
+#male_profile {
+	height: 200px;
+	width: 200px;
+	background-image: url("/male_user.png");
+	background-size: cover;
+}
+
+#female_profile {
+	height: 200px;
+	width: 200px;
+	background-image: url("/female_user.png");
+	background-size: cover;
+}
+
+#other_profile {
 	height: 200px;
 	width: 200px;
 	background-image: url("/spring-patterns_02.jpg");

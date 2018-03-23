@@ -132,12 +132,11 @@ ALTER TABLE score_question CHANGE date_scored_question datetime_scored_question 
 
 ALTER TABLE score_answer CHANGE date_scored_answer datetime_scored_answer DATETIME NOT NULL;
 
+	3.3.  (2018-03-016)
+
+ALTER TABLE question ADD favorite_answer_id INT UNSIGNED NULL; -- This extra column will allow us to store questioner's favorite answer out of all the answers to his question
 
 
-
-3. How to export / import database.
+	4. How to export / import database.
 
 https://dev.mysql.com/doc/workbench/en/wb-admin-export-import-management.html
-
-
-
