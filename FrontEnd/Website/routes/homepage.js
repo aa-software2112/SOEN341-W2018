@@ -1,16 +1,16 @@
-var express = require('express')
+var express = require("express")
 var router = express.Router();
 
-var path = require('path');
-var util = require('util');
+var path = require("path");
+var util = require("util");
 var bodyParser = require("body-parser");
-var date = require('date-and-time');
-var sortBy = require('sort-by');
-var url = require('url');
+var date = require("date-and-time");
+var sortBy = require("sort-by");
+var url = require("url");
 
 // Database connection
-const mysql = require('mysql');
-var db = require('../database/database');
+const mysql = require("mysql");
+var db = require("../database/database");
 
 /** <<<<<<<<<<<<<<< Homepage >>>>>>>>>>>>>>
 * ============================================================================
@@ -21,9 +21,9 @@ var db = require('../database/database');
 */
 
 
-router.get(['/', '/home'], (req, res) => {
+router.get(["/", "/home"], (req, res) => {
 	
-	if(!req.query.tab || req.query.tab === 'newest') { 
+	if(!req.query.tab || req.query.tab === "newest") { 
 		
 		var query_newest = "SELECT question.question_id, question.question_title, user.username AS asked_by, user.user_id, \
 		(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
@@ -51,11 +51,11 @@ router.get(['/', '/home'], (req, res) => {
 								for (var i = 0; i < numOfQuestions; i++) {
 									
 									var questions = {
-										userName: ' ',
-										questionTitle: ' ',
-										numOfVotes: ' ',
-										numOfAnswers: ' ',
-										date_ans: ' '						
+										userName: " ",
+										questionTitle: " ",
+										numOfVotes: " ",
+										numOfAnswers: " ",
+										date_ans: " "						
 									}
 									newestQuestionList.push(questions);
 								}						
@@ -101,11 +101,11 @@ router.get(['/', '/home'], (req, res) => {
 						}									
 					}
 				}
-				res.render('homepage_newest.ejs', {homepage: output});
+				res.render("homepage_newest.ejs", {homepage: output});
 			};	
 		});
 		
-	} else if (req.query.tab === 'popular') {
+	} else if (req.query.tab === "popular") {
 		var query_popular = "SELECT question.question_id, question.question_title, user.username AS asked_by, user.user_id, \
 		(SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, \
 		(SELECT COUNT(*) FROM answer WHERE question_id=question.question_id) AS num_views, \
@@ -131,11 +131,11 @@ router.get(['/', '/home'], (req, res) => {
 								
 								for (var i = 0; i < numOfQuestions; i++) {
 									var questions = {
-										userName: ' ',
-										questionTitle: ' ',
-										numOfVotes: ' ',
-										numOfAnswers: ' ',
-										date_ans: ' '								
+										userName: " ",
+										questionTitle: " ",
+										numOfVotes: " ",
+										numOfAnswers: " ",
+										date_ans: " "								
 									}
 									popularQuestionList.push(questions);
 								}						
@@ -183,7 +183,7 @@ router.get(['/', '/home'], (req, res) => {
 						
 					}
 				}
-				res.render('homepage_popular.ejs', {homepage: output});
+				res.render("homepage_popular.ejs", {homepage: output});
 			};	
 			
 		});
