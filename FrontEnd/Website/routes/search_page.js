@@ -46,8 +46,8 @@ router.get("/search_on", (req,res) => {
 					msg: "No result found :) "
 				},
 				
-				searchQuestion: {
-					searchQuestionList:
+				search_question: {
+					search_question_list:
 					(function() {
 						var data=[];
 						var numberOfQuestions = rows.length;
@@ -69,15 +69,15 @@ router.get("/search_on", (req,res) => {
 				}
 			}
 		} else {
-			// Stores the result into the array data, which is returned when the function searchQuestionList is called
+			// Stores the result into the array data, which is returned when the function search_question_list is called
 			output = {
 				
 				message:  {
 					msg: "Results for: " + keyword
 				},
 				
-				searchQuestion: {
-					searchQuestionList:
+				search_question: {
+					search_question_list:
 					(function() {
 						var data=[];
 						var numberOfQuestions = rows.length;
