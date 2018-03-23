@@ -44,7 +44,7 @@ var db = require('../database/database');
 */
 
 // Return an array of the user's questions
-var query_user_questions = "SELECT question.question_title, question.question_id, question.question_body, " +
+var queryUserQuestions = "SELECT question.question_title, question.question_id, question.question_body, " +
 " (SELECT COUNT(*) FROM score_question WHERE question_id=question.question_id) AS num_votes, " +
 " (SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=?) AS num_answers, datetime_asked " +
 " FROM question " +
@@ -52,7 +52,7 @@ var query_user_questions = "SELECT question.question_title, question.question_id
 " ORDER BY datetime_asked DESC;"
 
 // Return an array of the user's answers. 
-var query_user_answers = "	SELECT question.question_title AS question_title, question.question_id AS question_id, " +
+var queryUserAnswers = "	SELECT question.question_title AS question_title, question.question_id AS question_id, " +
 " answer.answer_id, answer.answer_body, datetime_answered, " +
 " (SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=?) AS num_answers, datetime_answered " +
 " FROM answer JOIN question ON question.question_id=answer.question_id " +
@@ -60,7 +60,7 @@ var query_user_answers = "	SELECT question.question_title AS question_title, que
 " ORDER BY datetime_answered DESC;"
 
 // Return an array of the user personal information. Index 0 will be use. 
-var query_user = "SELECT user.username, user.first_name, user.last_name, user.birth_date, user.country, user.gender " +
+var queryUser = "SELECT user.username, user.first_name, user.last_name, user.birth_date, user.country, user.gender " +
 " FROM user WHERE user.user_id=?;"
 
 var loginChecker = require('../public/scripts/login_check').loginChecker;
@@ -85,17 +85,17 @@ router.get(['/','/:u_id'],
 	
 	// Checks whether the queries should use the user_id of a user who's currently log in, or to visit 
 	// the profile of another user. 
-	var useridtest = req.params.u_id;
-	var userid_check = ' ';
+	var userIdTest = req.params.u_id;
+	var userIdCheck = ' ';
 	
-	if (!isNaN(useridtest)) {
-		userid_check = useridtest; // user_id from URL
+	if (!isNaN(userIdTest)) {
+		userIdCheck = userIdTest; // user_id from URL
 	} else {
-		userid_check = req.session.user_id; // user_id from cookie	
+		userIdCheck = req.session.user_id; // user_id from cookie	
 	};
 	
 	// Return the user's personal information. 
-	db.query(query_user, [userid_check], function (err, result_userInfo) {
+	db.query (queryUser, [userIdCheck], function (err, resultUserInfo) {
 		var output = ' ';
 		if (err) {
 			res.status(500).json({"status_code": 500,"status_message": "internal server error"});
@@ -118,43 +118,43 @@ router.get(['/','/:u_id'],
 			// Redirects the user to the questions tab. While only the query for the list of questions is required, 
 			// the user should also see the number of answers he provided, hence the use of the query for the list
 			// of answers. 
-			if(!req.query.tab || req.query.tab === 'questions') { 
+			if (!req.query.tab || req.query.tab === 'questions') { 
 				
-				db.query(query_user_questions, [userid_check, userid_check],function (err, result) {
+				db.query(queryUserQuestions, [userIdCheck, userIdCheck],function (err, resultQuestion) {
 					if (err) {
 						res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 					} else {
 						
-						db.query(query_user_answers, [userid_check, userid_check],function (err, result1) {
+						db.query(queryUserAnswers, [userIdCheck, userIdCheck],function (err, resultAnswer) {
 							if (err) {
 								res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 							} else {
 								// Prevents the app from crashing if the user's activity is blank. Return an empty object
-								if (result.length == 0 && result1.length == 0) {
+								if (resultQuestion.length == 0 && resultAnswer.length == 0) {
 									
 									output = {
 										
 										user_profile_info: {
-	 										userName: result_userInfo[0].username,
-											user_firstName: result_userInfo[0].first_name,
-											user_lastName: result_userInfo[0].last_name,
-											user_birthDate: result_userInfo[0].birth_date,
-											user_country: result_userInfo[0].country,
-											user_gender: result_userInfo[0].gender								
+											userName: resultUserInfo[0].username,
+											user_firstName: resultUserInfo[0].first_name,
+											user_lastName: resultUserInfo[0].last_name,
+											user_birthDate: resultUserInfo[0].birth_date,
+											user_country: resultUserInfo[0].country,
+											user_gender: resultUserInfo[0].gender								
 										},
-
+										
 										user_activity: {
-											numberOfQuestions: result.length,
-											numberOfAnswers: result1.length
+											numberOfQuestions: resultQuestion.length,
+											numberOfAnswers: resultAnswer.length
 										},
-
+										
 										user_questions: {
 											user_question_list:
 											(function() {
 												var userQuestionList = [];
-												var num_of_questions =  result.length;
+												var numOfQuestions =  resultQuestion.length;
 												
-												for (var i = 0; i < num_of_questions; i++) {
+												for (var i = 0; i < numOfQuestions; i++) {
 													
 													var questions = {
 														questionID: ' ',
@@ -178,36 +178,36 @@ router.get(['/','/:u_id'],
 									
 									output = {
 										user_profile_info: {
-											userName: result_userInfo[0].username,
-											user_firstName: result_userInfo[0].first_name,
-											user_lastName: result_userInfo[0].last_name,
-											user_birthDate: dateFormat(result_userInfo[0].birth_date, "fullDate"),
-											user_country: result_userInfo[0].country,
-											user_gender: result_userInfo[0].gender								
+											userName: resultUserInfo[0].username,
+											user_firstName: resultUserInfo[0].first_name,
+											user_lastName: resultUserInfo[0].last_name,
+											user_birthDate: dateFormat(resultUserInfo[0].birth_date, "fullDate"),
+											user_country: resultUserInfo[0].country,
+											user_gender: resultUserInfo[0].gender								
 										},
 										user_activity: {
-											numberOfQuestions: result.length,
-											numberOfAnswers: result1.length
+											numberOfQuestions: resultQuestion.length,
+											numberOfAnswers: resultAnswer.length
 										},
 										
 										user_questions: {
 											user_question_list:
 											(function() {
 												var userQuestionList = [];
-												var num_of_questions = result.length;
+												var numOfQuestions = resultQuestion.length;
 												
-												for (var i = 0; i < num_of_questions; i++) {
+												for (var i = 0; i < numOfQuestions; i++) {
 													
 													var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
-													var d = (new Date(result[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
+													var d = (new Date(resultQuestion[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
 													d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
 													
 													var questions = {
-														questionID: result[i].question_id,
-														questionTitle: result[i].question_title,
-														questionBody: result[i].question_body,
-														numOfVotes: result[i].num_votes,
-														numOfAnswers: result[i].num_views,
+														questionID: resultQuestion[i].question_id,
+														questionTitle: resultQuestion[i].question_title,
+														questionBody: resultQuestion[i].question_body,
+														numOfVotes: resultQuestion[i].num_votes,
+														numOfAnswers: resultQuestion[i].num_views,
 														date_ans: d				
 													}
 													
@@ -235,40 +235,40 @@ router.get(['/','/:u_id'],
 				*/
 			} else if (req.query.tab === 'answers') {
 				
-				db.query(query_user_answers, [userid_check, userid_check], function (err, result) {
+				db.query(queryUserAnswers, [userIdCheck, userIdCheck], function (err, resultQuestion) {
 					if (err) {
 						res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 					} else {
 						
-						db.query(query_user_questions, [userid_check, userid_check],function (err, result1) {
+						db.query(queryUserQuestions, [userIdCheck, userIdCheck],function (err, resultAnswer) {
 							if (err) {
 								res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 							} else {
 								
-								if (result.length == 0 && result1.length == 0) 
+								if (resultQuestion.length == 0 && resultAnswer.length == 0) 
 								{
 									output = {
 										user_profile_info: {
-											userName: result_userInfo[0].username,
-											user_firstName: result_userInfo[0].first_name,
-											user_lastName: result_userInfo[0].last_name,
-											user_birthDate: result_userInfo[0].birth_date,
-											user_country: result_userInfo[0].country,
-											user_gender: result_userInfo[0].gender								
+											userName: resultUserInfo[0].username,
+											user_firstName: resultUserInfo[0].first_name,
+											user_lastName: resultUserInfo[0].last_name,
+											user_birthDate: resultUserInfo[0].birth_date,
+											user_country: resultUserInfo[0].country,
+											user_gender: resultUserInfo[0].gender								
 										},
-
+										
 										user_activity: {
-											numberOfQuestions: result.length,
-											numberOfAnswers: result1.length
+											numberOfQuestions: resultQuestion.length,
+											numberOfAnswers: resultAnswer.length
 										},
-
+										
 										user_answers: {
 											user_answer_list:
 											(function() {
 												var userAnswerList = [];
-												var num_of_answers = result.length;
+												var numOfAnswers = resultQuestion.length;
 												
-												for (var i = 0; i < num_of_answers; i++) {
+												for (var i = 0; i < numOfAnswers; i++) {
 													
 													var answers = {
 														questionID: ' ',
@@ -289,36 +289,36 @@ router.get(['/','/:u_id'],
 									
 									output = {
 										user_profile_info: {
-											userName: result_userInfo[0].username,
-											user_firstName: result_userInfo[0].first_name,
-											user_lastName: result_userInfo[0].last_name,
-											user_birthDate: dateFormat(result_userInfo[0].birth_date, "fullDate"),
-											user_country: result_userInfo[0].country,
-											user_gender: result_userInfo[0].gender								
+											userName: resultUserInfo[0].username,
+											user_firstName: resultUserInfo[0].first_name,
+											user_lastName: resultUserInfo[0].last_name,
+											user_birthDate: dateFormat(resultUserInfo[0].birth_date, "fullDate"),
+											user_country: resultUserInfo[0].country,
+											user_gender: resultUserInfo[0].gender								
 										},
 										user_activity: {
-											numberOfQuestions: result1.length,
-											numberOfAnswers: result.length
+											numberOfQuestions: resultAnswer.length,
+											numberOfAnswers: resultQuestion.length
 										},
 										
 										user_answers: {
 											user_answer_list:
 											(function() {
 												var userAnswerList = [];
-												var num_of_answers = result.length;
+												var numOfAnswers = resultQuestion.length;
 												
-												for (var i = 0; i < num_of_answers; i++) {
+												for (var i = 0; i < numOfAnswers; i++) {
 													
 													var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
-													var d = (new Date(result[i].datetime_answered  - timezoneOffset)).toISOString().split("T");
+													var d = (new Date(resultQuestion[i].datetime_answered  - timezoneOffset)).toISOString().split("T");
 													d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
 													
 													var answers = {
-														questionID: result[i].question_id,
-														questionTitle: result[i].question_title,
-														answerID: result[i].answer_id,
-														answerBody: result[i].answer_body,			
-														numOfAnswers: result[i].num_answers,
+														questionID: resultQuestion[i].question_id,
+														questionTitle: resultQuestion[i].question_title,
+														answerID: resultQuestion[i].answer_id,
+														answerBody: resultQuestion[i].answer_body,			
+														numOfAnswers: resultQuestion[i].num_answers,
 														date_ans: d							
 													}
 													
