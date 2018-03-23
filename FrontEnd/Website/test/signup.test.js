@@ -12,15 +12,15 @@ describe("SIGN UP", function () {
 		// Checks to ensure that form data is being sent over the server and sign up passes
 	it("Sign up page sends form data across server and to the DB", function(done) {
 		request(app).post("/sign_up")
-			.send({fName: "First", lName: "last", uName: "Tester", email: "testing@test.ca", password: "Test12", country: "Canada", 
+			.send({fName: "First", lName: "last", uName: "Tester", email: "testing@test.ca", password: "Test12", country: "Canada",
 			year: "1905", month: "10", day: "12", gender: "M" })
-			.expect(302, done);
+			.expect(200, done);
 	});
 
 	// Checks to ensure that the form data is being sent over the server and sign up fails
 	it("Sign up page sends form data across server and to the DB", function(done) {
 		request(app).post("/sign_up")
-			.send({fName: "First", lName: "last", uName: "Tester", email: "test@test.ca", password: "Test12", country: "Canada", 
+			.send({fName: "First", lName: "last", uName: "Tester", email: "test@test.ca", password: "Test12", country: "Canada",
 			year: "1905", month: "10", day: "12", gender: "M" })
 			.expect(200, done);
 	});

@@ -25,7 +25,7 @@
     }
   //query from question table joined with user's table user_id
   var sqlGetQuestion = "select question.question_title,question.question_body, question.datetime_asked, user.user_id, \
-  question.question_id, user.username AS asked_by FROM question JOIN user ON question.user_id = user.user_id \
+  question.question_id, user.username AS asked_by, question.favorite_answer_id FROM question JOIN user ON question.user_id = user.user_id \
   WHERE question_id = ?";
 
   db.query(sqlGetQuestion,[qId], function(err,result) {

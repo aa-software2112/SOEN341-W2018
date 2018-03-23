@@ -2,70 +2,70 @@
 <div class="body-container">
 	<div class="content-container center-div">
 		<div class="container">
-		  
+
 		<div class="make-flex flex-vert signup_text-container">
 			<h2 class="align-center" >Contact Us</h2>
 			<!--<p class="align-center">Swing by for a cup of coffee, or leave us a message:</p>
 			-->
 		  <div class="row">
 
-			
+
 			  <form class="make-flex flex-vert div-shadow-effect" id="contact-form" method="post" action="/contact" >
 
 
 		<% if (typeof logged !== "undefined" && logged == true) { %>
-				
+
 				<div class="label-div make-flex flex-horiz">
 						<p class="make-flex flex-vert">
 							<span>First Name</span>
 						</p>
-						<input class="signup-name std-input-font text-input-shadow-border form-input" type="text" id="fname" name="firstname"  value="<%= fName %>" required>
-				
+						<input class="signup-name std-input-font text-input-shadow-border form-input" type="text" id="fname" name="firstname"  value="<%= fname %>" required>
+
 				</div>
-				
+
 				<div class="label-div make-flex flex-horiz">
 					<p class="make-flex flex-vert">
 						<span>Last Name</span>
 					</p>
 					<input class="signup-name std-input-font text-input-shadow-border form-input" type="text" id="lname" name="lastname" value="<%= lName %>" required>
-				</div>	
-				
+				</div>
+
 				<div class="label-div make-flex flex-horiz">
 					<p class="make-flex flex-vert">
 						<span>Email</span>
 					</p>
 					<input class="signup-name std-input-font text-input-shadow-border form-input" type="email" id="email" name="email" value="<%= email %>" required>
 				</div>
-				
+
 		<% } else {%>
-		
+
 			<div class="label-div make-flex flex-horiz">
 						<p class="make-flex flex-vert">
 							<span>First Name</span>
 						</p>
-						
+
 				<input class="signup-name std-input-font text-input-shadow-border form-input" type="text" id="fname" name="firstname" placeholder="Your name.." required>
 			</div>
-				
+
 			<div class="label-div make-flex flex-horiz">
 				<p class="make-flex flex-vert">
 					<span>Last Name</span>
 				</p>
 				<input class="signup-name std-input-font text-input-shadow-border form-input" type="text" id="lname" name="lastname" placeholder="Your last name.." required>
-				
+
 			</div>
-			
+
 			<div class="label-div make-flex flex-horiz">
 				<p class="make-flex flex-vert">
 					<span>Email</span>
 				</p>
-					
+
 				<input class="signup-name std-input-font text-input-shadow-border form-input" type="email" id="email" name="email" placeholder="Your email.." required>
 			</div>
-		<% } %> 
+		<% } %>
 
 				<!-- Country list drop down menu from : http://snipplr.com/view/50005/country-dropdown-list-with-country-name-as-value/ -->
-				
+
 				<div class="label-div make-flex flex-horiz">
 					<p class="make-flex flex-vert">
 						<span>Country</span>
@@ -223,12 +223,12 @@
 						<option value="Romania">Romania</option>
 						<option value="Russia">Russian Federation</option>
 						<option value="Rwanda">Rwanda</option>
-						<option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option> 
+						<option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
 						<option value="Saint Lucia">Saint Lucia</option>
 						<option value="Saint Vincent">Saint Vincent and the Grenadines</option>
 						<option value="Samoa">Samoa</option>
 						<option value="San Marino">San Marino</option>
-						<option value="Sao Tome and Principe">Sao Tome and Principe</option> 
+						<option value="Sao Tome and Principe">Sao Tome and Principe</option>
 						<option value="Saudi Arabia">Saudi Arabia</option>
 						<option value="Senegal">Senegal</option>
 						<option value="Serbia">Serbia</option>
@@ -276,16 +276,16 @@
 						<option value="Zambia">Zambia</option>
 						<option value="Zimbabwe">Zimbabwe</option>
 					</select>
-				</div>	
-				
-				
+				</div>
+
+
 				<textarea id="contact-body" class="text-input-shadow-border std-input-font"  name="subject" placeholder="Your message to us..." style="height:170px" required></textarea>
 				<input class="button loginbtn self-right" type="submit" formaction="/contact" value="Submit">
 
 
-	
+
 			  </form>
-			  
+
 			</div>
 		  </div>
 		</div>
