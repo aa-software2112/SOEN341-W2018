@@ -69,8 +69,27 @@ CREATE TABLE `answer` (
   CONSTRAINT `question_id` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO answer (answer_body, user_id, question_id, datetime_answered, answer_id) VALUES ('this is an aswer', '24776', '26957', '2018-02-13 11:02:01', '10');
+INSERT INTO answer (answer_body, user_id, question_id, datetime_answered, answer_id) VALUES ('this is an aswer', '1', '1', '2018-02-13 11:02:01', '10');
 
+CREATE TABLE `score_answer` (
+  `score` enum('-1','1') NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `answer_id` int(10) unsigned NOT NULL,
+  `datetime_scored_answer` datetime NOT NULL,
+  PRIMARY KEY (`user_id`,`answer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO score_answer (score, user_id, answer_id, datetime_scored_answer) VALUES ('1', '1', '1', '2018-03-19 04:39:19');
+
+CREATE TABLE `score_question` (
+  `score` enum('-1','1') NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `question_id` int(10) unsigned NOT NULL,
+  `datetime_scored_question` datetime NOT NULL,
+  PRIMARY KEY (`user_id`,`question_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO score_question (score, user_id, question_id, datetime_scored_question) VALUES ('1', '1', '1', '2018-02-13 12:20:30');
 
 
 '"
