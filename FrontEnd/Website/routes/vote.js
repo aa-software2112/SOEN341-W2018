@@ -1,14 +1,14 @@
-var express = require('express')
+var express = require("express")
 var router = express.Router();
 
-var path = require('path');
-var util = require('util');
+var path = require("path");
+var util = require("util");
 var bodyParser = require("body-parser");
-var date = require('date-and-time');
+var date = require("date-and-time");
 
 // Database connection
-const mysql = require('mysql');
-var db = require('../database/database');
+const mysql = require("mysql");
+var db = require("../database/database");
 
 /** <<<<<<<<<<<<<<< Vote page >>>>>>>>>>>>>>
 * ============================================================================
@@ -120,11 +120,13 @@ router.post("/answer-vote", function(req, res)
 		//The totalScore of the answer_id is the substraction between the positive score and the negative score.
 		var totalScore = 0;
 		
-		if (result_q1[0].positiveScore != null)
+		if (result_q1[0].positiveScore != null){
 			totalScore += result_q1[0].positiveScore;
+		}
 		
-		if (result_q1[0].negativeScore != null)
+		if (result_q1[0].negativeScore != null){
 			totalScore -= result_q1[0].negativeScore;
+		}
 		
 		// This Query checks if user has already voted previously
 		var sqlScoreExist = "SELECT score FROM score_answer WHERE user_id = ? AND answer_id = ?";
@@ -153,7 +155,7 @@ router.post("/answer-vote", function(req, res)
 					//Values to fill in sql query below
 					var score = req.body.vote; //score is taken from button input ex: click button like gives 1, click button dislike gives -1
 					var user_id = Number(req.body.user_id); //taken from user session
-					var datetime_scored_answer = date.format(new Date(), 'YYYY-MM-DD h:m:s');
+					var datetime_scored_answer = date.format(new Date(), "YYYY-MM-DD h:m:s");
 				
 					
 				newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote. Allows for toggling between upvote & downvote
@@ -183,7 +185,7 @@ router.post("/answer-vote", function(req, res)
 					score : req.body.vote, //score is taken from button input ex: click button like gives 1, click button dislike gives -1
 					user_id : Number(req.body.user_id), //taken from user session
 					answer_id : Number(req.body.answer_id), //taken answer to which the button is found
-					datetime_scored_answer : date.format(new Date(), 'YYYY-MM-DD h:m:s'),
+					datetime_scored_answer : date.format(new Date(), "YYYY-MM-DD h:m:s"),
 				};
 					
 				newTotalScore= totalScore + Number(newScoreAnswer.score); //the new totalScore is found by adding (+1 or -1) from the new score voted to the previous total score
@@ -236,11 +238,13 @@ router.post("/question-vote", function(req, res) {
 		//The totalScore of the question_id is the substraction between the positive score and the negative score.
 		var totalScore = 0;
 		
-		if (result_q1[0].positiveScore != null)
+		if (result_q1[0].positiveScore != null){
 			totalScore += result_q1[0].positiveScore;
+		}
 		
-		if (result_q1[0].negativeScore != null)
+		if (result_q1[0].negativeScore != null){
 			totalScore -= result_q1[0].negativeScore;
+		}
 
 		// This Query checks if user has already voted previously
 		var sqlScoreExist = "SELECT score FROM score_question WHERE user_id = ? AND question_id = ?";
@@ -267,7 +271,7 @@ router.post("/question-vote", function(req, res) {
 					//Values to fill in sql query below
 						var score = req.body.vote; //score is taken from button input ex: click button like gives 1, click button dislike gives -1
 						var user_id = Number(req.body.user_id); //taken from user session
-						var datetime_scored_question = date.format(new Date(), 'YYYY-MM-DD h:m:s');
+						var datetime_scored_question = date.format(new Date(), "YYYY-MM-DD h:m:s");
 					
 						
 					newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote
@@ -298,7 +302,7 @@ router.post("/question-vote", function(req, res) {
 					score : req.body.vote, //score is taken from button input ex: click button like gives 1, click button dislike gives -1
 					user_id : Number(req.body.user_id), //taken from user session
 					question_id : Number(req.body.question_id), //taken question to which the button is found
-					datetime_scored_question : date.format(new Date(), 'YYYY-MM-DD h:m:s'),
+					datetime_scored_question : date.format(new Date(), "YYYY-MM-DD h:m:s"),
 				};
 					
 				newTotalScore= totalScore + Number(newScoreQuestion.score); //the new totalScore is found by adding (+1 or -1) from the new score voted to the previous total score
