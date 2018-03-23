@@ -11,9 +11,9 @@ describe("ASK PAGE", function () {
 
 	// Checks to ensure that the Ask form data is being sent across the server (302 response)
 	it("Ask page sends form data across server to DB", function(done) {
-		request(app).post("/ask/askform/1")
+		request(app).post("/ask/askform/893743")
 			.send({q_title: "TestTitle", q_body: "TestBody"})
 			.expect(302, done);
 	});
-	
+
 });
