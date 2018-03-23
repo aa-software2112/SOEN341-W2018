@@ -889,7 +889,7 @@ li a:hover, .dropdown:hover .dropbtn {
 	    clear: both;
 	    display: table;
 	}
-}
+
 
 
 /* =====================================================================================================
@@ -1370,6 +1370,11 @@ background-position: 20% 15%;
 
 #alex {
 	background-image: url("../about_team_img/Alex.jpg");
+	background-position: 20% 15%;
+}
+
+#saleh {
+	background-image: url("../about_team_img/temp_pic.jpg");
 	background-position: 20% 15%;
 }
 
