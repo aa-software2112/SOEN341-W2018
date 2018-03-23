@@ -75,9 +75,9 @@ router.post("/", function(req,res) {
 				email : req.body.email,
 				password : req.body.password,
 				country : req.body.country,
-				birthDate : req.body.year +"-" + req.body.month + "-"+req.body.day,
+				birth_date : req.body.year +"-" + req.body.month + "-"+req.body.day,
 				gender : req.body.gender,
-				datetimeEntered : date.format(new Date(), "YYYY-MM-DD h:m:s"), 
+				datetime_entered : date.format(new Date(), "YYYY-MM-DD h:m:s"), 
 				
 			};
 			
