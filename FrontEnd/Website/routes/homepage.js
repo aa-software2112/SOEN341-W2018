@@ -33,22 +33,22 @@ router.get(['/', '/home'], (req, res) => {
 		ORDER BY datetime_asked DESC \
 		LIMIT 10;";
 		
-		db.query(query_newest, function (err, result) {
+		db.query(query_newest, function (err, resultNewest) {
 			if (err) {
 				res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 			} else {
 				
 				var output;
-				if (result.length == 0) 
+				if (resultNewest.length == 0) 
 				{
 					output = {
 						newest: {
-							necdwest_question_list:
+							newest_question_list:
 							(function() {
 								var newestQuestionList = [];
-								var num_of_questions = result.length;
+								var numOfQuestions = resultNewest.length;
 								
-								for (var i = 0; i < num_of_questions; i++) {
+								for (var i = 0; i < numOfQuestions; i++) {
 									
 									var questions = {
 										userName: ' ',
@@ -77,21 +77,21 @@ router.get(['/', '/home'], (req, res) => {
 							newest_question_list:
 							(function() {
 								var newestQuestionList = [];
-								var num_of_questions = result.length;
+								var numOfQuestions = resultNewest.length;
 								
-								for (var i = 0; i < num_of_questions; i++) {
+								for (var i = 0; i < numOfQuestions; i++) {
 																		
 									var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
-									var d = (new Date(result[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
+									var d = (new Date(resultNewest[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
 									d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
 									
 									var questions = {
-										questionID: result[i].question_id,
-										userID: result[i].user_id,
-										userName: result[i].asked_by,
-										questionTitle: result[i].question_title,
-										numOfVotes: result[i].num_votes,
-										numOfAnswers: result[i].num_views,
+										questionID: resultNewest[i].question_id,
+										userID: resultNewest[i].user_id,
+										userName: resultNewest[i].asked_by,
+										questionTitle: resultNewest[i].question_title,
+										numOfVotes: resultNewest[i].num_votes,
+										numOfAnswers: resultNewest[i].num_views,
 										date_ans: d				
 									}
 									newestQuestionList.push(questions);
@@ -114,22 +114,22 @@ router.get(['/', '/home'], (req, res) => {
 		ORDER BY num_votes DESC \
 		LIMIT 10;";
 		
-		db.query(query_popular, function (err, result) {
+		db.query(query_popular, function (err, result_popular) {
 			if (err) {
 				res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 			} else {
 				var output; 
 				
-				if (result.length == 0)
+				if (result_popular.length == 0)
 				{
 					output = {
 						popular: {
 							popular_question_list:
 							(function() {
 								var popularQuestionList = [];
-								var num_of_questions = result.length;
+								var numOfQuestions = result_popular.length;
 								
-								for (var i = 0; i < num_of_questions; i++) {
+								for (var i = 0; i < numOfQuestions; i++) {
 									var questions = {
 										userName: ' ',
 										questionTitle: ' ',
@@ -158,21 +158,21 @@ router.get(['/', '/home'], (req, res) => {
 							popular_question_list:
 							(function() {
 								var popularQuestionList = [];
-								var num_of_questions = result.length;
+								var numOfQuestions = result_popular.length;
 								
-								for (var i = 0; i < num_of_questions; i++) {
+								for (var i = 0; i < numOfQuestions; i++) {
 
 									var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
-									var d = (new Date(result[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
+									var d = (new Date(result_popular[i].datetime_asked  - timezoneOffset)).toISOString().split("T");
 									d = d[0] + " - " + d[1].split("Z")[0].slice(0, -4);
 									
 									var questions = {
-										questionID: result[i].question_id,
-										userID: result[i].user_id,
-										userName: result[i].asked_by,
-										questionTitle: result[i].question_title,
-										numOfVotes: result[i].num_votes,
-										numOfAnswers: result[i].num_views,
+										questionID: result_popular[i].question_id,
+										userID: result_popular[i].user_id,
+										userName: result_popular[i].asked_by,
+										questionTitle: result_popular[i].question_title,
+										numOfVotes: result_popular[i].num_votes,
+										numOfAnswers: result_popular[i].num_views,
 										date_ans: d							
 									}
 									popularQuestionList.push(questions);
