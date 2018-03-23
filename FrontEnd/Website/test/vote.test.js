@@ -9,7 +9,7 @@ describe("VOTE", function () {
 		request(app).post("/vote/answer_vote")
 			.send({user_id: "1", answer_id: "1"})
 			.expect(302, done);
-	});
+  });
 
 	// Checks to make sure that the vote functionality works on the questions
 	it("Question Vote - Sends form data across server and into DB ", function(done) {
@@ -17,4 +17,5 @@ describe("VOTE", function () {
 			.send({user_id: "1", question_id: "1"})
 			.expect(302, done);
 	});
+  
 });

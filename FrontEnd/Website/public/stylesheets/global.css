@@ -38,7 +38,8 @@ h2 {
 
 h3 {
 	font-size: 2.5em;
-	margin: 20px auto 10px;
+	/*margin: 20px auto 10px;*/
+	margin: 0px auto 10px;
     text-align: center;
 }
 
@@ -49,6 +50,13 @@ p {
 
 form {
 	display: block;
+}
+
+textarea:focus, input:focus {
+	
+	outline: none;
+	box-sizing: border-box;
+	
 }
 
 /* Should be used to facilitate similar background color across pages */
@@ -131,7 +139,7 @@ form {
 }
 
 .alignment-container {
-	padding-top: 50px;
+	/*padding-top: 50px;*/
 	padding-left: 40px;
 	padding-right: 40px;
 }
@@ -513,6 +521,7 @@ form {
 }
 
 #answer-textarea {
+	padding: 15px;
 	width: 100%;
 	height: 80%;
 }
@@ -1034,14 +1043,33 @@ li a:hover, .dropdown:hover .dropbtn {
 --------------------------------------*/
 
 
-	
-	.login_form{
-		background-color: #eaf7fa;
-		border: 3px solid #f1f1f1;
+	.label-div p {
+			justify-content: center;
+			align-items: flex-end;
+			min-width: 120px;
+			font-family: karmaLight;
+			padding-right: 15px;
+			
+		
 	}
 	
+	.label-div {
+		
+		justify-content: center;
+		height: 50px;
+	}
+
+
+	.form-input{
+		
+		padding: 7px;
+		padding-top: 10px;
+		display:block;
+		width: 400px;
+	}
+
+	
 	.login_body-container {
-		padding: 16px;
 		margin: 2%
 	}
 	.login_container {
@@ -1055,6 +1083,7 @@ li a:hover, .dropdown:hover .dropbtn {
 		margin: 24px 0 12px 0;
 	}
 	
+	/*
 	input[type=email], input[type=password] {
 		width: 100%;
 		padding: 12px 20px;
@@ -1063,7 +1092,7 @@ li a:hover, .dropdown:hover .dropbtn {
 		border: 1px solid #ccc;
 		box-sizing: border-box;
 	}
-
+	*/
 
 	button:hover {
 		opacity: 0.8;
@@ -1128,11 +1157,55 @@ li a:hover, .dropdown:hover .dropbtn {
 		max-width: 80%;
 	}
 	
+	.login-buttons {
+		
+		align-items: flex-end;
+		
+	}
+	
+	.loginbtn {
+		
+		width: 125px;
+		height: 50px;
+		background-color: rgba(128,0,32, 0.85);
+		color: #ffdaab;
+		
+	}
+	
 /* Contact page */
+
+.div-shadow-effect {
+	padding: 30px 10px 30px 10px;
+	transition: box-shadow 1s;
+	
+}
+
+.div-shadow-effect:hover  {
+	box-shadow: 0px 0px 20px 5px rgba(100,100,100,0.35);
+	
+}
+
+
+
+#contact-form {
+	
+	align-items: center;
+	
+}
 
 #contact-form > input{
 
 	margin: 10px 0px;
+}
+
+#contact-body {
+	
+	margin: auto;
+	padding: 15px;
+	min-height: 300px;
+	width: 720px;
+	display:block;
+	
 }
 
 #contact-form > select{
@@ -1170,25 +1243,64 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 #question-title-form{
-	padding: 10px;
+	
+	padding: 7px;
+	padding-top: 10px;
 	display:block;
 	width: 100%;
 }
 
+.text-input-shadow-border {
+	border: 1px solid rgba(100, 100, 100, 0.50);
+	box-shadow: 0px 0px 5px 1px rgba(100, 100, 100, 0.20) inset;
+	
+}
+
+#ask-form-div-container {
+	padding: 30px 10px 30px 10px;
+	transition: box-shadow 1s;
+}
+
+#ask-form-div-container:hover {
+	
+	box-shadow: 0px 0px 20px 5px rgba(100,100,100,0.35);
+	
+}
+
 #question-body-form{
+	padding: 15px;
+	min-height: 300px;
+	width: 100%;
 	display:block;
 }
 
 #submit-ask {
 	margin-top: 15px;
 	width: 100px;
+	background-color: rgba(128,0,32, 0.85);
+	color: #ffdaab;
+}
+
+#ask-title-div {
+	
+	margin-bottom: 30px;
+	height: 50px;	
+	
 }
 
 .ask-form-p {
-	margin: 10px 0 10px 0;
+	justify-content: center;
+	min-width: 120px;
 	font-family: karmaLight;
-	font-family: "Times New Roman";
 }
+
+.label-div {
+	
+	position: relative;
+	margin-bottom: 15px; 
+	
+}
+
 /* About us page/ About us */
 
 #about {
@@ -1198,9 +1310,8 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 #about-body {
-	max-width: 900px;
-	margin: 40px auto;
-	font-family: Verdana;
+	text-align: center;
+	align-self: center;
 	line-height: 1.5em;
 	font-size: 1.2em;
 	padding: 10px;
@@ -1209,33 +1320,121 @@ li a:hover, .dropdown:hover .dropbtn {
 
 /* About us page / meet the team*/
 
+
+#main-photo-container {
+	
+	
+}
+
+#team-wrapper {
+	
+	margin: auto;
+	max-width: 1280px;
+}
+
 #team {
-	border-radius: 8px;
-	padding: 10px 15px 10px 30px;
-
+	display: flex; 
+	justify-content: center;
+	padding-top: 15px;
 }
 
-img.circular--square {
-  width:  176px;
-  height: 180px;
-  display: block
-  background-size: contain;
-  background-repeat: no-repeat;;
-  border-radius: 50%;
+
+#anthony {
+	 background-image: url("../about_team_img/Anthony.png");
+	background-position: 0% 25%;
 }
-.column {
-    float: left;
-    width: 50%;
-    margin-bottom: 50px;
-    padding: 10px 100px;
-    text-align: center;
+
+#tom {
+background-image: url("../about_team_img/Tom.jpg");
+background-position: 0% 15%;
+	
 }
+
+#nizar {
+	
+	background-image: url("../about_team_img/Nizar.jpg");
+background-position: 20% 15%;
+	
+}
+
+#abishand {
+	
+	background-image: url("../about_team_img/Abishand.JPG");
+	background-position: 20% 60%;
+}
+
+#jason {
+	background-image: url("../about_team_img/Jason.jpg");
+	background-position: 20% 60%;
+}
+
+#alex {
+	background-image: url("../about_team_img/Alex.jpg");
+	background-position: 20% 15%;
+}
+
+.circular--square {
+	box-shadow: 0px 0px 70px 1px rgba(0, 0, 0, 0.65) inset;
+border:none;
+outline: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+	min-height: 350px;
+	transition: box-shadow 0.2s;
+}
+
+
 
 #team-text {
 	font-size: 1.4em;
 	color: rgb(0, 0, 0);
 }
 
+.team-div {
+	
+	padding: 5px 50px 5px 50px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.teammate-div:hover > .circular--square{
+	box-shadow: 0px 0px 70px 1px rgba(0, 0, 0, 0.30) inset;
+
+}
+
+.teammate-div:hover{
+	
+	box-shadow: 0px 0px 15px 5px rgba(100,100,100,0.75);
+	
+}
+
+.dev-link {
+	
+	text-decoration: none;
+	
+}
+
+.dev-link:visited, .dev-link:link{
+	
+	color: inherit;
+	
+}
+
+.teammate-div {
+	
+	margin: 30px;
+	width: 400px;
+	height: 400px;
+	box-shadow: 0px 0px 5px 2px rgba(100,100,100,0.5);
+	transition: box-shadow 0.2s;
+}
+
+.teammate-div img {
+	
+	
+	
+}
 
 
 /* Signup Page CSS */
@@ -1288,13 +1487,67 @@ img.circular--square {
 	border-radius: 4px;
 }
 
+.signup-name {
+	
+	width: 300px;
+	
+}
+
+.pw-msg-div {
+	
+	position: relative;
+	
+}
+
+#pw-msg {
+	
+	padding-left: 15px;
+	padding-top: 5px;
+	text-align: left;
+	position: absolute;
+	width: 250px;
+	height: 100%;
+	font-size: 0.8em;
+	
+}
+
+.label-div .gender-select {
+	
+	min-width: 50px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	
+	
+}
+
+.gender-select {
+	
+	display: flex;
+	
+}
+
+.gender-input {
+	
+	display: block;
+	
+}
+
+.gender-input-selector {
+	
+	width: 15px;
+	height: 15px;
+	
+}
+
+.btn-right {
+	
+	align-self: flex-end;
+	
+}
 
 .signup_box {
-	margin-top: 60px;
-	padding-top: 30px;
 	padding-bottom: 40px;
-	background-color: #eaf7fa; 
-	box-shadow: 0px 0px 2px 1px rgba(100, 100, 100, 0.30);
 }
 
 .signup_labels {
@@ -1304,7 +1557,10 @@ img.circular--square {
 .signup_select {
 	width: initial;
 	padding: 3px 2px !important;
+	margin-right: 5px;
 }
+
+
 
 /* Signup Confirmation Page */
 
@@ -1319,15 +1575,28 @@ img.circular--square {
 	width: 90%;
 	height: auto;
 	min-height: 300px;
+	background-color: #1a5e76;
 }
 
 #not-logged-msg {
 	text-align: center;
 	
+	color: #ffdaab;
 }
 
 #login-text-link {
 	
-	font: inherit;
+	text-decoration: none;
+	font-size: 2.2em;
+	color : #ffdaab;
+	
 	
 }
+
+#login-text-link:link {
+	 
+	text-decoration: none;
+	
+}
+
+
