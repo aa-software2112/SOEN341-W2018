@@ -6,7 +6,7 @@ describe("CONTACT PAGE", function () {
 	// Pings the contact page GET function to make sure it responds properly (200 response)
 	it("Contact page is reachable and renders", function(done) {
 		request(app).get("/contact")
-			//.send({firstname: "testFirst", lastname: "testLast", country: "Canada", subject: "testMessage" })
+			.send({firstname: "testFirst", lastname: "testLast", country: "Canada", subject: "testMessage" })
 			.expect(200, done);
 	});
 
@@ -17,7 +17,5 @@ describe("CONTACT PAGE", function () {
 			.send({firstname: "testFirst", lastname: "testLast", country: "Canada", subject: "testMessage" })
 			.expect(302, done);
 	});
-	
+
 });
-
-

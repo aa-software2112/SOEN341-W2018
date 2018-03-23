@@ -7,28 +7,28 @@
 			<p>Swing by for a cup of coffee, or leave us a message:</p>
 		  </div>
 		  <div class="row">
-			
+
 			<div class="column center-div">
 			  <form id="contact-form" method="post" action="/contact" >
 
 
  <% if (typeof logged !== "undefined" && logged == true) { %>
 				<label for="fname">First Name</label>
-				<input type="text" id="fname" name="firstname"  value="<%= fName %>" required>
+				<input type="text" id="fname" name="firstname"  value="<%= fname %>" required>
 				<label for="lname">Last Name</label>
 				<input type="text" id="lname" name="lastname" value="<%= lName %>" required>
 				<label for="lname">Email</label>
 				<input type="email" id="email" name="email" value="<%= email %>" required>
 		<% } else {%>
-		
+
 			<label for="fname">First Name</label>
 				<input type="text" id="fname" name="firstname" placeholder="Your name.." required>
 				<label for="lname">Last Name</label>
 				<input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
 				<label for="lname">Email</label>
 				<input type="email" id="email" name="email" placeholder="Your email.." required>
-		
-		<% } %> 
+
+		<% } %>
 
 				<!-- Country list drop down menu from : http://snipplr.com/view/50005/country-dropdown-list-with-country-name-as-value/ -->
 
@@ -186,12 +186,12 @@
 				    <option value="Romania">Romania</option>
 				    <option value="Russia">Russian Federation</option>
 				    <option value="Rwanda">Rwanda</option>
-				    <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option> 
+				    <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
 				    <option value="Saint Lucia">Saint Lucia</option>
 				    <option value="Saint Vincent">Saint Vincent and the Grenadines</option>
 				    <option value="Samoa">Samoa</option>
 				    <option value="San Marino">San Marino</option>
-				    <option value="Sao Tome and Principe">Sao Tome and Principe</option> 
+				    <option value="Sao Tome and Principe">Sao Tome and Principe</option>
 				    <option value="Saudi Arabia">Saudi Arabia</option>
 				    <option value="Senegal">Senegal</option>
 				    <option value="Serbia">Serbia</option>
