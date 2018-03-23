@@ -6,4 +6,3 @@ script: cd FrontEnd/Website && npm test
 services:
   mysql
 before_install:
-  - mysql -u root --password="" < FrontEnd/Website/test/database.test.sql
