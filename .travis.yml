@@ -7,4 +7,7 @@ services:
   mysql
 before_install:
   mysql -e 'CREATE DATABASE myapp_test;'
+  sudo mysql import < Database/SQL Database Tables/soen341_project_question.sql
+  mysql -e 'INSERT INTO question_table (test, test_value,1, ,1, ,)
+
 
