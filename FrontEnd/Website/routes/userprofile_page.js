@@ -376,5 +376,21 @@ router.get('/delete_answer/:a_id', (req, res) => {
 	});
 });
 
+router.get('/delete_user/:u_id', (req, res) => {
+	var uId = req.params.u_id;
+	
+	db.query("DELETE FROM user WHERE user_id = ? ", [uId], function (err, rows) {
+		
+		if (err) {
+			res.status(500).json({"status_code": 500,"status_message": "internal server error"});
+			console.log("Error deleting : %s ", err );
+		} else {
+			req.session.logged = false; // "Logout" the user
+			
+			res.redirect("/home");
+		};
+	});
+});
+
 
 module.exports = router;

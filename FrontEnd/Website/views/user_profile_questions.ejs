@@ -48,101 +48,121 @@
 										<p class="align-center" id="questions-answered">
 											Answered <%= userprofile.user_activity.numberOfAnswers %> Question(s)
 										</p>
-										<!-- <p class="align-center" id="redirect-questions">
-											<a href="/user_profile">View Your Questions</a>
-										</p>
-										<p class="align-center" id="redirect-answers">
-											<a href="/user_profile">View Your Answers</a>
-										</p> -->
+										
+										<% if (typeof logged !== "undefined" && logged == true && user_id === userProfile.userID) { %>
+											<!-- Button trigger modal -->
+											<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteAccount">
+												Delete my account
+											</button>
+											
+											<!-- Modal -->
+											<div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel">Are you sure you want your account permanently? </h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															This is delete all your questions and answers.
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+															<form method="get" action= <%= "/user_profile/delete_user/" + String(userProfile.userID) %>>
+																<button type="submit" class="btn btn-danger">Delete</button>
+															</form>       
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<% } %>
+											
+										</div>
+										
 										
 									</div>
 									
-									
-								</div>
-								
-								<div class="user-div" id="user-stats-div">
-									<div class="center-div" id="view-title">
-										<!-- <div class="container">
-											<ul class="nav nav-tabs">
-												<li><a data-toggle="tab" href="?tab=questions">Your Questions</a></li>
-												<li><a data-toggle="tab" href="?tab=answers">Your Answers</a></li>
-											</ul>
-										</div> -->
-										<div class="card-header">
-											<ul class="nav nav-tabs card-header-tabs questions-tab">
-												<form>
-													<li class="nav-item">
-														<a href="?tab=questions" class="nav-link active tab-link"> Questions </a>
-													</li>
-												</form>
-												<form>
-													<li class="nav-item">
-														<a href="?tab=answers" class="nav-link active tab-link"> Answers </a>
-													</li>
-												</form>
-											</ul>
+									<div class="user-div" id="user-stats-div">
+										<div class="center-div" id="view-title">
+										
+											<div class="card-header">
+												<ul class="nav nav-tabs card-header-tabs questions-tab">
+													<form>
+														<li class="nav-item">
+															<a href="?tab=questions" class="nav-link active tab-link"> Questions </a>
+														</li>
+													</form>
+													<form>
+														<li class="nav-item">
+															<a href="?tab=answers" class="nav-link active tab-link"> Answers </a>
+														</li>
+													</form>
+												</ul>
+											</div>
 										</div>
-									</div>
-									<div class="make-flex flex-vert" id="view-results">
-										<div class="tab-content">								
-											<% for (var user_q_list = 0; user_q_list<userprofile.user_questions.user_question_list.length; user_q_list++) { %>
-												<% var questions = userprofile.user_questions.user_question_list %>
-												
-												<div class="make-flex flex-vert view-result">
+										<div class="make-flex flex-vert" id="view-results">
+											<div class="tab-content">								
+												<% for (var user_q_list = 0; user_q_list<userprofile.user_questions.user_question_list.length; user_q_list++) { %>
+													<% var questions = userprofile.user_questions.user_question_list %>
 													
-													<p class="view-result-p">
-														<blockquote><a href="/question_forum/<%= questions[user_q_list].questionID %>"> <%= questions[user_q_list].questionTitle %> </a></blockquote>
-														<%= questions[user_q_list].questionBody %>
-													</p>
-													
-													<p class="self-right date-result-p">
-														<%= questions[user_q_list].date_ans %> 
+													<div class="make-flex flex-vert view-result">
 														
-													</p>
-													
-													<% if (typeof logged !== "undefined" && logged == true && user_id === userProfile.userID) { %>
-														<!-- Button trigger modal -->
-														<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
-															Delete
-														</button>
+														<p class="view-result-p">
+															<blockquote><a href="/question_forum/<%= questions[user_q_list].questionID %>"> <%= questions[user_q_list].questionTitle %> </a></blockquote>
+															<%= questions[user_q_list].questionBody %>
+														</p>
 														
-														<!-- Modal -->
-														<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-															<div class="modal-dialog" role="document">
-																<div class="modal-content">
-																	<div class="modal-header">
-																		<h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this question?</h5>
-																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																			<span aria-hidden="true">&times;</span>
-																		</button>
-																	</div>
-																	<div class="modal-body">
-																		<blockquote><a href="/question_forum/<%= questions[user_q_list].questionID %>"> <%= questions[user_q_list].questionTitle %> </a></blockquote>
-																		<%= questions[user_q_list].questionBody %>
-																	</div>
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-																		<form method="get" action= <%= "/user_profile/delete_question/" + String(questions[user_q_list].questionID) %>>
-																			<button type="submit" class="btn btn-danger">Delete</button>
-																		</form> 
+														<p class="self-right date-result-p">
+															<%= questions[user_q_list].date_ans %> 
+															
+														</p>
+														
+														<% if (typeof logged !== "undefined" && logged == true && user_id === userProfile.userID) { %>
+															<!-- Button trigger modal -->
+															<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteQuestion">
+																Delete
+															</button>
+															
+															<!-- Modal -->
+															<div class="modal fade" id="deleteQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																<div class="modal-dialog" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this question?</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<span aria-hidden="true">&times;</span>
+																			</button>
+																		</div>
+																		<div class="modal-body">
+																			<blockquote><a href="/question_forum/<%= questions[user_q_list].questionID %>"> <%= questions[user_q_list].questionTitle %> </a></blockquote>
+																			<%= questions[user_q_list].questionBody %>
+																		</div>
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																			<form method="get" action= <%= "/user_profile/delete_question/" + String(questions[user_q_list].questionID) %>>
+																				<button type="submit" class="btn btn-danger">Delete</button>
+																			</form> 
+																		</div>
 																	</div>
 																</div>
 															</div>
+															
+															<% } %>
 														</div>
 														
-														<% } %>
-													</div>
-													
-													<% } %>													
-												</div>	
+														<% } %>													
+													</div>	
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+								
+								<% include partials/footer %>
+							</body>
+							</html>
 							
-							<% include partials/footer %>
-						</body>
-						</html>
-						
-						
+							
