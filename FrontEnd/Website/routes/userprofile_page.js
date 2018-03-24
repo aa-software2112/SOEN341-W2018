@@ -60,7 +60,7 @@ var queryUserAnswers = "	SELECT question.question_title AS question_title, quest
 " ORDER BY datetime_answered DESC;"
 
 // Return an array of the user personal information. Index 0 will be use. 
-var queryUser = "SELECT user.username, user.first_name, user.last_name, user.birth_date, user.country, user.gender " +
+var queryUser = "SELECT user.user_id, user.username, user.first_name, user.last_name, user.birth_date, user.country, user.gender " +
 " FROM user WHERE user.user_id=?;"
 
 var loginChecker = require('../public/scripts/login_check').loginChecker;
@@ -135,6 +135,7 @@ router.get(['/','/:u_id'],
 									output = {
 										
 										user_profile_info: {
+											userID: resultUserInfo[0].user_id,
 											userName: resultUserInfo[0].username,
 											user_firstName: resultUserInfo[0].first_name,
 											user_lastName: resultUserInfo[0].last_name,
@@ -178,6 +179,7 @@ router.get(['/','/:u_id'],
 									
 									output = {
 										user_profile_info: {
+											userID: resultUserInfo[0].user_id,
 											userName: resultUserInfo[0].username,
 											user_firstName: resultUserInfo[0].first_name,
 											user_lastName: resultUserInfo[0].last_name,
@@ -249,6 +251,7 @@ router.get(['/','/:u_id'],
 								{
 									output = {
 										user_profile_info: {
+											userID: resultUserInfo[0].user_id,
 											userName: resultUserInfo[0].username,
 											user_firstName: resultUserInfo[0].first_name,
 											user_lastName: resultUserInfo[0].last_name,
@@ -289,6 +292,7 @@ router.get(['/','/:u_id'],
 									
 									output = {
 										user_profile_info: {
+											userID: resultUserInfo[0].user_id,
 											userName: resultUserInfo[0].username,
 											user_firstName: resultUserInfo[0].first_name,
 											user_lastName: resultUserInfo[0].last_name,
@@ -341,5 +345,36 @@ router.get(['/','/:u_id'],
 		
 	});
 });
+
+router.get('/delete_question/:q_id', (req, res) => {
+	
+	var qId = req.params.q_id;
+	
+	db.query("DELETE FROM question WHERE question_id = ? ", [qId], function (err, rows) {
+		
+		if (err) {
+			res.status(500).json({"status_code": 500,"status_message": "internal server error"});
+			console.log("Error deleting : %s ", err );
+		} else {
+			res.redirect('/user_profile/?tab=questions');
+		};
+	});
+	
+});
+
+router.get('/delete_answer/:a_id', (req, res) => {
+	var aId = req.params.a_id;
+	
+	db.query("DELETE FROM answer WHERE answer_id = ? ", [aId], function (err, rows) {
+		
+		if (err) {
+			res.status(500).json({"status_code": 500,"status_message": "internal server error"});
+			console.log("Error deleting : %s ", err );
+		} else {
+			res.redirect('/user_profile/?tab=answers');
+		};
+	});
+});
+
 
 module.exports = router;

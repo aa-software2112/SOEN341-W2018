@@ -18,185 +18,138 @@
 				
 				<div id="user-area-div" class="make-flex flex-row flex-left">
 					<div class="user-div" id="user-profile-div">
-
+                        
 						<% var userProfile = userprofile.user_profile_info %>
-
+                        
                         <% if(userProfile.user_gender == "M") { %>
-                        <div class="image center-div" id="male_profile"></div>      
-                        <% } else if(userProfile.user_gender == "F") { %>
-                        <div class="image center-div" id="female_profile"></div>        
-                        <% } else if(userProfile.user_gender == "O") { %>
-                        <div class="image center-div" id="other_profile"></div>     
-                        <% } %>
-
-						<div class="self-top" id="user-profile-metrics">
-                          
-								<p class="align-center" id="username">
-									<%= userProfile.userName %>
-								</p>
-								<p class="align-center" id="fullname">
-									<%= userProfile.user_firstName %> <%= userProfile.user_lastName %>
-								</p>
-								<p class="align-center" id="date-of-birth">
-									<%= userProfile.user_birthDate %>
-								</p>
-								<p class="align-center" id="country">
-									<%= userProfile.user_country %>
-								</p>
-							<p class="align-center" id="questions-asked">
-								Asked <%= userprofile.user_activity.numberOfQuestions %> Question(s)
-							</p>
-							<p class="align-center" id="questions-answered">
-								Answered <%= userprofile.user_activity.numberOfAnswers %> Question(s)
-							</p>
-							<!-- <p class="align-center" id="redirect-questions">
-								<a href="/user_profile">View Your Questions</a>
-							</p>
-							<p class="align-center" id="redirect-answers">
-								<a href="/user_profile">View Your Answers</a>
-							</p> -->
-							
-						</div>
-						
-						
-					</div>
-					
-					<div class="user-div" id="user-stats-div">
-						<div class="center-div" id="view-title">
-							<!-- <div class="container">
-								<ul class="nav nav-tabs">
-									<li><a data-toggle="tab" href="?tab=questions">Your Questions</a></li>
-									<li><a data-toggle="tab" href="?tab=answers">Your Answers</a></li>
-								</ul>
-							</div> -->
-							<div class="card-header">
-								<ul class="nav nav-tabs card-header-tabs questions-tab">
-									<form>
-										<li class="nav-item">
-											<a href="?tab=questions" class="nav-link active tab-link"> Questions </a>
-										</li>
-									</form>
-									<form>
-										<li class="nav-item">
-											<a href="?tab=answers" class="nav-link active tab-link"> Answers </a>
-										</li>
-									</form>
-								</ul>
-							</div>
-						</div>
-						<div class="make-flex flex-vert" id="view-results">
-							<div class="tab-content">		                              
-                                <% for (var user_ans_list = 0; user_ans_list<userprofile.user_answers.user_answer_list.length; user_ans_list++) { %>
-                                    <% var answer = userprofile.user_answers.user_answer_list %>
-                                    <div class="make-flex flex-vert  view-result">
-                                        <p class="view-result-p">
-                                            From question: <a href="/question_forum/<%= answer[user_ans_list].questionID %>"> <%= answer[user_ans_list].questionTitle %> </a>
-                                            
-                                            <blockquote><a href="/question_forum/<%= answer[user_ans_list].questionID %>">
-                                                <%= answer[user_ans_list].answerBody %>
-                                            </a></blockquote>
-											
-                                        </p>
-                                        <p class="self-right date-result-p">
-                                             <%= answer[user_ans_list].date_ans %>
-                                        </p>
-                                    </div>
-                                    <% } %>	
+                            <div class="image center-div" id="male_profile"></div>      
+                            <% } else if(userProfile.user_gender == "F") { %>
+                                <div class="image center-div" id="female_profile"></div>        
+                                <% } else if(userProfile.user_gender == "O") { %>
+                                    <div class="image center-div" id="other_profile"></div>     
+                                    <% } %>
                                     
-                                    <!-- <div class="make-flex flex-vert  view-result">
-                                        <p class="view-result-p">
-                                            <a href="user_profile.html">
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                            </a>
+                                    <div class="self-top" id="user-profile-metrics">
+                                        
+                                        <p class="align-center" id="username">
+                                            <%= userProfile.userName %>
                                         </p>
-                                        <p class="self-right date-result-p">
-                                            Posted: 31/01/2018
+                                        <p class="align-center" id="fullname">
+                                            <%= userProfile.user_firstName %> <%= userProfile.user_lastName %>
                                         </p>
+                                        <p class="align-center" id="date-of-birth">
+                                            <%= userProfile.user_birthDate %>
+                                        </p>
+                                        <p class="align-center" id="country">
+                                            <%= userProfile.user_country %>
+                                        </p>
+                                        <p class="align-center" id="questions-asked">
+                                            Asked <%= userprofile.user_activity.numberOfQuestions %> Question(s)
+                                        </p>
+                                        <p class="align-center" id="questions-answered">
+                                            Answered <%= userprofile.user_activity.numberOfAnswers %> Question(s)
+                                        </p>
+                                        <!-- <p class="align-center" id="redirect-questions">
+                                            <a href="/user_profile">View Your Questions</a>
+                                        </p>
+                                        <p class="align-center" id="redirect-answers">
+                                            <a href="/user_profile">View Your Answers</a>
+                                        </p> -->
+                                        
                                     </div>
-                                    <div class="make-flex flex-vert  view-result">
-                                        <p class="view-result-p">
-                                            <a href="user_profile.html">
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                            </a>
-                                        </p>
-                                        <p class="self-right date-result-p">
-                                            Posted: 31/01/2018
-                                        </p>
+                                    
+                                    
+                                </div>
+                                
+                                <div class="user-div" id="user-stats-div">
+                                    <div class="center-div" id="view-title">
+                                        <!-- <div class="container">
+                                            <ul class="nav nav-tabs">
+                                                <li><a data-toggle="tab" href="?tab=questions">Your Questions</a></li>
+                                                <li><a data-toggle="tab" href="?tab=answers">Your Answers</a></li>
+                                            </ul>
+                                        </div> -->
+                                        <div class="card-header">
+                                            <ul class="nav nav-tabs card-header-tabs questions-tab">
+                                                <form>
+                                                    <li class="nav-item">
+                                                        <a href="?tab=questions" class="nav-link active tab-link"> Questions </a>
+                                                    </li>
+                                                </form>
+                                                <form>
+                                                    <li class="nav-item">
+                                                        <a href="?tab=answers" class="nav-link active tab-link"> Answers </a>
+                                                    </li>
+                                                </form>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="make-flex flex-vert  view-result">
-                                        <p class="view-result-p">
-                                            <a href="user_profile.html">
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                            </a>
-                                        </p>
-                                        <p class="self-right date-result-p">
-                                            Posted: 31/01/2018
-                                        </p>
+                                    <div class="make-flex flex-vert" id="view-results">
+                                        <div class="tab-content">		                              
+                                            <% for (var user_ans_list = 0; user_ans_list<userprofile.user_answers.user_answer_list.length; user_ans_list++) { %>
+                                                <% var answer = userprofile.user_answers.user_answer_list %>
+                                                <div class="make-flex flex-vert  view-result">
+                                                    <p class="view-result-p">
+                                                        From question: <a href="/question_forum/<%= answer[user_ans_list].questionID %>"> <%= answer[user_ans_list].questionTitle %> </a>
+                                                        
+                                                        <blockquote><a href="/question_forum/<%= answer[user_ans_list].questionID %>">
+                                                            <%= answer[user_ans_list].answerBody %>
+                                                        </a></blockquote>
+                                                        
+                                                    </p>
+                                                    
+                                                    <p class="self-right date-result-p">
+                                                        <%= answer[user_ans_list].date_ans %>                                                        
+                                                    </p>
+
+                                                    <% if (typeof logged !== "undefined" && logged == true && user_id === userProfile.userID) { %>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                                            Delete
+                                                        </button>
+                                                        
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this answer?</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        From question: <a href="/question_forum/<%= answer[user_ans_list].questionID %>"> <%= answer[user_ans_list].questionTitle %> </a>
+                                                                        
+                                                                        <blockquote><a href="/question_forum/<%= answer[user_ans_list].questionID %>">
+                                                                            <%= answer[user_ans_list].answerBody %>
+                                                                        </a></blockquote>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <form method="get" action= <%= "/user_profile/delete_answer/" + String(answer[user_ans_list].answerID) %>>
+                                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                                        </form>       
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <% } %>
+                                                    </div>
+                                                    <% } %>	
+                                                    
+                                                    
+                                                    
+                                                </div>
+                                            </div>	
+                                        </div>	
                                     </div>
-                                    <div class="make-flex flex-vert  view-result">
-                                        <p class="view-result-p">
-                                            <a href="user_profile.html">
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                            </a>
-                                        </p>
-                                        <p class="self-right date-result-p">
-                                            Posted: 31/01/2018
-                                        </p>
-                                    </div>
-                                    <div class="make-flex flex-vert  view-result">
-                                        <p class="view-result-p">
-                                            <a href="user_profile.html">
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                            </a>
-                                        </p>
-                                        <p class="self-right date-result-p">
-                                            Posted: 31/01/2018
-                                        </p>
-                                    </div>
-                                    <div class="make-flex flex-vert  view-result">
-                                        <p class="view-result-p">
-                                            <a href="user_profile.html">
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                                This is polymorphism in Java.
-                                            </a>
-                                        </p>
-                                        <p class="self-right date-result-p">
-                                            Posted: 31/01/2018
-                                        </p>
-                                    </div> -->
-									
-								</div>
-                            </div>	
-						</div>	
-					</div>
-				</div>
-			</div>
-			
-			<% include partials/footer %>
-		</body>
-		</html>
-		
-		
+                                </div>
+                            </div>
+                            
+                            <% include partials/footer %>
+                        </body>
+                        </html>
+                        
+                        
