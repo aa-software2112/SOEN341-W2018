@@ -49,12 +49,37 @@
                                         <p class="align-center" id="questions-answered">
                                             Answered <%= userprofile.user_activity.numberOfAnswers %> Question(s)
                                         </p>
-                                        <!-- <p class="align-center" id="redirect-questions">
-                                            <a href="/user_profile">View Your Questions</a>
-                                        </p>
-                                        <p class="align-center" id="redirect-answers">
-                                            <a href="/user_profile">View Your Answers</a>
-                                        </p> -->
+                                      
+                                    	<% if (typeof logged !== "undefined" && logged == true && user_id === userProfile.userID) { %>
+											<!-- Button trigger modal -->
+											<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteAccount">
+												Delete my account
+											</button>
+											
+											<!-- Modal -->
+											<div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel">Are you sure you want your account permanently? </h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															This is delete all your questions and answers.
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+															<form method="get" action= <%= "/user_profile/delete_user/" + String(userProfile.userID) %>>
+																<button type="submit" class="btn btn-danger">Delete</button>
+															</form>       
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<% } %>
                                         
                                     </div>
                                     
