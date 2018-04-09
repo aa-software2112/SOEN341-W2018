@@ -1,0 +1,5 @@
+test:
+  adapter: mysql
+  database: soen341
+  username: root
+  encoding: utf8
