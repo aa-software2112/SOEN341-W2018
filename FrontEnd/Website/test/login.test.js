@@ -13,7 +13,7 @@ describe("LOGIN PAGE", function () {
 	it("Valid User - Login page sends form data across server and to the cookie", function(done) {
 		request(app).post("/login")
 		.send({email: "test@test.ca", password: "Test12"})
-		.expect(200, done);
+		.expect(302, done);
 	});
 
 	// Tests if the login page form posts its data on the server and login does not work (302 response)
