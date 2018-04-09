@@ -12,10 +12,17 @@ describe("CONTACT PAGE", function () {
 
 	
 	// Checks to ensure that form data is being sent over the server (302 response)
-	it("Contact page sends form data across server and sends email", function(done) {
+	it("Valid Data - Contact page sends form data across server and sends email", function(done) {
 		request(app).post("/contact")
 			.send({firstname: "testFirst", lastname: "testLast", country: "Canada", subject: "testMessage" })
 			.expect(302, done);
 	});
+
+	// Checks to ensure that the page remains functional when no data is attempted in the contact page
+	it("Invalid Data (Empty form) - Contact page remains reachable after no data is posted", function(done) {
+	request(app).post("/contact")
+		.expect(302, done);
+	});
+
 
 });
