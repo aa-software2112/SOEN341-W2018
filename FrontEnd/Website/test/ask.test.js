@@ -14,6 +14,7 @@ describe("ASK PAGE", function () {
 		request(app).post("/ask/askform/893743")
 			.send({q_title: "TestTitle", q_body: "TestBody"})
 			.expect(302, done);
+			done();
 	});
 
 });
