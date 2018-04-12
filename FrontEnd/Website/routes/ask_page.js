@@ -54,10 +54,10 @@ db.query(sqlSelectQuestion,[req.params.user_id], function(err,qId) {
 	//debugging purpose to make sure the variable is an actual value;
 	console.log(qId);
 	//variable of the value of the LAST question id from the array of question ids.
-	if (qId.length == 0) {
+	if (qId.length === 0) {
 		res.redirect("/home");
 	} else {
-		var qId = qId[qId.length-1].question_id;
+		qId = qId[qId.length-1].question_id;
 		res.redirect("/question_forum/"+qId);
 	}
 });

@@ -1,4 +1,4 @@
-var express = require("express")
+var express = require("express");
 var router = express.Router();
 
 var path = require("path");
@@ -20,7 +20,7 @@ var db = require("../database/database");
 */
 
 //listens for login page request to load it
-router.get("/", (req,res) => {
+router.get("/", function(req,res) {
 	console.log("logout requested!");
 	
 	req.session.logged = false; // "Logout" the user
