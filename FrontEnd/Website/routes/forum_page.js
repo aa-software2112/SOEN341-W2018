@@ -44,6 +44,7 @@
     var sqlTotalAnswer = "SELECT answer.answer_id, SUM(CASE WHEN score= '1' THEN 1 ELSE 0 END) AS positiveScore, Sum(CASE WHEN score = '-1' THEN 1 ELSE 0 END) AS negativeScore FROM answer JOIN score_answer \
     ON score_answer.answer_id = answer.answer_id GROUP BY score_answer.answer_id";
 
+    
     db.query(sqlGetAnswers,[qId], function(err,answer) {
       if (err) {
         res.redirect("/home");
@@ -83,6 +84,8 @@
          return commonAnsId;
          }
          var firstInter = IntersectArrays(answer, totalAns);
+         var totalScoreAns = 0;
+
          console.log("Intersetction " + util.inspect(firstInter));
 
           //debugging to show list of answers
@@ -106,6 +109,7 @@
               // for answers, we store all the answers related to the given question_id in an array, where we iterate through the ANSWER object that was posted to the database from SQL2 query
               answers:      
               (function() {
+                var totalScoreAnsArr = new Array(answer.length);
                 arr = [];
                 /*The following code uses the function created before. From the intersection we can have 3 scenarios. When there are no 
                 common answer_id between both tables. When the number of answer_id in common between both tables is less than the num of answer for 
@@ -116,8 +120,7 @@
                 //totalScoreAnsArr is the array that stores the sum of scores from the answer_id given the function.
                 //This array is then passed to the for loop on line .
                 //If there are no common answer_id between the tables, I instantiated all its entries to 0.
-                if(firstInter.length == 0) {
-                  var totalScoreAnsArr = new Array(answer.length)
+                if(firstInter.length === 0) {
                   for(var i = 0; i<answer.length;i++){
                     totalScoreAnsArr[i]=0;
                   }
@@ -127,7 +130,7 @@
                 //Then it iterates in a for loop looking for answers that has the exact same answer_id of second intersection
                 //When found, we populate the totalScoreAnsArr.
                 } else if (firstInter.length < answer.length) {
-                  var totalScoreAnsArr = new Array(answer.length);
+                  totalScoreAnsArr = new Array(answer.length);
                   var secondInter = IntersectArrays(answer, firstInter );
 
                   //Debugging to show what is the result from second intersection
@@ -135,7 +138,7 @@
 
                   for(var j=0;j<secondInter.length;j++){
                     for (var n =0; n<answer.length;n++){
-                      var totalScoreAns = 0;
+                      totalScoreAns = 0;
 
                       if(secondInter[j].answer_id==answer[n].answer_id){
                         if (secondInter[j].positiveScore != null){
@@ -161,11 +164,10 @@
                 //Third scenario when length of first intersection is the same as number of answer
                 //Meaning all answer have some votes.
                 } else if (firstInter.length == answer.length) {
-
-                  var totalScoreAnsArr = new Array(answer.length)
+                  totalScoreAnsArr = new Array(answer.length);
                   for(var k = 0; k< answer.length; k++){
                     if (firstInter[k].answer_id == answer[k].answer_id){
-                      var totalScoreAns = 0;
+                      totalScoreAns = 0;
 
                       if (firstInter[k].positiveScore != null)
                         totalScoreAns += firstInter[k].positiveScore;
@@ -182,17 +184,17 @@
 
                 //Same as before, it iterates through num of answers and now answer_pts is set to values in
                 //totalScoreAnsArr array, which we also made sure its the same length as answer output.
-                for(var i = 0; i< answer.length; i++) {                
+                for(var p = 0; p< answer.length; p++) {                
                   arr.push(
                   {
-                    answer_id: answer[i].answer_id,
-                    answer: answer[i].answer_body,
-                    user_answered: answer[i].answered_by,
-                    userID: answer[i].user_id,
-                    answer_pts:totalScoreAnsArr[i],
-                    datetime_answered: (new Date(answer[i].datetime_answered)).toISOString().split("T")[0]
+                    answer_id: answer[p].answer_id,
+                    answer: answer[p].answer_body,
+                    user_answered: answer[p].answered_by,
+                    userID: answer[p].user_id,
+                    answer_pts:totalScoreAnsArr[p],
+                    datetime_answered: (new Date(answer[p].datetime_answered)).toISOString().split("T")[0]
                   });
-                }return arr
+                }return arr;
 
               })()
             };
@@ -234,7 +236,7 @@
     user_id : req.params.user_answered, // Can also be accessed by req.session.user_id
     question_id : req.params.q_id,
     datetime_answered :  date.format(new Date(), 'YYYY-MM-DD h:m:s'), 
-  }
+  };
 
   //MYSQL QUERRY
   var sqlInsertAnswer = "insert into answer set ?";
@@ -243,7 +245,7 @@
       console.log(err);
       return;
     }
-    console.log("Answer succesfully added ")
+    console.log("Answer succesfully added ");
     res.redirect("/question_forum/" + req.params.q_id);
   });
 });

@@ -1,4 +1,4 @@
-var express = require("express")
+var express = require("express");
 var router = express.Router();
 
 var path = require("path");
@@ -21,7 +21,7 @@ var db = require("../database/database");
 */
 
 
-router.get(["/", "/home"], (req, res) => {
+router.get(["/", "/home"], function(req, res) {
 	
 	if(!req.query.tab || req.query.tab === "newest") { 
 		
@@ -39,7 +39,7 @@ router.get(["/", "/home"], (req, res) => {
 			} else {
 				
 				var output;
-				if (resultNewest.length == 0) 
+				if (resultNewest.length === 0) 
 				{
 					output = {
 						newest: {
@@ -56,13 +56,13 @@ router.get(["/", "/home"], (req, res) => {
 										numOfVotes: " ",
 										numOfAnswers: " ",
 										date_ans: " "						
-									}
+									};
 									newestQuestionList.push(questions);
 								}						
-								return newestQuestionList
+								return newestQuestionList;
 							})()
 						}
-					}
+					};
 				} else {
 					output = {
 						
@@ -93,16 +93,16 @@ router.get(["/", "/home"], (req, res) => {
 										numOfVotes: resultNewest[i].num_votes,
 										numOfAnswers: resultNewest[i].num_views,
 										date_ans: d				
-									}
+									};
 									newestQuestionList.push(questions);
 								}						
-								return newestQuestionList
+								return newestQuestionList;
 							})()
 						}									
-					}
+					};
 				}
 				res.render("homepage_newest.ejs", {homepage: output});
-			};	
+			}
 		});
 		
 	} else if (req.query.tab === "popular") {
@@ -120,7 +120,7 @@ router.get(["/", "/home"], (req, res) => {
 			} else {
 				var output; 
 				
-				if (result_popular.length == 0)
+				if (result_popular.length === 0)
 				{
 					output = {
 						popular: {
@@ -136,14 +136,13 @@ router.get(["/", "/home"], (req, res) => {
 										numOfVotes: " ",
 										numOfAnswers: " ",
 										date_ans: " "								
-									}
+									};
 									popularQuestionList.push(questions);
 								}						
-								return popularQuestionList
+								return popularQuestionList;
 							})()
 						},
-					}
-					
+					};
 				} else {
 					
 					output = {
@@ -174,17 +173,17 @@ router.get(["/", "/home"], (req, res) => {
 										numOfVotes: result_popular[i].num_votes,
 										numOfAnswers: result_popular[i].num_views,
 										date_ans: d							
-									}
+									};
 									popularQuestionList.push(questions);
 								}						
-								return popularQuestionList
+								return popularQuestionList;
 							})()
 						},
 						
-					}
+					};
 				}
 				res.render("homepage_popular.ejs", {homepage: output});
-			};	
+			}
 			
 		});
 	}
@@ -192,4 +191,3 @@ router.get(["/", "/home"], (req, res) => {
 });
 
 module.exports = router;
-

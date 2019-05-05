@@ -6,7 +6,7 @@
 * ============================================================================
 */
 
-var express = require('express')
+var express = require('express');
 var router = express.Router();
 
 var path = require('path');
@@ -49,7 +49,7 @@ var queryUserQuestions = "SELECT question.question_title, question.question_id, 
 " (SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=?) AS num_answers, datetime_asked " +
 " FROM question " +
 " WHERE question.user_id = ? " + 
-" ORDER BY datetime_asked DESC;"
+" ORDER BY datetime_asked DESC;";
 
 // Return an array of the user's answers. 
 var queryUserAnswers = "	SELECT question.question_title AS question_title, question.question_id AS question_id, " +
@@ -57,11 +57,11 @@ var queryUserAnswers = "	SELECT question.question_title AS question_title, quest
 " (SELECT COUNT(*) FROM answer WHERE question_id=question.question_id AND answer.user_id=?) AS num_answers, datetime_answered " +
 " FROM answer JOIN question ON question.question_id=answer.question_id " +
 " WHERE answer.user_id = ? " +
-" ORDER BY datetime_answered DESC;"
+" ORDER BY datetime_answered DESC;";
 
 // Return an array of the user personal information. Index 0 will be use. 
 var queryUser = "SELECT user.username, user.first_name, user.last_name, user.birth_date, user.country, user.gender " +
-" FROM user WHERE user.user_id=?;"
+" FROM user WHERE user.user_id=?;";
 
 var loginChecker = require('../public/scripts/login_check').loginChecker;
 
@@ -80,8 +80,7 @@ var loginChecker = require('../public/scripts/login_check').loginChecker;
 */
 
 
-router.get(['/','/:u_id'],
-(req, res) => {
+router.get(['/','/:u_id'], function(req, res){
 	
 	// Checks whether the queries should use the user_id of a user who's currently log in, or to visit 
 	// the profile of another user. 
@@ -92,7 +91,7 @@ router.get(['/','/:u_id'],
 		userIdCheck = userIdTest; // user_id from URL
 	} else {
 		userIdCheck = req.session.user_id; // user_id from cookie	
-	};
+	}
 	
 	// Return the user's personal information. 
 	db.query (queryUser, [userIdCheck], function (err, resultUserInfo) {
@@ -130,7 +129,7 @@ router.get(['/','/:u_id'],
 								res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 							} else {
 								// Prevents the app from crashing if the user's activity is blank. Return an empty object
-								if (resultQuestion.length == 0 && resultAnswer.length == 0) {
+								if (resultQuestion.length === 0 && resultAnswer.length === 0) {
 									
 									output = {
 										
@@ -163,15 +162,15 @@ router.get(['/','/:u_id'],
 														numOfVotes: ' ',
 														numOfAnswers: ' ',
 														date_ans: ' '				
-													}
+													};
 													
 													userQuestionList.push(questions);
 												}			
 												
-												return userQuestionList
+												return userQuestionList;
 											})()
 										}			
-									}
+									};
 									// Else the user's activity information is stored in the object output, in order to be
 									// rendered to the .ejs file.
 								} else {
@@ -209,21 +208,21 @@ router.get(['/','/:u_id'],
 														numOfVotes: resultQuestion[i].num_votes,
 														numOfAnswers: resultQuestion[i].num_views,
 														date_ans: d				
-													}
+													};
 													
 													userQuestionList.push(questions);
 												}			
 												
-												return userQuestionList
+												return userQuestionList;
 											})()
 										}									
-									}
+									};
 								}
 								
 								res.render('user_profile_questions.ejs', {userprofile: output});
-							};
+							}
 						});
-					};	
+					}
 				});
 				
 				/*
@@ -245,7 +244,7 @@ router.get(['/','/:u_id'],
 								res.status(500).json({"status_code": 500,"status_message": "internal server error"});
 							} else {
 								
-								if (resultQuestion.length == 0 && resultAnswer.length == 0) 
+								if (resultQuestion.length === 0 && resultAnswer.length === 0) 
 								{
 									output = {
 										user_profile_info: {
@@ -277,14 +276,14 @@ router.get(['/','/:u_id'],
 														answerBody: ' ',			
 														numOfAnswers: ' ',
 														date_ans: ' '							
-													}
+													};
 													userAnswerList.push(answers);
 												}			
 												
-												return userAnswerList
+												return userAnswerList;
 											})()
 										}	
-									}
+									};
 								} else {
 									
 									output = {
@@ -320,24 +319,24 @@ router.get(['/','/:u_id'],
 														answerBody: resultQuestion[i].answer_body,			
 														numOfAnswers: resultQuestion[i].num_answers,
 														date_ans: d							
-													}
+													};
 													
 													userAnswerList.push(answers);
 												}			
 												
-												return userAnswerList
+												return userAnswerList;
 											})()
 										}									
-									}
+									};
 								}
 								
 								res.render('user_profile_answers.ejs', {userprofile: output});
-							};
+							}
 						});
-					};	
+					}	
 				});
 			}
-		};
+		}
 		
 	});
 });

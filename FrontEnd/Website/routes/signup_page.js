@@ -1,4 +1,4 @@
-var express = require("express")
+var express = require("express");
 var router = express.Router();
 
 var path = require("path");
@@ -87,7 +87,7 @@ router.post("/", function(req,res) {
 					console.log(err);
 					res.render("sign_up", {msg: "Database Error on Signup"});
 				} else {
-					console.log("User succesfully added!")
+					console.log("User succesfully added!");
 					res.redirect("/sign_up/confirmation/" + newUser.username + "/" + newUser.email);
 				}
 			});

@@ -1,4 +1,4 @@
-var express = require("express")
+var express = require("express");
 var router = express.Router();
 
 var path = require("path");
@@ -45,7 +45,7 @@ router.post("/", function(req,res) {
     // Pass in variables that will be used in email
     res.render("email_user", {fname: req.body.firstname, lName: req.body.lastname, message: req.body.subject}, function(err, html) { 
 		if (err) {
-			console.log("error rendering email template:", err) 
+			console.log("error rendering email template:", err);
 			return;
 		} else {
 

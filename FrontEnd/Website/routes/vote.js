@@ -1,4 +1,4 @@
-var express = require("express")
+var express = require("express");
 var router = express.Router();
 
 var path = require("path");
@@ -148,17 +148,17 @@ router.post("/answer-vote", function(req, res) {
 				else if (resultQ2.score == 1 && score ==-1 || resultQ2.score == -1 && score == 1) {
 
 					//Values to fill in sql query below
-					var score = req.body.vote; //score is taken from button input ex: click button like gives 1, click button dislike gives -1
+					score = req.body.vote; //score is taken from button input ex: click button like gives 1, click button dislike gives -1
 					var userId = Number(req.body.user_id); //taken from user session
 					var datetimeScoredAnswer = date.format(new Date(), "YYYY-MM-DD h:m:s");
           
 				newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote. Allows for toggling between upvote & downvote
 
 				//Query updates the new score (or vote) into the database
-				var sqlInsertNewScore = "UPDATE score_answer SET score = ?, datetime_scored_answer = ? WHERE user_id = ?";
+				var sqlUpdateNewScore = "UPDATE score_answer SET score = ?, datetime_scored_answer = ? WHERE user_id = ?";
 
 				// Add score to database, table score_answer
-				db.query(sqlInsertNewScore, [score, datetimeScoredAnswer, userId], function(err,result) {
+				db.query(sqlUpdateNewScore, [score, datetimeScoredAnswer, userId], function(err,result) {
 					if(err) {
 						console.log("update score query failed " + err);
 						return;
@@ -259,7 +259,7 @@ router.post("/question-vote", function(req, res) {
 				else if (resultQ2.score == 1 && score ==-1 || resultQ2.score == -1 && score == 1) {
 
 					//Values to fill in sql query below
-						var score = req.body.vote; //score is taken from button input ex: click button like gives 1, click button dislike gives -1
+						score = req.body.vote; //score is taken from button input ex: click button like gives 1, click button dislike gives -1
 						var userId = Number(req.body.user_id); //taken from user session
 						var datetimeScoredQuestion = date.format(new Date(), "YYYY-MM-DD h:m:s");
 					
@@ -267,10 +267,10 @@ router.post("/question-vote", function(req, res) {
 					newTotalScore= totalScore + 2*Number(score); //the new totalScore is found by adding (+2 or -2) from the new score voted to the previous total score to cancel out his previous vote
 
 					// This Query inserts the new score (or vote) into the database and res.send the new total score
-					var sqlInsertNewScore = "UPDATE score_question SET score = ?, datetime_scored_question = ? WHERE user_id = ?";
+					var sqlUpdateNewScore = "UPDATE score_question SET score = ?, datetime_scored_question = ? WHERE user_id = ?";
 
 					// Add score to database, table score_question
-					db.query(sqlInsertNewScore, [score, datetimeScoredQuestion, userId], function(err,result) {
+					db.query(sqlUpdateNewScore, [score, datetimeScoredQuestion, userId], function(err,result) {
 						if(err) {
 							console.log("update score query failed " + err);
 							return;
